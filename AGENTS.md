@@ -7,3 +7,28 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Memory Management
+
+Project docs, memory, specs, and plans live in `aidd_docs/`.
+
+### Project memory
+
+<!-- aidd_project_memory:start -->
+
+[aidd_docs/memory/architecture.md](aidd_docs/memory/architecture.md)
+[aidd_docs/memory/codebase-map.md](aidd_docs/memory/codebase-map.md)
+[aidd_docs/memory/coding-assertions.md](aidd_docs/memory/coding-assertions.md)
+[aidd_docs/memory/design.md](aidd_docs/memory/design.md)
+[aidd_docs/memory/ecosystem.md](aidd_docs/memory/ecosystem.md)
+[aidd_docs/memory/forms.md](aidd_docs/memory/forms.md)
+[aidd_docs/memory/navigation.md](aidd_docs/memory/navigation.md)
+[aidd_docs/memory/project-brief.md](aidd_docs/memory/project-brief.md)
+[aidd_docs/memory/testing.md](aidd_docs/memory/testing.md)
+[aidd_docs/memory/vcs.md](aidd_docs/memory/vcs.md)
+
+<!-- aidd_project_memory:end -->
+
+- If the block above is empty, run `ls -1tr aidd_docs/memory/` and read each file.
+- Load `aidd_docs/memory/external/*` when the user asks.
+- Load `aidd_docs/memory/internal/*` when the task needs it.
