@@ -5,6 +5,7 @@
 | Order | Command | Checks |
 | ----- | ------- | ------ |
 | 1 | `pnpm lint` | Règles ESLint et conventions Next.js. |
+| 2 | `pnpm test:run` | Comportements fonctionnels couverts par Vitest. |
 
 ## Before push
 

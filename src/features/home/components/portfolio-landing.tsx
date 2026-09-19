@@ -103,6 +103,7 @@ export function PortfolioLanding() {
             href="https://cal.com/yanis-harrat/rdv-30min"
             target="_blank"
             rel="noreferrer"
+            aria-label="Prendre rendez-vous"
             className="reveal reveal-delay-2 inline-flex min-h-11 items-center gap-2 border border-white/25 bg-black/20 px-4 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:border-[#ff8a1f] hover:bg-[#ff8a1f] hover:text-black focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#ff8a1f]"
           >
             <CalendarDays aria-hidden="true" className="size-4" />
