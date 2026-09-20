@@ -31,9 +31,3 @@ export type HomeProject = {
   summary: string;
   evidence: string;
 };
-
-export type HomeCertification = {
-  title: string;
-  issuer: string;
-  kind: "Certificat professionnel" | "Certification" | "Formation";
-};

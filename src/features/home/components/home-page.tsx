@@ -10,7 +10,7 @@ import { HomeWatchPreview } from "./home-watch-preview";
 
 export function HomePage() {
   return (
-    <main className="overflow-x-hidden bg-[#070707] text-[#f7f3ec]">
+    <main className="overflow-x-hidden text-foreground">
       <HomeHero />
       <HomeProofStrip />
       <HomeSkillsPreview />
