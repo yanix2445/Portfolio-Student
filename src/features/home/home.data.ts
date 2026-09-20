@@ -14,6 +14,7 @@ export const homeRoutes = {
   e6: "/epreuves/e6",
   projects: "/projets",
   certifications: "/certifications",
+  watch: "/veille",
 } as const;
 
 export const homeProofs: readonly HomeProof[] = [

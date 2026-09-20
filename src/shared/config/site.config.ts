@@ -12,6 +12,6 @@ export const siteConfig = {
     { label: "Compétences", href: "/#competences" },
     { label: "Expériences", href: "/#e5" },
     { label: "E6", href: "/#e6" },
-    { label: "Veille", href: "/#veille" },
+    { label: "Veille", href: "/veille" },
   ],
 } as const;

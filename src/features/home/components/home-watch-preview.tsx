@@ -1,4 +1,6 @@
 import { ArrowRight, Bot, Rss } from "lucide-react";
+import Link from "next/link";
+import { homeRoutes } from "../home.data";
 
 export function HomeWatchPreview() {
   return (
@@ -29,10 +31,13 @@ export function HomeWatchPreview() {
               La newsletter permettra de recevoir les nouvelles synthèses lorsqu’elles seront publiées.
             </p>
           </article>
-          <span className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand">
-            Espace de veille en préparation
+          <Link
+            href={homeRoutes.watch}
+            className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand"
+          >
+            Explorer la veille
             <ArrowRight aria-hidden="true" className="size-4" />
-          </span>
+          </Link>
         </div>
       </div>
     </section>
