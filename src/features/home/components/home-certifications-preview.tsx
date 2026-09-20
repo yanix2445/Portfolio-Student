@@ -1,5 +1,6 @@
 import { Award, ArrowRight } from "lucide-react";
-import { homeCertifications } from "../home.data";
+import Link from "next/link";
+import { homeCertifications, homeRoutes } from "../home.data";
 
 export function HomeCertificationsPreview() {
   return (
@@ -23,10 +24,10 @@ export function HomeCertificationsPreview() {
           ))}
         </div>
 
-        <span className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white/42">
-          Les preuves détaillées seront accessibles dans le catalogue
+        <Link href={homeRoutes.certifications} className="mt-8 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand">
+          Consulter les six badges
           <ArrowRight aria-hidden="true" className="size-4" />
-        </span>
+        </Link>
       </div>
     </section>
   );

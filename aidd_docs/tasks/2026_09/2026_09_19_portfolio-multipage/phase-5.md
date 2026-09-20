@@ -1,5 +1,5 @@
 ---
-status: pending
+status: done
 ---
 
 # Instruction: Catalogue de certifications et preuves publiables
@@ -10,12 +10,6 @@ status: pending
 
 ```txt
 .
-├── public/documents/certifications/anthropic-ai-fluency.pdf             ✅ publier une copie au nom normalisé
-├── public/documents/certifications/anthropic-claude-101.pdf             ✅ publier une copie au nom normalisé
-├── public/documents/certifications/anthropic-claude-code-in-action.pdf  ✅ publier une copie au nom normalisé
-├── public/documents/certifications/cisco-introduction-cybersecurity.pdf ✅ publier une copie au nom normalisé
-├── public/documents/certifications/google-cybersecurity.pdf             ✅ publier le certificat professionnel principal
-├── public/documents/certifications/google-it-support.pdf                ✅ publier le certificat professionnel principal
 ├── public/images/certifications/cisco-cybersecurity-badge.png           ✅ publier le badge utile
 ├── public/images/certifications/google-cybersecurity-badge.png          ✅ publier le badge utile
 ├── public/images/certifications/google-it-support-badge.png             ✅ publier le badge utile
@@ -35,8 +29,8 @@ status: pending
 flowchart TD
   A[Le recruteur ouvre les certifications] --> B[Il voit les certificats professionnels principaux]
   B --> C[Il distingue les formations complémentaires]
-  C --> D[Il ouvre une preuve publiée]
-  D --> E[Il vérifie émetteur intitulé et nature]
+  C --> D[Il identifie le badge et son émetteur]
+  D --> E[Il distingue preuve visuelle et formation déclarée]
 ```
 
 ## Test Scope
@@ -47,10 +41,10 @@ title: Test scope
 ---
 journey
   section Setup
-    Inventorier les certificats sources => Chaque preuve retenue possède une catégorie et un nom public: 5: system
+    Inventorier les sources => Chacun des six badges possède une catégorie et un intitulé vérifié: 5: system
   section Happy path
     Ouvrir le catalogue => Les certificats professionnels précèdent les cours complémentaires: 5: browser
-    Activer une preuve => Le document ou badge correspondant est consultable: 5: browser
+    Consulter un badge => L image disponible ou le badge textuel correspondant est lisible: 5: browser
   section Edge case - Doublon
     Charger certificat et badge du même parcours => Une seule entrée de catalogue représente le parcours: 1: browser
   section Edge case - Métadonnée absente
@@ -69,19 +63,19 @@ journey
 │ (3) Certifications et formations complémentaires       │
 │     carte · carte · carte · carte                        │
 ├──────────────────────────────────────────────────────────┤
-│ (4) Note de vérification et accès aux preuves            │
+│ (4) Note sur la nature des badges affichés               │
 └──────────────────────────────────────────────────────────┘
 ```
 
 ## Tasks to do
 
-### `1)` Auditer et normaliser les preuves locales
+### `1)` Auditer et normaliser les badges locaux
 
-> Publier uniquement les documents nécessaires avec des noms sûrs et lisibles.
+> Publier uniquement les trois images de badge utiles avec des noms sûrs et lisibles.
 
-1. Vérifier visuellement l'intitulé et l'émetteur de chaque preuve retenue.
-2. Copier les certificats principaux et badges utiles dans `public` avec des noms normalisés.
-3. Exclure les doublons de cours déjà couverts par un certificat professionnel principal.
+1. Vérifier visuellement les badges Google Cybersecurity, Google IT Support et Cisco.
+2. Copier uniquement ces trois images dans `public` avec des noms normalisés.
+3. Ne publier aucun fichier PDF de certificat.
 
 ### `2)` Modéliser la distinction entre certification et formation
 
@@ -89,7 +83,7 @@ journey
 
 1. Séparer certificat professionnel, certificat de cours et badge.
 2. Ne renseigner que les dates et identifiants effectivement visibles.
-3. Lier chaque entrée à une seule preuve publique principale.
+3. Utiliser un badge d'interface textuel pour chaque formation Anthropic, sans exposer son certificat PDF.
 
 ### `3)` Construire le catalogue accessible
 
@@ -97,12 +91,12 @@ journey
 
 1. Mettre en avant Google Cybersecurity, Google IT Support et Cisco Introduction to Cybersecurity.
 2. Regrouper les formations Anthropic dans une section complémentaire.
-3. Relier l'aperçu de l'accueil au catalogue complet.
+3. Relier l'aperçu de l'accueil au catalogue complet sans lien public vers les PDF.
 
 ## Test acceptance criteria
 
 | Task | Acceptance criteria |
 | ---- | ------------------- |
-| 1 | Chaque fichier public possède un nom explicite, s'ouvre correctement et ne révèle aucune donnée à expurger. |
+| 1 | Les trois images publiques possèdent un nom explicite, s'affichent correctement et aucun certificat PDF n'est publié. |
 | 2 | Le catalogue distingue les certificats professionnels des cours et ne duplique pas un parcours pour chacun de ses sous-certificats. |
-| 3 | Les trois certifications principales sont visibles avant les formations complémentaires et chaque preuve est utilisable au clavier. |
+| 3 | Les six badges sont visibles, les trois certifications principales précèdent les formations Anthropic et chaque carte est compréhensible au clavier. |
