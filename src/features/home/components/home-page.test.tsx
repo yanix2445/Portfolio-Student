@@ -61,13 +61,4 @@ describe("HomePage", () => {
     expect(within(e5Section as HTMLElement).getAllByRole("listitem")).toHaveLength(6);
     expect(screen.getAllByText("En cours")).toHaveLength(2);
   });
-
-  it("labels temporary editorial photography and keeps authentic certification badges", () => {
-    render(<HomePage />);
-
-    expect(screen.getAllByText(/illustration éditoriale/i)).toHaveLength(4);
-    expect(screen.getByRole("img", { name: /badge certificat google cybersécurité/i })).toBeDefined();
-    expect(screen.getByRole("img", { name: /badge google it support/i })).toBeDefined();
-    expect(screen.getByRole("img", { name: /badge cisco networking academy/i })).toBeDefined();
-  });
 });

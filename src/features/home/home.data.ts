@@ -1,4 +1,5 @@
 import type {
+  HomeCertification,
   HomeE6Project,
   HomeExperience,
   HomeProject,
@@ -112,4 +113,29 @@ export const homeProjects: readonly HomeProject[] = [
       "Centraliser mon parcours, mes preuves BTS et ma veille dans une expérience claire pour les recruteurs.",
     evidence: "Code versionné sur GitHub et déploiement continu sur Vercel.",
   },
+];
+
+export const homeCertifications: readonly HomeCertification[] = [
+  {
+    title: "Google Cybersecurity",
+    issuer: "Google",
+    kind: "Certificat professionnel",
+  },
+  {
+    title: "Google IT Support",
+    issuer: "Google",
+    kind: "Certificat professionnel",
+  },
+  {
+    title: "Introduction to Cybersecurity",
+    issuer: "Cisco",
+    kind: "Certification",
+  },
+  { title: "Claude 101", issuer: "Anthropic", kind: "Formation" },
+  {
+    title: "Claude Code in Action",
+    issuer: "Anthropic",
+    kind: "Formation",
+  },
+  { title: "AI Fluency", issuer: "Anthropic", kind: "Formation" },
 ];

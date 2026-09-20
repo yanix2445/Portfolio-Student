@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { E6List } from "@/features/bts-e6";
-import { PageIntro } from "@/shared/components/page-intro";
-import { editorialMedia } from "@/shared/config/editorial-media.config";
 
 export const metadata: Metadata = {
   title: "Épreuve E6 · BTS SIO SISR",
@@ -13,14 +11,19 @@ export const metadata: Metadata = {
 export default function E6Page() {
   return (
     <main>
-      <PageIntro
-        eyebrow="BTS SIO SISR · E6"
-        title="Administration des systèmes et des réseaux."
-        description="Deux réalisations professionnelles documentées selon leur état réel. Elles restent marquées en cours tant que leurs tests et leurs preuves ne sont pas terminés."
-        media={editorialMedia.infrastructure}
-      />
-      <section className="page-shell pb-20 lg:pb-28" aria-label="Réalisations E6">
-        <div>
+      <header className="border-b border-white/10 px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
+        <div className="mx-auto w-full max-w-[90rem]">
+          <p className="section-label">BTS SIO SISR · E6</p>
+          <h1 className="mt-6 max-w-6xl text-5xl font-medium leading-[0.98] tracking-[-0.05em] text-balance sm:text-7xl">
+            Administration des systèmes et des réseaux.
+          </h1>
+          <p className="mt-7 max-w-3xl text-lg leading-8 text-white/58">
+            Deux réalisations professionnelles documentées selon leur état réel. Elles restent marquées en cours tant que leurs tests et leurs preuves ne sont pas terminés.
+          </p>
+        </div>
+      </header>
+      <section className="px-5 py-16 sm:px-8 lg:px-12 lg:py-24" aria-label="Réalisations E6">
+        <div className="mx-auto w-full max-w-[90rem]">
           <E6List />
         </div>
       </section>
