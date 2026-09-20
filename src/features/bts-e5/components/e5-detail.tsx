@@ -5,9 +5,9 @@ import type { E5Mission } from "../e5.types";
 export function E5Detail({ mission }: { mission: E5Mission }) {
   return (
     <article>
-      <div className="border-b border-white/10 bg-[#0b0b0b] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
-        <div className="mx-auto w-full max-w-[90rem]">
-          <Link href="/epreuves/e5" className="inline-flex min-h-11 items-center gap-2 text-sm text-white/58 hover:text-brand">
+      <div className="page-shell page-section">
+        <div className="page-intro">
+          <Link href="/epreuves/e5" className="inline-flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm text-white/60 hover:bg-white/5 hover:text-brand">
             <ArrowLeft aria-hidden="true" className="size-4" />
             Retour aux réalisations E5
           </Link>
@@ -18,7 +18,7 @@ export function E5Detail({ mission }: { mission: E5Mission }) {
                 {mission.title}
               </h1>
             </div>
-            <dl className="grid grid-cols-2 gap-5 border-l border-white/12 pl-6 text-sm">
+            <dl className="editorial-card grid grid-cols-2 gap-5 p-6 text-sm">
               <div>
                 <dt className="text-white/42">Statut</dt>
                 <dd className="mt-1 font-semibold text-brand">{mission.status}</dd>
@@ -36,8 +36,8 @@ export function E5Detail({ mission }: { mission: E5Mission }) {
         </div>
       </div>
 
-      <div className="px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
-        <div className="mx-auto grid w-full max-w-[90rem] gap-12 lg:grid-cols-[1.3fr_0.7fr]">
+      <div className="page-shell pb-20 lg:pb-28">
+        <div className="grid gap-12 lg:grid-cols-[1.3fr_0.7fr]">
           <div className="grid gap-12">
             <DetailSection title="Contexte">
               <p>{mission.context}</p>
@@ -52,7 +52,7 @@ export function E5Detail({ mission }: { mission: E5Mission }) {
               <ol className="grid gap-4">
                 {mission.approach.map((step, index) => (
                   <li key={step} className="flex gap-4">
-                    <span className="grid size-7 shrink-0 place-items-center bg-brand font-mono text-xs font-bold text-black">
+                    <span className="grid size-7 shrink-0 place-items-center rounded-lg bg-brand font-mono text-xs font-bold text-black">
                       {index + 1}
                     </span>
                     <span>{step}</span>
@@ -69,26 +69,26 @@ export function E5Detail({ mission }: { mission: E5Mission }) {
           </div>
 
           <aside className="grid content-start gap-5 lg:sticky lg:top-24">
-            <section className="border border-white/12 bg-[#0b0b0b] p-6">
+            <section className="editorial-card p-6">
               <h2 className="inline-flex items-center gap-2 text-xl font-medium">
                 <Wrench aria-hidden="true" className="size-5 text-brand" />
                 Outils pertinents
               </h2>
               <ul className="mt-5 flex flex-wrap gap-2">
                 {mission.tools.map((tool) => (
-                  <li key={tool} className="border border-white/12 px-2.5 py-1.5 font-mono text-xs text-white/62">
+                  <li key={tool} className="rounded-full border border-white/12 px-3 py-1.5 font-mono text-xs text-white/62">
                     {tool}
                   </li>
                 ))}
               </ul>
             </section>
 
-            <section className="border border-white/12 bg-[#0b0b0b] p-6">
+            <section className="editorial-card p-6">
               <h2 className="text-xl font-medium">Compétences mobilisées</h2>
               <BulletList items={mission.competencies} />
             </section>
 
-            <section className="border border-brand/30 bg-brand/5 p-6">
+            <section className="rounded-[var(--radius)] border border-brand/30 bg-brand/5 p-6">
               <h2 className="text-xl font-medium">Preuves publiables</h2>
               <ul className="mt-5 grid gap-4">
                 {mission.evidence.map((evidence) => (
@@ -110,7 +110,7 @@ function DetailSection({ title, children }: { title: string; children: React.Rea
   return (
     <section>
       <h2 className="text-3xl font-medium tracking-[-0.03em]">{title}</h2>
-      <div className="mt-5 max-w-3xl text-base leading-8 text-white/64">{children}</div>
+      <div className="mt-5 max-w-3xl text-base leading-8 text-white/68">{children}</div>
     </section>
   );
 }

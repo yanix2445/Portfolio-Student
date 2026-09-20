@@ -33,6 +33,12 @@ export const portfolioProjects: readonly PortfolioProject[] = [
         href: "https://portfolio-student-ten.vercel.app",
       },
     ],
+    visual: {
+      src: "/images/projects/portfolio-overview.webp",
+      alt: "Aperçu réel de l’accueil du portfolio de Yanis Harrat",
+      width: 1600,
+      height: 1000,
+    },
   },
 ];
 

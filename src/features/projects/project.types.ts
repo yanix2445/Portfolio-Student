@@ -3,6 +3,13 @@ export type ProjectEvidence = {
   href: string;
 };
 
+export type ProjectVisual = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
 export type PortfolioProject = {
   slug: string;
   title: string;
@@ -14,4 +21,5 @@ export type PortfolioProject = {
   result: string;
   tools: readonly string[];
   evidence: readonly ProjectEvidence[];
+  visual: ProjectVisual;
 };
