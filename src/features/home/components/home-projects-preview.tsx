@@ -1,5 +1,6 @@
 import { Code2, GitBranch } from "lucide-react";
-import { homeProjects } from "../home.data";
+import Link from "next/link";
+import { homeProjects, homeRoutes } from "../home.data";
 
 export function HomeProjectsPreview() {
   return (
@@ -26,6 +27,12 @@ export function HomeProjectsPreview() {
               <p className="mt-6 border-l border-brand pl-4 text-sm leading-6 text-white/72">
                 {project.evidence}
               </p>
+              <Link
+                href={`${homeRoutes.projects}/${project.slug}`}
+                className="mt-7 inline-flex min-h-11 items-center text-sm font-semibold text-brand"
+              >
+                Consulter le projet
+              </Link>
             </article>
           ))}
         </div>

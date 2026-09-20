@@ -1,5 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
-import { homeE6Projects } from "../home.data";
+import Link from "next/link";
+import { homeE6Projects, homeRoutes } from "../home.data";
 
 export function HomeE6Preview() {
   return (
@@ -30,13 +31,20 @@ export function HomeE6Preview() {
                 {project.title}
               </h3>
               <p className="mt-5 max-w-xl leading-7 text-white/58">{project.summary}</p>
-              <span className="mt-10 inline-flex items-center gap-2 text-sm font-semibold text-white/45">
-                Dossier détaillé à venir
+              <Link
+                href={`${homeRoutes.e6}/${project.slug}`}
+                className="mt-10 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand"
+              >
+                Voir l’état de la réalisation
                 <ArrowUpRight aria-hidden="true" className="size-4" />
-              </span>
+              </Link>
             </article>
           ))}
         </div>
+        <Link href={homeRoutes.e6} className="mt-8 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand">
+          Consulter l’espace E6
+          <ArrowUpRight aria-hidden="true" className="size-4" />
+        </Link>
       </div>
     </section>
   );

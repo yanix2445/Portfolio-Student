@@ -18,12 +18,14 @@ export type HomeExperience = {
 };
 
 export type HomeE6Project = {
+  slug: string;
   title: string;
   status: "En cours";
   summary: string;
 };
 
 export type HomeProject = {
+  slug: string;
   title: string;
   kind: string;
   summary: string;

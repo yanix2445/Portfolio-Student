@@ -11,6 +11,8 @@ export const homeRoutes = {
   skills: "/competences",
   career: "/parcours",
   e5: "/epreuves/e5",
+  e6: "/epreuves/e6",
+  projects: "/projets",
 } as const;
 
 export const homeProofs: readonly HomeProof[] = [
@@ -84,12 +86,14 @@ export const homeExperiences: readonly HomeExperience[] = [
 
 export const homeE6Projects: readonly HomeE6Project[] = [
   {
+    slug: "infrastructure-pme-automatisation",
     title: "Infrastructure PME et automatisation",
     status: "En cours",
     summary:
       "Conception d’une infrastructure segmentée, redondée et automatisée pour une PME simulée.",
   },
   {
+    slug: "seconde-realisation-professionnelle",
     title: "Seconde réalisation professionnelle",
     status: "En cours",
     summary:
@@ -99,6 +103,7 @@ export const homeE6Projects: readonly HomeE6Project[] = [
 
 export const homeProjects: readonly HomeProject[] = [
   {
+    slug: "portfolio-professionnel",
     title: "Portfolio professionnel multipage",
     kind: "Projet personnel",
     summary:
