@@ -1,4 +1,4 @@
-import { CalendarDays, Menu } from "lucide-react";
+import { CalendarDays, Download, Menu } from "lucide-react";
 import Link from "next/link";
 import { siteConfig } from "@/shared/config/site.config";
 
@@ -52,6 +52,16 @@ export function SiteHeader() {
               ))}
             </nav>
           </details>
+
+          <a
+            href={siteConfig.cvUrl}
+            download="CV-Yanis-Harrat-Technicien-Systemes-Reseaux.pdf"
+            className="inline-flex min-h-11 items-center gap-2 border border-white/20 px-3 text-sm font-semibold text-white/78 transition-colors hover:border-brand hover:text-brand sm:px-4"
+            aria-label="Télécharger mon CV"
+          >
+            <Download aria-hidden="true" className="size-4" />
+            <span className="hidden sm:inline">Télécharger mon CV</span>
+          </a>
 
           <a
             href={siteConfig.bookingUrl}
