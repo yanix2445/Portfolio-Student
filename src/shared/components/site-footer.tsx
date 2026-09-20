@@ -3,8 +3,8 @@ import { siteConfig } from "@/shared/config/site.config";
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-white/10 bg-[#070707] px-5 py-10 sm:px-8 lg:px-12">
-      <div className="mx-auto grid w-full max-w-[90rem] gap-8 sm:grid-cols-2 sm:items-end">
+    <footer className="px-5 py-6 sm:px-8 lg:px-12">
+      <div className="mx-auto grid w-full max-w-[90rem] gap-8 rounded-[1.5rem] border border-white/10 bg-surface-raised/72 p-7 shadow-[var(--shadow-soft)] sm:grid-cols-2 sm:items-end lg:p-10">
         <div>
           <p className="font-heading text-3xl font-medium tracking-[-0.035em]">
             {siteConfig.name}
@@ -40,11 +40,10 @@ export function SiteFooter() {
             Télécharger mon CV
           </a>
         </div>
-      </div>
-
-      <div className="mx-auto mt-8 flex w-full max-w-[90rem] flex-col gap-2 border-t border-white/10 pt-5 text-xs text-white/55 sm:flex-row sm:justify-between">
-        <p>© 2026 {siteConfig.name}</p>
-        <p>Portfolio étudiant · BTS SIO SISR</p>
+        <div className="flex flex-col gap-2 border-t border-white/10 pt-5 text-xs text-white/55 sm:col-span-2 sm:flex-row sm:justify-between">
+          <p>© 2026 {siteConfig.name}</p>
+          <p>Portfolio étudiant · BTS SIO SISR</p>
+        </div>
       </div>
     </footer>
   );

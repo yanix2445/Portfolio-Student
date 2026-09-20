@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import { SiteHeader } from "./site-header";
 
 describe("SiteHeader", () => {
-  it("exposes the identity, primary navigation and booking action", () => {
+  it("exposes the identity, primary navigation, CV and booking actions", () => {
     render(<SiteHeader />);
 
     expect(
@@ -25,6 +25,12 @@ describe("SiteHeader", () => {
     });
     expect(bookingLinks[0].getAttribute("href")).toBe(
       "https://cal.com/yanis-harrat/rdv-30min",
+    );
+
+    const cvLinks = screen.getAllByRole("link", { name: /télécharger mon cv/i });
+    expect(cvLinks[0].getAttribute("href")).toBe("/documents/cv-yanis-harrat.pdf");
+    expect(cvLinks[0].getAttribute("download")).toBe(
+      "CV-Yanis-Harrat-Technicien-Systemes-Reseaux.pdf",
     );
   });
 });
