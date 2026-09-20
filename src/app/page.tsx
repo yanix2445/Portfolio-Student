@@ -1,5 +1,5 @@
-import { PortfolioLanding } from "@/features/home/components/portfolio-landing";
+import { HomePage } from "@/features/home";
 
-export default function HomePage() {
-  return <PortfolioLanding />;
+export default function Page() {
+  return <HomePage />;
 }
