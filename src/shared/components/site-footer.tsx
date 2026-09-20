@@ -1,0 +1,43 @@
+import { ArrowUpRight, Mail } from "lucide-react";
+import { siteConfig } from "@/shared/config/site.config";
+
+export function SiteFooter() {
+  return (
+    <footer className="border-t border-white/10 bg-[#070707] px-5 py-10 sm:px-8 lg:px-12">
+      <div className="mx-auto grid w-full max-w-[90rem] gap-8 sm:grid-cols-2 sm:items-end">
+        <div>
+          <p className="font-heading text-3xl font-medium tracking-[-0.035em]">
+            {siteConfig.name}
+          </p>
+          <p className="mt-2 max-w-md text-sm leading-6 text-white/55">
+            Technicien support systèmes et réseaux, disponible en Île-de-France.
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-3 text-sm sm:items-end">
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className="inline-flex min-h-11 items-center gap-2 text-white/75 hover:text-brand"
+          >
+            <Mail aria-hidden="true" className="size-4" />
+            {siteConfig.email}
+          </a>
+          <a
+            href={siteConfig.bookingUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex min-h-11 items-center gap-2 text-white/75 hover:text-brand"
+          >
+            Réserver un échange
+            <ArrowUpRight aria-hidden="true" className="size-4" />
+          </a>
+        </div>
+      </div>
+
+      <div className="mx-auto mt-8 flex w-full max-w-[90rem] flex-col gap-2 border-t border-white/10 pt-5 text-xs text-white/40 sm:flex-row sm:justify-between">
+        <p>© 2026 {siteConfig.name}</p>
+        <p>Portfolio étudiant · BTS SIO SISR</p>
+      </div>
+    </footer>
+  );
+}

@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Geist, Geist_Mono } from "next/font/google";
+import { SiteFooter } from "@/shared/components/site-footer";
+import { SiteHeader } from "@/shared/components/site-header";
+import { siteConfig } from "@/shared/config/site.config";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,9 +22,11 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Yanis Harrat — Portfolio BTS SIO SISR",
-  description:
-    "Portfolio de Yanis Harrat, étudiant en BTS SIO option SISR : compétences, projets, épreuves E5 et E6, et veille technologique.",
+  title: {
+    default: siteConfig.title,
+    template: `%s — ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
   keywords: [
     "Yanis Harrat",
     "portfolio",
@@ -40,7 +45,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="fr"
       className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <SiteHeader />
+        <div className="flex-1">{children}</div>
+        <SiteFooter />
+      </body>
     </html>
   );
 }
