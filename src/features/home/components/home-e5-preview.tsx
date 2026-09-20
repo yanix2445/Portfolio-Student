@@ -1,5 +1,6 @@
-import { CheckCircle2 } from "lucide-react";
-import { homeExperiences } from "../home.data";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
+import Link from "next/link";
+import { homeExperiences, homeRoutes } from "../home.data";
 
 export function HomeE5Preview() {
   return (
@@ -37,6 +38,16 @@ export function HomeE5Preview() {
               </ul>
             </article>
           ))}
+        </div>
+        <div className="mt-8 flex flex-wrap gap-6">
+          <Link href={homeRoutes.e5} className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand">
+            Consulter les six fiches E5
+            <ArrowRight aria-hidden="true" className="size-4" />
+          </Link>
+          <Link href={homeRoutes.career} className="inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-white/62 hover:text-white">
+            Voir mon parcours
+            <ArrowRight aria-hidden="true" className="size-4" />
+          </Link>
         </div>
       </div>
     </section>

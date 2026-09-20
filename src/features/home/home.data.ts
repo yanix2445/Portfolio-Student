@@ -7,6 +7,12 @@ import type {
   HomeSkill,
 } from "./home.types";
 
+export const homeRoutes = {
+  skills: "/competences",
+  career: "/parcours",
+  e5: "/epreuves/e5",
+} as const;
+
 export const homeProofs: readonly HomeProof[] = [
   { value: "2", label: "expériences terrain en 2026" },
   { value: "6", label: "réalisations professionnelles E5" },

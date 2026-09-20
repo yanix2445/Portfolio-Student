@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
-import { homeSkills } from "../home.data";
+import Link from "next/link";
+import { homeRoutes, homeSkills } from "../home.data";
 
 export function HomeSkillsPreview() {
   return (
@@ -39,10 +40,10 @@ export function HomeSkillsPreview() {
           ))}
         </div>
 
-        <a href="#e5" className="mt-8 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand">
-          Voir les compétences en situation
+        <Link href={homeRoutes.skills} className="mt-8 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand">
+          Consulter toutes mes compétences
           <ArrowRight aria-hidden="true" className="size-4" />
-        </a>
+        </Link>
       </div>
     </section>
   );
