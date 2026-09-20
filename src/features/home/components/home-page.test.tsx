@@ -37,14 +37,14 @@ describe("HomePage", () => {
     ]);
   });
 
-  it("provides the core contact actions without offering an unvalidated CV", () => {
+  it("provides the three validated conversion actions", () => {
     render(<HomePage />);
 
     expect(
       screen.getAllByRole("link", { name: /prendre rendez-vous|réserver 30 minutes/i }).length,
     ).toBeGreaterThan(0);
     expect(screen.getAllByRole("link", { name: /me contacter|écrire un courriel/i }).length).toBeGreaterThan(0);
-    expect(screen.queryByRole("link", { name: /cv/i })).toBeNull();
+    expect(screen.getAllByRole("link", { name: /télécharger mon cv/i }).length).toBeGreaterThan(0);
   });
 
   it("keeps exactly six E5 missions and two E6 statuses visible", () => {

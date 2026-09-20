@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { ArrowDown, ArrowUpRight, CalendarDays, Mail } from "lucide-react";
+import { ArrowDown, ArrowUpRight, CalendarDays, Download, Mail } from "lucide-react";
 import { siteConfig } from "@/shared/config/site.config";
 
 export function HomeHero() {
@@ -67,6 +67,14 @@ export function HomeHero() {
             >
               <Mail aria-hidden="true" className="size-4" />
               Me contacter
+            </a>
+            <a
+              href={siteConfig.cvUrl}
+              download="CV-Yanis-Harrat-Technicien-Systemes-Reseaux.pdf"
+              className="inline-flex min-h-12 items-center gap-3 px-4 text-sm font-semibold text-white/76 hover:text-brand"
+            >
+              <Download aria-hidden="true" className="size-4" />
+              Télécharger mon CV
             </a>
           </div>
         </div>

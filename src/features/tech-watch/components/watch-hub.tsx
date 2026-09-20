@@ -57,12 +57,12 @@ export function WatchHub() {
                 Ce que je retiens et pourquoi.
               </h2>
             </div>
-            <p className="font-mono text-xs text-white/42">{watchArticles.length} publications</p>
+            <p className="font-mono text-xs text-white/55">{watchArticles.length} publications</p>
           </div>
           <div className="mt-10 grid gap-5 lg:grid-cols-2">
             {watchArticles.map((article) => (
               <article key={article.slug} className="flex min-h-full flex-col border border-white/12 bg-[#0b0b0b] p-7 sm:p-8">
-                <div className="flex flex-wrap items-center gap-3 font-mono text-xs text-white/42">
+                <div className="flex flex-wrap items-center gap-3 font-mono text-xs text-white/55">
                   <time dateTime={article.publishedAt}>{dateFormatter.format(new Date(article.publishedAt))}</time>
                   <span aria-hidden="true">·</span>
                   <span>{article.readingTime}</span>

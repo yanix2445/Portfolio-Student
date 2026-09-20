@@ -1,4 +1,4 @@
-import { ArrowUpRight, Mail } from "lucide-react";
+import { ArrowUpRight, Download, Mail } from "lucide-react";
 import { siteConfig } from "@/shared/config/site.config";
 
 export function SiteFooter() {
@@ -31,10 +31,18 @@ export function SiteFooter() {
             Réserver un échange
             <ArrowUpRight aria-hidden="true" className="size-4" />
           </a>
+          <a
+            href={siteConfig.cvUrl}
+            download="CV-Yanis-Harrat-Technicien-Systemes-Reseaux.pdf"
+            className="inline-flex min-h-11 items-center gap-2 text-white/75 hover:text-brand"
+          >
+            <Download aria-hidden="true" className="size-4" />
+            Télécharger mon CV
+          </a>
         </div>
       </div>
 
-      <div className="mx-auto mt-8 flex w-full max-w-[90rem] flex-col gap-2 border-t border-white/10 pt-5 text-xs text-white/40 sm:flex-row sm:justify-between">
+      <div className="mx-auto mt-8 flex w-full max-w-[90rem] flex-col gap-2 border-t border-white/10 pt-5 text-xs text-white/55 sm:flex-row sm:justify-between">
         <p>© 2026 {siteConfig.name}</p>
         <p>Portfolio étudiant · BTS SIO SISR</p>
       </div>

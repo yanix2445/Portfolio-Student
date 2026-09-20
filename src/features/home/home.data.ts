@@ -15,6 +15,7 @@ export const homeRoutes = {
   projects: "/projets",
   certifications: "/certifications",
   watch: "/veille",
+  cv: "/documents/cv-yanis-harrat.pdf",
 } as const;
 
 export const homeProofs: readonly HomeProof[] = [

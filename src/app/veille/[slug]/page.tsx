@@ -19,6 +19,14 @@ export async function generateMetadata({ params }: PageProps<"/veille/[slug]">):
   return {
     title: article.title,
     description: article.excerpt,
+    alternates: { canonical: `/veille/${article.slug}` },
+    openGraph: {
+      type: "article",
+      title: article.title,
+      description: article.excerpt,
+      publishedTime: article.publishedAt,
+      url: `/veille/${article.slug}`,
+    },
   };
 }
 

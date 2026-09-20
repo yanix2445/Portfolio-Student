@@ -1,5 +1,5 @@
 ---
-status: pending
+status: done
 ---
 
 # Instruction: CV, contact, SEO, accessibilité et validation de production

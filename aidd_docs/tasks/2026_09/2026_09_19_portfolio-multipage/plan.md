@@ -1,6 +1,6 @@
 ---
 objective: "Le portfolio multipage permet à un recruteur de comprendre le profil de Yanis en moins de trente secondes, d'en vérifier les preuves et de le contacter par les parcours validés."
-status: blocked
+status: in-progress
 ---
 
 # Plan: Portfolio multipage orienté recrutement et BTS SIO SISR

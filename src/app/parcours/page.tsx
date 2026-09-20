@@ -1,4 +1,12 @@
+import type { Metadata } from "next";
 import { ExperienceTimeline } from "@/features/experiences";
+
+export const metadata: Metadata = {
+  title: "Parcours professionnel",
+  description:
+    "Expériences de Yanis Harrat comme technicien support systèmes et réseaux chez EDLearn et au Secours Catholique-Caritas France.",
+  alternates: { canonical: "/parcours" },
+};
 
 export default function CareerPage() {
   return (

@@ -1,4 +1,4 @@
-import { ArrowUpRight, CalendarDays, Mail } from "lucide-react";
+import { ArrowUpRight, CalendarDays, Download, Mail } from "lucide-react";
 import { siteConfig } from "@/shared/config/site.config";
 
 export function HomeContactCta() {
@@ -37,6 +37,14 @@ export function HomeContactCta() {
             >
               <Mail aria-hidden="true" className="size-4" />
               Écrire un courriel
+            </a>
+            <a
+              href={siteConfig.cvUrl}
+              download="CV-Yanis-Harrat-Technicien-Systemes-Reseaux.pdf"
+              className="inline-flex min-h-12 items-center justify-center gap-3 border border-black/35 px-5 text-sm font-semibold hover:bg-black/10"
+            >
+              <Download aria-hidden="true" className="size-4" />
+              Télécharger mon CV
             </a>
           </div>
         </div>
