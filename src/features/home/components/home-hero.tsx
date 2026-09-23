@@ -1,83 +1,38 @@
-import Image from "next/image";
-import { ArrowDown, ArrowUpRight, CalendarDays, Download, Mail } from "lucide-react";
+import { ArrowDown, Download } from "lucide-react";
 import { siteConfig } from "@/shared/config/site.config";
+import { HomeProfilePortrait } from "./home-profile-portrait";
 
 export function HomeHero() {
   return (
-    <section className="relative isolate min-h-[calc(100svh-4rem)] overflow-hidden border-b border-white/10">
-      <Image
-        src="/images/portfolio-hero.webp"
-        alt=""
-        fill
-        priority
-        sizes="100vw"
-        className="-z-30 object-cover object-[68%_center] sm:object-[66%_center] lg:object-center"
-      />
-      <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,rgba(0,0,0,0.97)_0%,rgba(0,0,0,0.86)_38%,rgba(0,0,0,0.22)_72%,rgba(0,0,0,0.46)_100%)]" />
-      <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(0,0,0,0.16),transparent_55%,#070707_100%)]" />
-      <div className="hero-grid pointer-events-none absolute inset-0 -z-10 opacity-30" />
-
-      <div className="mx-auto flex min-h-[calc(100svh-4rem)] w-full max-w-[90rem] items-end px-5 py-14 sm:px-8 sm:py-20 lg:items-center lg:px-12">
-        <div className="max-w-4xl">
-          <p className="reveal mb-5 flex items-center gap-3 font-mono text-xs font-semibold tracking-[0.2em] text-brand uppercase sm:text-sm">
-            <span className="size-2 animate-pulse rounded-full bg-brand" aria-hidden="true" />
-            Disponible dès maintenant · Alternance ou CDI
+    <section id="accueil" className="px-4 pb-20 pt-12 sm:px-6 lg:pt-20">
+      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <div>
+          <p className="flex items-center gap-3 text-sm font-semibold text-[var(--home-accent-hover)]">
+            <span className="size-2 rounded-full bg-[var(--home-accent)] shadow-[0_0_0_5px_rgba(255,122,0,0.14)]" aria-hidden="true" />
+            Disponible dès maintenant · alternance ou CDI
           </p>
-
-          <h1 className="reveal reveal-delay-1 text-[clamp(3.2rem,7.5vw,7.5rem)] font-semibold leading-[0.86] tracking-[-0.07em] text-balance">
-            Technicien support
-            {" "}
-            <span className="block font-light text-white/62">
-              systèmes & réseaux.
-            </span>
+          <h1 className="mt-7 max-w-4xl text-[clamp(2.65rem,5.5vw,5.25rem)] leading-[0.96] font-semibold tracking-[-0.04em] text-balance">
+            Technicien support systèmes et réseaux, prêt à renforcer votre équipe.
           </h1>
-
-          <p className="reveal reveal-delay-2 mt-7 max-w-2xl border-l border-brand pl-5 text-base leading-7 text-white/72 sm:pl-7 sm:text-lg sm:leading-8">
-            Je suis Yanis Harrat, étudiant en BTS SIO SISR. J’interviens sur
-            le support, l’administration et la fiabilisation des
-            environnements informatiques.
+          <p className="mt-7 max-w-2xl text-base leading-7 text-[var(--home-text-muted)] text-pretty sm:text-lg sm:leading-8">
+            Je suis Yanis Harrat, étudiant en BTS SIO SISR. J’interviens sur le support, l’administration et la fiabilisation des environnements informatiques.
           </p>
-
-          <div className="reveal reveal-delay-3 mt-7 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs tracking-[0.08em] text-white/58 uppercase">
-            <span>Paris et toute l’Île-de-France</span>
-            <span>Présentiel · Hybride · Télétravail</span>
-          </div>
-
-          <div className="reveal reveal-delay-3 mt-9 flex flex-wrap gap-3">
-            <a
-              href="#e5"
-              className="inline-flex min-h-12 items-center gap-3 bg-brand px-5 text-sm font-semibold text-brand-foreground transition-colors hover:bg-[#ffad61]"
-            >
-              Voir mes réalisations
-              <ArrowDown aria-hidden="true" className="size-4" />
-            </a>
-            <a
-              href={siteConfig.bookingUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex min-h-12 items-center gap-3 border border-white/25 bg-black/25 px-5 text-sm font-semibold text-white backdrop-blur-sm hover:border-brand"
-            >
-              <CalendarDays aria-hidden="true" className="size-4" />
-              Prendre rendez-vous
-              <ArrowUpRight aria-hidden="true" className="size-4" />
-            </a>
-            <a
-              href={`mailto:${siteConfig.email}`}
-              className="inline-flex min-h-12 items-center gap-3 px-4 text-sm font-semibold text-white/76 hover:text-brand"
-            >
-              <Mail aria-hidden="true" className="size-4" />
-              Me contacter
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href="#experiences" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-[var(--home-accent)] px-5 text-sm font-bold text-black transition-transform duration-150 ease-out active:scale-[0.97]">
+              Voir mes preuves <ArrowDown className="size-4" aria-hidden="true" />
             </a>
             <a
               href={siteConfig.cvUrl}
               download="CV-Yanis-Harrat-Technicien-Systemes-Reseaux.pdf"
-              className="inline-flex min-h-12 items-center gap-3 px-4 text-sm font-semibold text-white/76 hover:text-brand"
+              className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-white/[0.07] px-5 text-sm font-semibold text-white ring-1 ring-white/10 hover:bg-white/[0.1]"
             >
-              <Download aria-hidden="true" className="size-4" />
-              Télécharger mon CV
+              <Download className="size-4" aria-hidden="true" /> Télécharger mon CV
             </a>
           </div>
+          <p className="mt-5 text-sm text-[var(--home-text-subtle)]">Paris et toute l’Île-de-France · Présentiel · Hybride · Télétravail</p>
         </div>
+
+        <HomeProfilePortrait />
       </div>
     </section>
   );

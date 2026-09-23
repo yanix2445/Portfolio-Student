@@ -16,12 +16,12 @@ describe("SiteHeader", () => {
       name: "Navigation principale",
     });
 
-    for (const label of ["Compétences", "Expériences", "E6", "Veille"]) {
-      expect(within(navigation).getByRole("link", { name: label })).toBeDefined();
+    for (const label of ["Compétences", "Expériences", "Projets", "Certifications", "Veille"]) {
+      expect(within(navigation).getAllByRole("link", { name: label }).length).toBeGreaterThan(0);
     }
 
     const bookingLinks = screen.getAllByRole("link", {
-      name: /prendre rendez-vous|rendez-vous/i,
+      name: /réserver un échange/i,
     });
     expect(bookingLinks[0].getAttribute("href")).toBe(
       "https://cal.com/yanis-harrat/rdv-30min",

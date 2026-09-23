@@ -13,8 +13,9 @@ export const siteConfig = {
   linkedInUrl: "https://www.linkedin.com/in/yanis-harrat",
   navigation: [
     { label: "Compétences", href: "/#competences" },
-    { label: "Expériences", href: "/#e5" },
-    { label: "E6", href: "/#e6" },
-    { label: "Veille", href: "/veille" },
+    { label: "Expériences", href: "/#experiences" },
+    { label: "Projets", href: "/#projets" },
+    { label: "Certifications", href: "/#certifications" },
+    { label: "Veille", href: "/#veille" },
   ],
 } as const;

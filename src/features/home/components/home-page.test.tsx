@@ -1,6 +1,11 @@
 import { render, screen, within } from "@testing-library/react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import { HomePage } from "./home-page";
+
+vi.mock("@/features/newsletter", () => ({
+  NewsletterForm: () => <form aria-label="Newsletter" />,
+  subscribeNewsletter: vi.fn(),
+}));
 
 describe("HomePage", () => {
   it("makes the recruiter decision information immediately understandable", () => {
@@ -9,7 +14,7 @@ describe("HomePage", () => {
     expect(
       screen.getByRole("heading", {
         level: 1,
-        name: /technicien support systèmes & réseaux/i,
+        name: /technicien support systèmes et réseaux/i,
       }),
     ).toBeDefined();
     expect(screen.getAllByText(/disponible dès maintenant/i).length).toBeGreaterThan(0);
@@ -27,13 +32,14 @@ describe("HomePage", () => {
 
     expect(headings).toEqual([
       "Repères rapides",
-      "Opérationnel sur le terrain.",
-      "Six missions réalisées en entreprise.",
-      "Administrer, automatiser, prouver.",
-      "Apprendre en construisant.",
-      "Des acquis vérifiables, du support à la cybersécurité.",
+      "Ma méthode pour transformer une demande en solution durable",
+      "Six compétences reliées à des situations concrètes.",
+      "Six missions réalisées. Deux dossiers techniques en construction.",
+      "Un projet réel aujourd’hui, une collection prête à grandir.",
+      "Des acquis alignés avec le support, les systèmes et les réseaux.",
       "L’IA appliquée au développement web et applicatif.",
-      "Mon profil correspond à votre besoin ?",
+      "L’essentiel avant un premier échange.",
+      "Un besoin en support systèmes et réseaux ? Échangeons pendant 30 minutes.",
     ]);
   });
 
@@ -41,9 +47,9 @@ describe("HomePage", () => {
     render(<HomePage />);
 
     expect(
-      screen.getAllByRole("link", { name: /prendre rendez-vous|réserver 30 minutes/i }).length,
+      screen.getAllByRole("link", { name: /réserver un échange/i }).length,
     ).toBeGreaterThan(0);
-    expect(screen.getAllByRole("link", { name: /me contacter|écrire un courriel/i }).length).toBeGreaterThan(0);
+    expect(screen.getAllByRole("link", { name: /me contacter|courriel/i }).length).toBeGreaterThan(0);
     expect(screen.getAllByRole("link", { name: /télécharger mon cv/i }).length).toBeGreaterThan(0);
   });
 
@@ -53,12 +59,15 @@ describe("HomePage", () => {
     const e5Section = screen
       .getByRole("heading", {
         level: 2,
-        name: "Six missions réalisées en entreprise.",
+        name: "Six missions réalisées. Deux dossiers techniques en construction.",
       })
       .closest("section");
 
     expect(e5Section).not.toBeNull();
     expect(within(e5Section as HTMLElement).getAllByRole("listitem")).toHaveLength(6);
-    expect(screen.getAllByText("En cours")).toHaveLength(2);
+
+    const e6Card = screen.getByRole("heading", { level: 3, name: "E6 · Réalisations techniques" }).closest("article");
+    expect(e6Card).not.toBeNull();
+    expect(within(e6Card as HTMLElement).getAllByText("En cours")).toHaveLength(2);
   });
 });

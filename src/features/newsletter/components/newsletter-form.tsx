@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { ArrowRight, LoaderCircle, Mail } from "lucide-react";
+import { cn } from "@/shared/lib/cn";
 import {
   initialNewsletterState,
   type NewsletterAction,
@@ -11,11 +12,13 @@ import {
 type NewsletterFormProps = {
   action: NewsletterAction;
   initialState?: NewsletterState;
+  appearance?: "default" | "home";
 };
 
 export function NewsletterForm({
   action,
   initialState = initialNewsletterState,
+  appearance = "default",
 }: NewsletterFormProps) {
   const [state, formAction, pending] = useActionState(action, initialState);
   const emailErrorId = state.fieldErrors?.email ? "newsletter-email-error" : undefined;
@@ -42,7 +45,10 @@ export function NewsletterForm({
             aria-invalid={Boolean(emailErrorId)}
             aria-describedby={emailErrorId}
             placeholder="vous@exemple.fr"
-            className="min-h-13 w-full border border-white/16 bg-black/20 pr-4 pl-11 text-base text-white placeholder:text-white/30 focus:border-brand"
+          className={cn(
+            "min-h-13 w-full border border-white/16 bg-black/20 pr-4 pl-11 text-base text-white focus:border-brand",
+            appearance === "home" ? "rounded-xl placeholder:text-white/55" : "placeholder:text-white/30",
+          )}
           />
         </div>
         {state.fieldErrors?.email?.map((error) => (
@@ -87,7 +93,10 @@ export function NewsletterForm({
       <button
         type="submit"
         disabled={pending}
-        className="inline-flex min-h-12 w-fit items-center justify-center gap-2 bg-brand px-5 text-sm font-semibold text-brand-foreground transition-colors hover:bg-[#ffad61] disabled:cursor-wait disabled:opacity-65"
+        className={cn(
+          "inline-flex min-h-12 w-fit items-center justify-center gap-2 bg-brand px-5 text-sm font-semibold text-brand-foreground transition-colors hover:bg-[#ffad61] disabled:cursor-wait disabled:opacity-65",
+          appearance === "home" && "rounded-xl active:scale-[0.97]",
+        )}
       >
         {pending ? (
           <>

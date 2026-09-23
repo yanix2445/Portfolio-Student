@@ -2,20 +2,20 @@ import { homeProofs } from "../home.data";
 
 export function HomeProofStrip() {
   return (
-    <section aria-labelledby="preuves-title" className="border-b border-white/10">
+    <section aria-labelledby="preuves-title" className="px-4 pb-14 sm:px-6 lg:pb-20">
       <h2 id="preuves-title" className="sr-only">
         Repères rapides
       </h2>
-      <div className="mx-auto grid w-full max-w-[90rem] grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto grid max-w-7xl grid-cols-2 overflow-hidden rounded-2xl bg-[var(--home-surface)] shadow-[0_24px_60px_-48px_rgba(0,0,0,0.9)] ring-1 ring-white/[0.07] lg:grid-cols-4">
         {homeProofs.map((proof) => (
           <div
             key={proof.label}
-            className="border-b border-r border-white/10 px-5 py-8 last:border-r-0 sm:px-8 lg:border-b-0 lg:px-10"
+            className="border-white/[0.07] p-4 even:border-l lg:border-l lg:first:border-l-0 sm:p-5"
           >
-            <p className="font-heading text-4xl font-semibold text-brand sm:text-5xl">
+            <p className="text-2xl font-semibold text-[var(--home-accent-hover)] tabular-nums sm:text-3xl">
               {proof.value}
             </p>
-            <p className="mt-2 max-w-44 text-sm leading-6 text-white/55">
+            <p className="mt-1 text-xs leading-5 text-[var(--home-text-muted)] sm:text-sm">
               {proof.label}
             </p>
           </div>

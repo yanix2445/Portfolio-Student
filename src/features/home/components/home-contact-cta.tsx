@@ -1,54 +1,29 @@
-import { ArrowUpRight, CalendarDays, Download, Mail } from "lucide-react";
+import { FileCheck2, Mail } from "lucide-react";
 import { siteConfig } from "@/shared/config/site.config";
+import { HomeReveal } from "./home-reveal";
 
 export function HomeContactCta() {
   return (
-    <section aria-labelledby="contact-title" className="px-5 py-5 sm:px-8 sm:py-8 lg:px-12 lg:py-12">
-      <div className="mx-auto w-full max-w-[90rem] bg-brand px-6 py-12 text-brand-foreground sm:px-10 sm:py-16 lg:px-14">
-        <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end">
-          <div>
-            <p className="font-mono text-xs font-semibold tracking-[0.18em] uppercase">
-              Disponible dès maintenant
-            </p>
-            <h2 id="contact-title" className="mt-5 max-w-4xl text-4xl font-semibold leading-[0.98] tracking-[-0.05em] text-balance sm:text-6xl lg:text-7xl">
-              Mon profil correspond à votre besoin&nbsp;?
-            </h2>
-            <p className="mt-5 max-w-2xl leading-7 text-black/68">
-              Échangeons sur une alternance ou un CDI en support systèmes et réseaux, en Île-de-France ou à distance.
-            </p>
-          </div>
-
-          <div className="flex flex-col gap-3 sm:flex-row lg:flex-col">
-            <a
-              href={siteConfig.bookingUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex min-h-12 items-center justify-between gap-8 bg-[#111] px-5 text-sm font-semibold text-white hover:bg-white hover:text-black"
-            >
-              <span className="inline-flex items-center gap-2">
-                <CalendarDays aria-hidden="true" className="size-4" />
-                Réserver 30 minutes
-              </span>
-              <ArrowUpRight aria-hidden="true" className="size-4" />
-            </a>
-            <a
-              href={`mailto:${siteConfig.email}`}
-              className="inline-flex min-h-12 items-center justify-center gap-3 border border-black/35 px-5 text-sm font-semibold hover:bg-black/10"
-            >
-              <Mail aria-hidden="true" className="size-4" />
-              Écrire un courriel
-            </a>
-            <a
-              href={siteConfig.cvUrl}
-              download="CV-Yanis-Harrat-Technicien-Systemes-Reseaux.pdf"
-              className="inline-flex min-h-12 items-center justify-center gap-3 border border-black/35 px-5 text-sm font-semibold hover:bg-black/10"
-            >
-              <Download aria-hidden="true" className="size-4" />
-              Télécharger mon CV
-            </a>
-          </div>
+    <section className="px-4 pb-24 pt-8 sm:px-6">
+      <HomeReveal className="mx-auto grid max-w-7xl gap-7 rounded-2xl bg-[var(--home-accent)] p-7 text-center text-black sm:p-10">
+        <div className="mx-auto">
+          <h2 className="mx-auto max-w-4xl text-4xl font-semibold tracking-[-0.035em] text-balance sm:text-5xl">
+            Un besoin en support systèmes et réseaux ? Échangeons pendant 30 minutes.
+          </h2>
+          <p className="mt-3 text-sm text-black/70">Disponible dès maintenant à Paris et en Île-de-France.</p>
         </div>
-      </div>
+        <div className="flex flex-wrap justify-center gap-3">
+          <a href={siteConfig.bookingUrl} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center rounded-xl bg-black px-5 text-sm font-bold text-white transition-transform duration-150 ease-out active:scale-[0.97]">
+            Réserver un échange
+          </a>
+          <a href={siteConfig.cvUrl} download="CV-Yanis-Harrat-Technicien-Systemes-Reseaux.pdf" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-white/75 px-5 text-sm font-bold">
+            <FileCheck2 className="size-4" aria-hidden="true" /> CV
+          </a>
+          <a href={`mailto:${siteConfig.email}`} className="inline-flex min-h-12 items-center gap-2 px-3 text-sm font-bold underline underline-offset-8">
+            <Mail className="size-4" aria-hidden="true" /> Courriel
+          </a>
+        </div>
+      </HomeReveal>
     </section>
   );
 }

@@ -1,42 +1,45 @@
-import { Code2, GitBranch } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { homeProjects, homeRoutes } from "../home.data";
+import { portfolioProjects } from "@/features/projects";
+import { homeRoutes } from "../home.data";
+import { HomeProjectVisual } from "./home-project-visual";
+import { HomeReveal } from "./home-reveal";
+
+const project = portfolioProjects[0];
 
 export function HomeProjectsPreview() {
   return (
-    <section id="projets" className="border-b border-white/10 bg-[#0b0b0b] px-5 py-24 sm:px-8 lg:px-12 lg:py-32">
-      <div className="mx-auto grid w-full max-w-[90rem] gap-12 lg:grid-cols-[0.65fr_1.35fr]">
-        <div>
-          <p className="section-label">Projets</p>
-          <h2 className="mt-6 text-4xl font-medium tracking-[-0.045em] sm:text-6xl">
-            Apprendre en construisant.
+    <section id="projets" className="px-4 py-20 sm:px-6 lg:py-24" aria-labelledby="home-projects-title">
+      <HomeReveal className="mx-auto max-w-7xl">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <h2 id="home-projects-title" className="max-w-3xl text-4xl font-semibold tracking-[-0.035em] text-balance sm:text-5xl">
+            Un projet réel aujourd’hui, une collection prête à grandir.
           </h2>
+          <Link href={homeRoutes.projects} className="inline-flex min-h-11 w-fit items-center gap-2 text-sm font-semibold text-[var(--home-accent-hover)] underline decoration-[var(--home-accent)]/40 underline-offset-8">
+            Voir tous mes projets <ArrowUpRight className="size-4" aria-hidden="true" />
+          </Link>
         </div>
-        <div className="grid gap-5">
-          {homeProjects.map((project) => (
-            <article key={project.title} className="border border-white/12 p-7 sm:p-10">
-              <div className="flex items-center justify-between gap-4">
-                <span className="inline-flex items-center gap-2 font-mono text-xs text-brand uppercase">
-                  <Code2 aria-hidden="true" className="size-4" />
-                  {project.kind}
-                </span>
-                <GitBranch aria-hidden="true" className="size-5 text-white/32" />
-              </div>
-              <h3 className="mt-8 text-3xl font-medium tracking-[-0.035em]">{project.title}</h3>
-              <p className="mt-4 max-w-2xl leading-7 text-white/58">{project.summary}</p>
-              <p className="mt-6 border-l border-brand pl-4 text-sm leading-6 text-white/72">
-                {project.evidence}
-              </p>
-              <Link
-                href={`${homeRoutes.projects}/${project.slug}`}
-                className="mt-7 inline-flex min-h-11 items-center text-sm font-semibold text-brand"
-              >
-                Consulter le projet
-              </Link>
-            </article>
-          ))}
-        </div>
-      </div>
+
+        <article className="mt-10 grid overflow-hidden rounded-2xl bg-[var(--home-surface-raised)] ring-1 ring-white/[0.08] lg:grid-cols-[0.9fr_1.1fr]">
+          <HomeProjectVisual title={project.title} />
+          <div className="flex flex-col p-6 sm:p-8 lg:p-10">
+            <div className="flex flex-wrap items-center justify-between gap-3 text-sm">
+              <span className="font-semibold text-[var(--home-accent-hover)]">{project.kind}</span>
+              <span className="rounded-full bg-white/[0.06] px-3 py-1.5 text-[var(--home-text-muted)]">{project.status}</span>
+            </div>
+            <h3 className="mt-8 text-3xl font-semibold tracking-[-0.03em] text-balance sm:text-4xl">{project.title}</h3>
+            <p className="mt-5 max-w-2xl text-base leading-7 text-[var(--home-text-muted)] text-pretty">{project.problem}</p>
+            <ul className="mt-6 flex flex-wrap gap-2" aria-label="Technologies du projet">
+              {project.tools.map((tool) => (
+                <li key={tool} className="rounded-full bg-white/[0.06] px-3 py-2 text-xs text-[var(--home-text-muted)]">{tool}</li>
+              ))}
+            </ul>
+            <Link href={`/projets/${project.slug}`} className="mt-8 inline-flex min-h-12 w-fit items-center gap-2 rounded-xl bg-[var(--home-accent)] px-5 text-sm font-bold text-black transition-transform duration-150 ease-out active:scale-[0.97]">
+              Consulter le projet <ArrowUpRight className="size-4" aria-hidden="true" />
+            </Link>
+          </div>
+        </article>
+      </HomeReveal>
     </section>
   );
 }
