@@ -157,7 +157,8 @@
 }
 
 @layer components {
-  .home-page {
+.home-page,
+.portfolio-surface {
     --home-bg: #050505;
     --home-surface: #141414;
     --home-surface-raised: #181818;
@@ -172,9 +173,12 @@
     font-family: var(--font-geist-sans), sans-serif;
   }
 
-  .home-page h1,
-  .home-page h2,
-  .home-page h3 {
+.home-page h1,
+.home-page h2,
+.home-page h3,
+.portfolio-surface h1,
+.portfolio-surface h2,
+.portfolio-surface h3 {
     font-family: var(--font-geist-sans), sans-serif;
   }
 
