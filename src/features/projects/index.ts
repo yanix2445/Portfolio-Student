@@ -1,4 +1,4 @@
 export { ProjectDetail } from "./components/project-detail";
-export { ProjectList } from "./components/project-list";
+export { ProjectGallery } from "./components/project-gallery";
 export { getProjectBySlug, portfolioProjects } from "./projects.data";
 export type { PortfolioProject, ProjectEvidence } from "./project.types";
