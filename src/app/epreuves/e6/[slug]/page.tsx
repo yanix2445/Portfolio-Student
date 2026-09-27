@@ -36,7 +36,7 @@ export default async function E6RealizationPage({
   }
 
   return (
-    <main>
+    <main className="portfolio-surface min-h-screen bg-[var(--portfolio-canvas)] text-[var(--portfolio-text)]">
       <E6Detail realization={realization} />
     </main>
   );

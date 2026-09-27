@@ -1,7 +1,7 @@
 .prototype {
   min-height: 100vh;
-  color: #f5f3ef;
-  background: #050505;
+  color: var(--portfolio-text);
+  background: var(--portfolio-canvas);
 }
 
 .prototype :where(h1, h2, h3, p, ul, ol, dl) {
@@ -25,7 +25,7 @@
 /* Séquence */
 
 .sequencePage {
-  --orange: #ff7900;
+  --orange: var(--portfolio-accent);
   --line: rgba(255, 255, 255, 0.13);
   --muted: rgba(245, 243, 239, 0.6);
   min-height: 100vh;
@@ -52,7 +52,7 @@
 .sequenceTitle > p,
 .systemHero > p {
   color: var(--orange);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-geist-mono), monospace;
   font-size: 0.72rem;
   font-weight: 750;
   letter-spacing: 0.06em;
@@ -177,7 +177,7 @@
 }
 
 .sequenceFlow li > span {
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-geist-mono), monospace;
   font-size: 0.72rem;
   font-weight: 800;
 }
@@ -233,7 +233,7 @@
 .sequenceDeliverables li > span,
 .sequenceCompetencies li > span {
   color: var(--orange);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-geist-mono), monospace;
   font-size: 0.72rem;
   font-weight: 800;
 }
@@ -319,7 +319,7 @@
 
 .sequenceRealizations a > span {
   color: var(--orange);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-geist-mono), monospace;
   font-size: 0.75rem;
 }
 
@@ -350,11 +350,11 @@
 /* Système */
 
 .systemPage {
-  --orange: #ff7900;
+  --orange: var(--portfolio-accent);
   --ink: #12110f;
   --paper: #ece8df;
   --line: rgba(255, 255, 255, 0.13);
-  --muted: rgba(245, 243, 239, 0.6);
+  --muted: rgb(245 243 239 / 0.6);
   min-height: 100vh;
   padding: 10rem clamp(1.25rem, 4vw, 5rem) 8rem;
   background-color: #08090a;
@@ -474,7 +474,7 @@
 
 .systemOrbit li > span {
   color: var(--orange);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-geist-mono), monospace;
   font-size: 0.68rem;
   font-weight: 800;
 }
@@ -537,7 +537,7 @@
 
 .systemReading li > span {
   color: var(--orange);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-geist-mono), monospace;
   font-size: 0.68rem;
 }
 
@@ -641,7 +641,7 @@
 
 .systemCardIndex strong {
   color: var(--orange);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-geist-mono), monospace;
   font-size: 0.74rem;
 }
 
@@ -734,7 +734,7 @@
   gap: 2rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid rgba(247, 242, 233, 0.25);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-geist-mono), monospace;
   font-size: 0.68rem;
   text-transform: uppercase;
 }
@@ -815,7 +815,7 @@
 .dossierCompetencies > div > span,
 .dossierRealizations > header span {
   color: var(--orange);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-geist-mono), monospace;
   font-size: 0.72rem;
   font-weight: 800;
 }
@@ -865,7 +865,7 @@
 
 .dossierStages li > span {
   color: var(--orange);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-geist-mono), monospace;
   font-size: 0.68rem;
 }
 
@@ -913,7 +913,7 @@
 
 .dossierDeliverables li > span {
   color: var(--orange);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-geist-mono), monospace;
   font-size: 0.7rem;
   font-weight: 800;
 }
@@ -951,7 +951,7 @@
 
 .dossierCompetencies li span {
   color: var(--orange);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-geist-mono), monospace;
   font-size: 0.7rem;
 }
 
@@ -982,7 +982,7 @@
 
 .dossierRealizations a > span {
   color: var(--orange);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-geist-mono), monospace;
   font-size: 0.72rem;
   font-weight: 800;
 }

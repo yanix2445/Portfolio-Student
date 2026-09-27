@@ -5,7 +5,7 @@ import type { E6Realization } from "../e6.types";
 export function E6Detail({ realization }: { realization: E6Realization }) {
   return (
     <article>
-      <header className="border-b border-white/10 bg-[#0b0b0b] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
+      <header className="border-b border-white/10 bg-[var(--portfolio-panel)] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
         <div className="mx-auto w-full max-w-[90rem]">
           <Link href="/epreuves/e6" className="inline-flex min-h-11 items-center gap-2 text-sm text-white/58 hover:text-brand">
             <ArrowLeft aria-hidden="true" className="size-4" />
@@ -53,7 +53,7 @@ export function E6Detail({ realization }: { realization: E6Realization }) {
 
           <aside className="grid content-start gap-5 lg:sticky lg:top-24">
             {realization.tools.length > 0 ? (
-              <section className="border border-white/12 bg-[#0b0b0b] p-6">
+              <section className="border border-white/12 bg-[var(--portfolio-panel)] p-6">
                 <h2 className="inline-flex items-center gap-2 text-xl font-medium">
                   <Wrench aria-hidden="true" className="size-5 text-brand" />
                   Outils prévus
@@ -67,11 +67,11 @@ export function E6Detail({ realization }: { realization: E6Realization }) {
                 </ul>
               </section>
             ) : null}
-            <section className="border border-white/12 bg-[#0b0b0b] p-6">
+            <section className="border border-white/12 bg-[var(--portfolio-panel)] p-6">
               <h2 className="text-xl font-medium">Compétences visées</h2>
               <ItemList items={realization.competencies} />
             </section>
-            <section className="border border-white/12 bg-[#0b0b0b] p-6">
+            <section className="border border-white/12 bg-[var(--portfolio-panel)] p-6">
               <h2 className="text-xl font-medium">Preuves disponibles</h2>
               <ItemList items={realization.availableEvidence} />
             </section>

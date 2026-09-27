@@ -14,7 +14,7 @@ test("les deux réalisations E6 restent explicitement en cours", async ({ page }
   await page.goto("/epreuves/e6");
   await expect(page.getByText("En cours", { exact: true })).toHaveCount(2);
 
-  await page.getByRole("link", { name: "Voir l’état de la réalisation" }).first().click();
+  await page.getByRole("link", { name: "Voir le dossier" }).first().click();
   await expect(page.getByRole("heading", { name: "Résultat non publié" })).toBeVisible();
   await expect(page.getByText(/aucun test final, impact, conformité/i)).toBeVisible();
 });

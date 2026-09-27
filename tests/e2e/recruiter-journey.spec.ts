@@ -11,7 +11,7 @@ test("un recruteur comprend le profil et atteint les trois conversions", async (
   await expect(
     page.getByRole("heading", {
       level: 1,
-      name: /technicien support systèmes & réseaux/i,
+      name: /technicien support systèmes et réseaux/i,
     }),
   ).toBeVisible();
   await expect(page.getByText(/disponible dès maintenant/i).first()).toBeVisible();
@@ -27,19 +27,19 @@ test("un recruteur comprend le profil et atteint les trois conversions", async (
   expect(cvResponse.ok()).toBeTruthy();
   expect(cvResponse.headers()["content-type"]).toContain("application/pdf");
 
-  await expect(page.getByRole("link", { name: /prendre rendez-vous/i }).first()).toHaveAttribute(
+  await expect(page.getByRole("link", { name: /réserver un échange/i }).first()).toHaveAttribute(
     "href",
     "https://cal.com/yanis-harrat/rdv-30min",
   );
-  await expect(page.getByRole("link", { name: /me contacter/i })).toHaveAttribute(
+  await expect(page.getByRole("link", { name: /courriel/i })).toHaveAttribute(
     "href",
     "mailto:contact@yanis-harrat.com",
   );
 
-  await page.getByRole("link", { name: "Consulter les six fiches E5" }).click();
+  await page.getByRole("link", { name: "Espace E5" }).click();
   await expect(page).toHaveURL(/\/epreuves\/e5$/);
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
-    "Support et mise à disposition",
+    "Des situations réelles aux compétences démontrées",
   );
 });
 

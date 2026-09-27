@@ -34,7 +34,7 @@ export default async function ProjectPage({ params }: PageProps<"/projets/[slug]
   }
 
   return (
-    <main>
+    <main className="portfolio-surface min-h-screen bg-[var(--portfolio-canvas)] text-[var(--portfolio-text)]">
       <ProjectDetail project={project} />
     </main>
   );

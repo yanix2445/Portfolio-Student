@@ -1,13 +1,13 @@
 .prototype {
   min-height: 100vh;
-  background: #050505;
-  color: #f6f6f6;
-  --orange: #ff7a00;
-  --orange-soft: #ff9838;
-  --surface: #151515;
-  --surface-high: #1a1a1a;
-  --muted: #b5b5b5;
-  --subtle: #8c8c8c;
+  background: var(--portfolio-canvas);
+  color: var(--portfolio-text);
+  --orange: var(--portfolio-accent);
+  --orange-soft: var(--portfolio-accent-hover);
+  --surface: var(--portfolio-surface);
+  --surface-high: var(--portfolio-surface-raised);
+  --muted: var(--portfolio-text-muted);
+  --subtle: var(--portfolio-text-subtle);
 }
 
 .prototype :where(h1, h2, h3) { text-wrap: balance; }
@@ -183,7 +183,7 @@
   .matrixCards > li { overflow: hidden; border-radius: 0.8rem; background: var(--surface-high); box-shadow: 0 0 0 1px rgb(255 255 255 / 0.07) inset; }
   .matrixCards header { display: grid; grid-template-columns: 2rem minmax(0, 1fr) auto; gap: 0.75rem; align-items: start; padding: 1.15rem; border-bottom: 1px solid rgb(255 255 255 / 0.075); }
   .matrixCards header > span { padding-top: 0.25rem; color: var(--orange-soft); font: 650 0.72rem/1 var(--font-geist-mono); }
-  .matrixCards h4 { max-width: 44ch; font-size: 0.95rem; font-weight: 650; line-height: 1.4; }
+  .matrixCards h3 { max-width: 44ch; font-size: 0.95rem; font-weight: 650; line-height: 1.4; }
   .matrixCards header p { margin-top: 0.35rem; color: var(--subtle); font-size: 0.75rem; line-height: 1.45; }
   .matrixCards header > strong { padding: 0.4rem 0.55rem; border-radius: 0.45rem; background: rgb(255 122 0 / 0.1); color: var(--orange-soft); font: 650 0.68rem/1 var(--font-geist-mono); }
   .matrixCards dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -238,13 +238,14 @@
 /* E5 — Système de preuves */
 
 .e5SystemPage {
-  --e5-orange: #ff7900;
+  --e5-orange: var(--portfolio-accent);
   --e5-line: rgb(255 255 255 / 0.13);
   --e5-muted: rgb(245 243 239 / 0.6);
-  --orange: #ff7a00;
-  --orange-soft: #ff9838;
-  --surface-high: #1a1a1a;
-  --subtle: #8c8c8c;
+  --orange: var(--portfolio-accent);
+  --orange-soft: var(--portfolio-accent-hover);
+  --surface-high: var(--portfolio-surface-raised);
+  --muted: var(--e5-muted);
+  --subtle: var(--portfolio-text-subtle);
   min-height: 100vh;
   padding: 10rem clamp(1.25rem, 4vw, 5rem) 8rem;
   background-color: #08090a;
@@ -387,7 +388,7 @@
 
 .e5SystemCompetencies li > span {
   color: var(--e5-orange);
-  font: 800 0.68rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  font: 800 0.68rem/1 var(--font-geist-mono), monospace;
 }
 
 .e5SystemCompetencies li > svg {
@@ -413,7 +414,7 @@
 .e5SystemCompetencies li > small {
   margin-top: 1.15rem;
   color: var(--e5-orange);
-  font: 700 0.68rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  font: 700 0.68rem/1 var(--font-geist-mono), monospace;
 }
 
 .e5SystemReading {
@@ -455,7 +456,7 @@
 
 .e5SystemReading li > span {
   color: var(--e5-orange);
-  font: 700 0.68rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace;
+  font: 700 0.68rem/1.2 var(--font-geist-mono), monospace;
 }
 
 .e5SystemReading li > strong {
@@ -475,7 +476,7 @@
 .e5SystemReading > div > p {
   margin-top: 1.5rem;
   color: var(--e5-orange);
-  font: 700 0.72rem/1.5 ui-monospace, SFMono-Regular, Menlo, monospace;
+  font: 700 0.72rem/1.5 var(--font-geist-mono), monospace;
 }
 
 .e5SystemMissions {
@@ -514,7 +515,7 @@
 
 .e5SystemFilters button span {
   color: var(--e5-orange);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--font-geist-mono), monospace;
 }
 
 .e5SystemFilters button:hover {
@@ -588,7 +589,7 @@
 
 .e5SystemMissionMeta > span {
   color: var(--e5-orange);
-  font: 750 0.68rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  font: 750 0.68rem/1 var(--font-geist-mono), monospace;
   text-transform: uppercase;
 }
 
@@ -630,7 +631,7 @@
 .e5SystemMissionBody > span {
   display: block;
   margin-top: 0.9rem;
-  color: rgb(245 243 239 / 0.45);
+  color: var(--e5-muted);
   font-size: 0.72rem;
 }
 
@@ -659,7 +660,7 @@
   border: 1px solid rgb(255 121 0 / 0.28);
   border-radius: 999px;
   color: var(--e5-orange);
-  font: 750 0.65rem/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+  font: 750 0.65rem/1 var(--font-geist-mono), monospace;
   text-align: center;
 }
 

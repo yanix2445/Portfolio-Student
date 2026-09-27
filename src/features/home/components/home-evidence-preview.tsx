@@ -57,7 +57,7 @@ export function HomeEvidencePreview() {
             </div>
             <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
               {homeE6Projects.map((item, index) => (
-                <Link key={item.slug} href={`${homeRoutes.e6}/${item.slug}`} className="group flex min-h-44 flex-col rounded-xl bg-[var(--home-surface-raised)] p-5 hover:bg-[#1d1d1d]">
+                <Link key={item.slug} href={`${homeRoutes.e6}/${item.slug}`} className="group flex min-h-44 flex-col rounded-xl bg-[var(--home-surface-raised)] p-5 transition-colors duration-150 hover:bg-[color-mix(in_srgb,var(--home-surface-raised)_86%,white)] motion-reduce:transition-none">
                   <div className="flex items-center justify-between gap-3">
                     <span className="text-xs font-semibold text-[var(--home-accent-hover)]">Réalisation {index + 1}</span>
                     <span className="rounded-full bg-[var(--home-accent)] px-2.5 py-1 text-xs font-bold text-black">{item.status}</span>

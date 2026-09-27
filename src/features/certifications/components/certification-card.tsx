@@ -4,7 +4,7 @@ import type { Certification } from "../certification.types";
 
 export function CertificationCard({ certification }: { certification: Certification }) {
   return (
-    <article className="grid h-full grid-rows-[auto_1fr] border border-white/12 bg-[#0b0b0b] p-6 sm:p-8">
+    <article className="grid h-full grid-rows-[auto_1fr] border border-white/12 bg-[var(--portfolio-panel)] p-6 sm:p-8">
       <div className="grid min-h-52 place-items-center border-b border-white/10 pb-7">
         {certification.badge.type === "image" ? (
           <Image
@@ -16,7 +16,7 @@ export function CertificationCard({ certification }: { certification: Certificat
           />
         ) : (
           <div
-            className="grid size-40 place-items-center rounded-[2rem] border border-brand/50 bg-[radial-gradient(circle_at_35%_25%,rgba(255,138,31,0.28),transparent_55%),#121212] shadow-[inset_0_0_0_8px_rgba(255,255,255,0.03)]"
+            className="grid size-40 place-items-center rounded-[2rem] border border-brand/50 bg-[radial-gradient(circle_at_35%_25%,rgba(255,138,31,0.28),transparent_55%),var(--portfolio-surface)] shadow-[inset_0_0_0_8px_rgba(255,255,255,0.03)]"
             role="img"
             aria-label={`Badge Anthropic ${certification.title}`}
           >

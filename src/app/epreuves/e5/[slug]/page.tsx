@@ -36,7 +36,7 @@ export default async function E5MissionPage({
   }
 
   return (
-    <main>
+    <main className="portfolio-surface min-h-screen bg-[var(--portfolio-canvas)] text-[var(--portfolio-text)]">
       <E5Detail mission={mission} />
     </main>
   );

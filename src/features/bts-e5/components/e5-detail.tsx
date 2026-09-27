@@ -5,7 +5,7 @@ import type { E5Mission } from "../e5.types";
 export function E5Detail({ mission }: { mission: E5Mission }) {
   return (
     <article>
-      <div className="border-b border-white/10 bg-[#0b0b0b] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
+      <div className="border-b border-white/10 bg-[var(--portfolio-panel)] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
         <div className="mx-auto w-full max-w-[90rem]">
           <Link href="/epreuves/e5" className="inline-flex min-h-11 items-center gap-2 text-sm text-white/58 hover:text-brand">
             <ArrowLeft aria-hidden="true" className="size-4" />
@@ -20,15 +20,15 @@ export function E5Detail({ mission }: { mission: E5Mission }) {
             </div>
             <dl className="grid grid-cols-2 gap-5 border-l border-white/12 pl-6 text-sm">
               <div>
-                <dt className="text-white/42">Statut</dt>
+                <dt className="text-white/58">Statut</dt>
                 <dd className="mt-1 font-semibold text-brand">{mission.status}</dd>
               </div>
               <div>
-                <dt className="text-white/42">Période</dt>
+                <dt className="text-white/58">Période</dt>
                 <dd className="mt-1 text-white/75">{mission.period}</dd>
               </div>
               <div className="col-span-2">
-                <dt className="text-white/42">Rôle</dt>
+                <dt className="text-white/58">Rôle</dt>
                 <dd className="mt-1 text-white/75">Technicien support systèmes et réseaux</dd>
               </div>
             </dl>
@@ -69,7 +69,7 @@ export function E5Detail({ mission }: { mission: E5Mission }) {
           </div>
 
           <aside className="grid content-start gap-5 lg:sticky lg:top-24">
-            <section className="border border-white/12 bg-[#0b0b0b] p-6">
+            <section className="border border-white/12 bg-[var(--portfolio-panel)] p-6">
               <h2 className="inline-flex items-center gap-2 text-xl font-medium">
                 <Wrench aria-hidden="true" className="size-5 text-brand" />
                 Outils pertinents
@@ -83,7 +83,7 @@ export function E5Detail({ mission }: { mission: E5Mission }) {
               </ul>
             </section>
 
-            <section className="border border-white/12 bg-[#0b0b0b] p-6">
+            <section className="border border-white/12 bg-[var(--portfolio-panel)] p-6">
               <h2 className="text-xl font-medium">Compétences mobilisées</h2>
               <BulletList items={mission.competencies} />
             </section>

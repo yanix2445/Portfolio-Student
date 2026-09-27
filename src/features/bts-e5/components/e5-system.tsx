@@ -304,7 +304,7 @@ export function E5System() {
                 <header>
                   <span>{String(missionIndex + 1).padStart(2, "0")}</span>
                   <div>
-                    <h4>{mission.title}</h4>
+                    <h3>{mission.title}</h3>
                     <p>{mission.organization} · {mission.period}</p>
                   </div>
                   <strong>{coverage}/{competencyColumns.length}</strong>

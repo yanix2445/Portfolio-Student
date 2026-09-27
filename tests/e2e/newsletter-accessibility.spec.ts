@@ -45,10 +45,10 @@ test("le parcours clavier, le mouvement réduit et le responsive restent utilisa
   await page.keyboard.press("Enter");
   await expect(page.locator("#main-content")).toBeFocused();
 
-  const animationDuration = await page.locator(".reveal").first().evaluate((element) =>
-    getComputedStyle(element).animationDuration,
+  const transitionDuration = await page.locator(".home-reveal").first().evaluate((element) =>
+    getComputedStyle(element).transitionDuration,
   );
-  expect(["0.01ms", "0.00001s", "1e-05s"]).toContain(animationDuration);
+  expect(transitionDuration).toBe("0s");
 
   const hasHorizontalOverflow = await page.evaluate(
     () => document.documentElement.scrollWidth > window.innerWidth,

@@ -12,7 +12,7 @@ const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
 export function WatchArticle({ article }: { article: WatchArticleType }) {
   return (
     <article>
-      <header className="border-b border-white/10 bg-[#0b0b0b] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
+      <header className="border-b border-white/10 bg-[var(--portfolio-panel)] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
         <div className="mx-auto w-full max-w-[90rem]">
           <Link href="/veille" className="inline-flex min-h-11 items-center gap-2 text-sm text-white/58 hover:text-brand">
             <ArrowLeft aria-hidden="true" className="size-4" />
@@ -65,7 +65,7 @@ export function WatchArticle({ article }: { article: WatchArticleType }) {
           </div>
 
           <aside className="lg:sticky lg:top-24 lg:self-start">
-            <section className="border border-white/12 bg-[#0b0b0b] p-6 sm:p-8">
+            <section className="border border-white/12 bg-[var(--portfolio-panel)] p-6 sm:p-8">
               <h2 className="text-2xl font-medium">Sources consultées</h2>
               <ul className="mt-6 grid gap-4">
                 {article.sources.map((source) => (

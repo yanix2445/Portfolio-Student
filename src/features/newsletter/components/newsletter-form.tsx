@@ -52,7 +52,7 @@ export function NewsletterForm({
           />
         </div>
         {state.fieldErrors?.email?.map((error) => (
-          <p key={error} id={emailErrorId} className="text-sm text-[#ffb37a]">
+          <p key={error} id={emailErrorId} className="text-sm text-[var(--portfolio-error)]">
             {error}
           </p>
         ))}
@@ -77,14 +77,14 @@ export function NewsletterForm({
             required
             aria-invalid={Boolean(consentErrorId)}
             aria-describedby={consentErrorId}
-            className="mt-1 size-4 shrink-0 accent-[#ff8a1f]"
+            className="mt-1 size-4 shrink-0 accent-[var(--portfolio-accent-hover)]"
           />
           <span>
             J’accepte de recevoir par e-mail les nouvelles synthèses de veille. Je pourrai me désinscrire à tout moment.
           </span>
         </label>
         {state.fieldErrors?.consent?.map((error) => (
-          <p key={error} id={consentErrorId} className="text-sm text-[#ffb37a]">
+          <p key={error} id={consentErrorId} className="text-sm text-[var(--portfolio-error)]">
             {error}
           </p>
         ))}
@@ -94,7 +94,7 @@ export function NewsletterForm({
         type="submit"
         disabled={pending}
         className={cn(
-          "inline-flex min-h-12 w-fit items-center justify-center gap-2 bg-brand px-5 text-sm font-semibold text-brand-foreground transition-colors hover:bg-[#ffad61] disabled:cursor-wait disabled:opacity-65",
+          "inline-flex min-h-12 w-fit items-center justify-center gap-2 bg-brand px-5 text-sm font-semibold text-brand-foreground transition-colors hover:bg-[var(--portfolio-accent-hover)] disabled:cursor-wait disabled:opacity-65 motion-reduce:transition-none",
           appearance === "home" && "rounded-xl active:scale-[0.97]",
         )}
       >
@@ -114,7 +114,7 @@ export function NewsletterForm({
       <p
         role={state.status === "error" ? "alert" : "status"}
         aria-live="polite"
-        className={state.status === "error" ? "text-sm text-[#ffb37a]" : "text-sm text-white/58"}
+        className={state.status === "error" ? "text-sm text-[var(--portfolio-error)]" : "text-sm text-white/58"}
       >
         {state.message}
       </p>

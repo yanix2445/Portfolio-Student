@@ -5,7 +5,7 @@ import type { PortfolioProject } from "../project.types";
 export function ProjectDetail({ project }: { project: PortfolioProject }) {
   return (
     <article>
-      <header className="border-b border-white/10 bg-[#0b0b0b] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
+      <header className="border-b border-white/10 bg-[var(--portfolio-panel)] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
         <div className="mx-auto w-full max-w-[90rem]">
           <Link href="/projets" className="inline-flex min-h-11 items-center gap-2 text-sm text-white/58 hover:text-brand">
             <ArrowLeft aria-hidden="true" className="size-4" />
@@ -30,7 +30,7 @@ export function ProjectDetail({ project }: { project: PortfolioProject }) {
             </section>
           </div>
           <aside className="grid content-start gap-5 lg:sticky lg:top-24">
-            <section className="border border-white/12 bg-[#0b0b0b] p-6">
+            <section className="border border-white/12 bg-[var(--portfolio-panel)] p-6">
               <h2 className="text-xl font-medium">Technologies</h2>
               <ul className="mt-5 flex flex-wrap gap-2">
                 {project.tools.map((tool) => (

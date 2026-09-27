@@ -169,7 +169,7 @@ function MatrixProofs({ skill, source }: { skill: SkillDomain; source: SkillProo
     <ul className="grid gap-3">
       {proofs.map((proof) => (
         <li key={`${skill.slug}-${source}-${proof.label}`}>
-          <Link href={proof.href} className="group inline-flex items-start gap-2 text-sm leading-5 font-semibold text-[var(--home-text)] underline decoration-white/20 underline-offset-4 transition-colors duration-150 hover:text-[var(--home-accent-hover)] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--home-accent-hover)]">
+          <Link href={proof.href} className="group inline-flex min-h-11 items-center gap-2 py-2 text-sm leading-5 font-semibold text-[var(--home-text)] underline decoration-white/20 underline-offset-4 transition-colors duration-150 hover:text-[var(--home-accent-hover)] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--home-accent-hover)] motion-reduce:transition-none">
             <span>{proof.label}</span>
             <ArrowUpRight aria-hidden="true" className="mt-0.5 size-3.5 shrink-0 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 motion-reduce:transition-none" />
           </Link>
@@ -209,7 +209,7 @@ function EvidenceMatrix() {
             {skillDomains.map((skill) => (
               <tr key={skill.slug} className="border-b border-white/[0.08] last:border-b-0">
                 <th scope="row" className="p-5 align-top lg:p-6">
-                  <a href={`#${skill.slug}`} className="inline-flex items-start gap-3 font-semibold text-pretty transition-colors duration-150 hover:text-[var(--home-accent-hover)] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--home-accent-hover)]">
+                  <a href={`#${skill.slug}`} className="inline-flex min-h-11 items-center gap-3 py-2 font-semibold text-pretty transition-colors duration-150 hover:text-[var(--home-accent-hover)] focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--home-accent-hover)] motion-reduce:transition-none">
                     <SkillIcon skill={skill} className="mt-0.5 size-4 shrink-0 text-[var(--home-accent-hover)]" />
                     <span>{skill.title}</span>
                   </a>
@@ -226,7 +226,7 @@ function EvidenceMatrix() {
       <div className="mt-10 grid gap-4 md:hidden">
         {skillDomains.map((skill) => (
           <article key={skill.slug} className="rounded-2xl bg-[var(--home-surface)] p-5">
-            <a href={`#${skill.slug}`} className="inline-flex items-start gap-3 text-lg font-semibold text-pretty focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--home-accent-hover)]">
+            <a href={`#${skill.slug}`} className="inline-flex min-h-11 items-center gap-3 py-2 text-lg font-semibold text-pretty focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--home-accent-hover)]">
               <SkillIcon skill={skill} className="mt-0.5 size-5 shrink-0 text-[var(--home-accent-hover)]" />
               <span>{skill.title}</span>
             </a>

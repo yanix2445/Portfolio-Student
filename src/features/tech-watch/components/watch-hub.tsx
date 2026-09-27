@@ -14,8 +14,8 @@ export function WatchHub() {
   const categories = [...new Set(watchSources.map((source) => source.category))];
 
   return (
-    <main>
-      <header className="border-b border-white/10 bg-[#0b0b0b] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
+    <main className="portfolio-surface min-h-screen bg-[var(--portfolio-canvas)] text-[var(--portfolio-text)]">
+      <header className="border-b border-white/10 bg-[var(--portfolio-panel)] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
         <div className="mx-auto w-full max-w-[90rem]">
           <p className="section-label">Veille technologique</p>
           <h1 className="mt-6 max-w-6xl text-5xl font-medium leading-[0.98] tracking-[-0.05em] text-balance sm:text-7xl">
@@ -39,7 +39,7 @@ export function WatchHub() {
           </div>
           <ul className="grid gap-px border border-white/12 bg-white/12 sm:grid-cols-2">
             {watchTopic.selectionCriteria.map((criterion) => (
-              <li key={criterion} className="flex gap-3 bg-[#0b0b0b] p-6 text-sm leading-6 text-white/68">
+              <li key={criterion} className="flex gap-3 bg-[var(--portfolio-panel)] p-6 text-sm leading-6 text-white/68">
                 <ListChecks aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-brand" />
                 {criterion}
               </li>
@@ -61,7 +61,7 @@ export function WatchHub() {
           </div>
           <div className="mt-10 grid gap-5 lg:grid-cols-2">
             {watchArticles.map((article) => (
-              <article key={article.slug} className="flex min-h-full flex-col border border-white/12 bg-[#0b0b0b] p-7 sm:p-8">
+              <article key={article.slug} className="flex min-h-full flex-col border border-white/12 bg-[var(--portfolio-panel)] p-7 sm:p-8">
                 <div className="flex flex-wrap items-center gap-3 font-mono text-xs text-white/55">
                   <time dateTime={article.publishedAt}>{dateFormatter.format(new Date(article.publishedAt))}</time>
                   <span aria-hidden="true">·</span>
@@ -102,7 +102,7 @@ export function WatchHub() {
                     .filter((source) => source.category === category)
                     .map((source) => (
                       <li key={source.url} className="border border-white/12 p-5">
-                        <a href={source.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-medium hover:text-brand">
+                        <a href={source.url} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 font-medium hover:text-brand">
                           {source.name} · {source.publisher}
                           <ExternalLink aria-hidden="true" className="size-3.5" />
                         </a>
@@ -117,7 +117,7 @@ export function WatchHub() {
       </section>
 
       <section className="px-5 py-16 sm:px-8 lg:px-12 lg:py-24" aria-labelledby="watch-newsletter">
-        <div className="mx-auto grid w-full max-w-[90rem] gap-10 border border-white/12 bg-[#0b0b0b] p-7 sm:p-10 lg:grid-cols-[1fr_0.9fr] lg:p-14">
+        <div className="mx-auto grid w-full max-w-[90rem] gap-10 border border-white/12 bg-[var(--portfolio-panel)] p-7 sm:p-10 lg:grid-cols-[1fr_0.9fr] lg:p-14">
           <div>
             <p className="section-label">Newsletter</p>
             <h2 id="watch-newsletter" className="mt-6 max-w-3xl text-4xl font-medium tracking-[-0.04em] sm:text-5xl">

@@ -39,7 +39,7 @@ export default async function TechWatchArticlePage({ params }: PageProps<"/veill
   }
 
   return (
-    <main>
+    <main className="portfolio-surface min-h-screen bg-[var(--portfolio-canvas)] text-[var(--portfolio-text)]">
       <WatchArticle article={article} />
     </main>
   );
