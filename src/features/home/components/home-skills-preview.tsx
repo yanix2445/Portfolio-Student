@@ -12,7 +12,7 @@ export function HomeSkillsPreview() {
 
   return (
     <section id="competences" className="px-4 py-24 sm:px-6" aria-labelledby="home-skills-title">
-      <HomeReveal className="mx-auto max-w-7xl">
+      <HomeReveal className="portfolio-shell">
         <header className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:gap-16">
           <h2 id="home-skills-title" className="max-w-4xl text-[clamp(2.5rem,4.5vw,4.25rem)] leading-[0.98] font-semibold tracking-[-0.04em] text-balance">
             Six compétences reliées à des situations concrètes.

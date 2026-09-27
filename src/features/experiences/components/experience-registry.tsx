@@ -11,7 +11,7 @@ export function ExperienceRegistry() {
 
   return (
     <div className="px-4 pb-24 pt-16 sm:px-6 sm:pt-20 lg:pt-24">
-      <div className="mx-auto max-w-7xl">
+      <div className="portfolio-shell">
         <header className="grid gap-6 border-b border-white/[0.12] pb-8 lg:grid-cols-[1fr_0.78fr] lg:items-end lg:gap-24 lg:pb-12">
           <h1 className="reveal max-w-[42.5rem] text-4xl font-semibold tracking-[-0.035em] text-balance sm:text-6xl lg:text-7xl">
             Toutes mes expériences, sans détour.

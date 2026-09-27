@@ -6,7 +6,7 @@ export function HomeProofStrip() {
       <h2 id="preuves-title" className="sr-only">
         Repères rapides
       </h2>
-      <div className="mx-auto grid max-w-7xl grid-cols-2 overflow-hidden rounded-2xl bg-[var(--home-surface)] shadow-[0_24px_60px_-48px_rgba(0,0,0,0.9)] ring-1 ring-white/[0.07] lg:grid-cols-4">
+      <div className="portfolio-shell grid grid-cols-2 overflow-hidden rounded-2xl bg-[var(--home-surface)] shadow-[0_24px_60px_-48px_rgba(0,0,0,0.9)] ring-1 ring-white/[0.07] lg:grid-cols-4">
         {homeProofs.map((proof) => (
           <div
             key={proof.label}

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function CareerPage() {
   return (
-    <main className="portfolio-surface min-h-screen bg-[var(--home-bg)] text-[var(--home-text)]">
+    <main className="portfolio-surface min-h-screen text-[var(--home-text)]">
       <ExperienceRegistry />
     </main>
   );

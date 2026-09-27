@@ -3,7 +3,7 @@ import { ArrowLeft, Search } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <main className="portfolio-surface grid min-h-[70svh] place-items-center bg-[var(--portfolio-canvas)] px-5 py-20 text-[var(--portfolio-text)] sm:px-8 lg:px-12">
+    <main className="portfolio-surface grid min-h-[70svh] place-items-center px-5 py-20 text-[var(--portfolio-text)] sm:px-8 lg:px-12">
       <div className="w-full max-w-3xl border border-white/12 bg-[var(--portfolio-panel)] p-8 sm:p-12">
         <Search aria-hidden="true" className="size-8 text-brand" />
         <p className="section-label mt-8">Erreur 404</p>

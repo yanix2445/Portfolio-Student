@@ -247,9 +247,9 @@ function EvidenceMatrix() {
 
 export function SkillsCatalog() {
   return (
-    <main className="portfolio-surface min-h-screen bg-[var(--home-bg)] text-[var(--home-text)]">
+    <main className="portfolio-surface min-h-screen text-[var(--home-text)]">
       <section className="px-4 pt-12 pb-20 sm:px-6 lg:pt-20" aria-labelledby="skills-system-title">
-        <div className="mx-auto max-w-7xl">
+        <div className="portfolio-shell">
           <header className="grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-end lg:gap-20">
             <h1 id="skills-system-title" className="max-w-3xl text-5xl font-semibold tracking-[-0.03em] text-balance sm:text-6xl lg:text-8xl">Assister.<br />Administrer.<br />Fiabiliser.</h1>
             <div className="max-w-2xl lg:justify-self-end">

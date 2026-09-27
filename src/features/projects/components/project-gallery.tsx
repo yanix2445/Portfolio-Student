@@ -8,8 +8,8 @@ const [featuredProject, ...otherProjects] = projectCollection;
 
 export function ProjectGallery() {
   return (
-    <main className="portfolio-surface min-h-screen bg-[var(--home-bg)] px-4 pb-28 pt-14 text-[var(--home-text)] sm:px-6 sm:pt-20 lg:pt-24">
-      <div className="mx-auto max-w-7xl">
+    <main className="portfolio-surface min-h-screen px-4 pb-28 pt-14 text-[var(--home-text)] sm:px-6 sm:pt-20 lg:pt-24">
+      <div className="portfolio-shell">
         <header className="grid gap-9 border-b border-white/[0.1] pb-11 lg:grid-cols-[minmax(0,1.08fr)_minmax(20rem,0.72fr)] lg:items-end lg:gap-24 lg:pb-16">
           <h1 className={`${styles.enter} max-w-[13ch] text-[clamp(3.2rem,6vw,5.8rem)] leading-[0.94] font-semibold tracking-[-0.035em] text-balance`}>
             Des projets à ouvrir, pas seulement à survoler.

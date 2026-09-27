@@ -14,9 +14,9 @@ export function WatchHub() {
   const categories = [...new Set(watchSources.map((source) => source.category))];
 
   return (
-    <main className="portfolio-surface min-h-screen bg-[var(--portfolio-canvas)] text-[var(--portfolio-text)]">
+    <main className="portfolio-surface min-h-screen text-[var(--portfolio-text)]">
       <header className="border-b border-white/10 bg-[var(--portfolio-panel)] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
-        <div className="mx-auto w-full max-w-[90rem]">
+        <div className="portfolio-shell">
           <p className="section-label">Veille technologique</p>
           <h1 className="mt-6 max-w-6xl text-5xl font-medium leading-[0.98] tracking-[-0.05em] text-balance sm:text-7xl">
             {watchTopic.title}
@@ -29,7 +29,7 @@ export function WatchHub() {
       </header>
 
       <section className="border-b border-white/10 px-5 py-16 sm:px-8 lg:px-12 lg:py-24" aria-labelledby="watch-method">
-        <div className="mx-auto grid w-full max-w-[90rem] gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+        <div className="portfolio-shell grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
           <div>
             <p className="section-label">Méthode</p>
             <h2 id="watch-method" className="mt-6 text-4xl font-medium tracking-[-0.04em] sm:text-5xl">
@@ -49,7 +49,7 @@ export function WatchHub() {
       </section>
 
       <section className="border-b border-white/10 px-5 py-16 sm:px-8 lg:px-12 lg:py-24" aria-labelledby="watch-syntheses">
-        <div className="mx-auto w-full max-w-[90rem]">
+        <div className="portfolio-shell">
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="section-label">Synthèses</p>
@@ -80,7 +80,7 @@ export function WatchHub() {
       </section>
 
       <section className="border-b border-white/10 px-5 py-16 sm:px-8 lg:px-12 lg:py-24" aria-labelledby="watch-sources">
-        <div className="mx-auto grid w-full max-w-[90rem] gap-10 lg:grid-cols-[0.7fr_1.3fr]">
+        <div className="portfolio-shell grid gap-10 lg:grid-cols-[0.7fr_1.3fr]">
           <div>
             <p className="section-label">Sources suivies</p>
             <h2 id="watch-sources" className="mt-6 text-4xl font-medium tracking-[-0.04em] sm:text-5xl">
@@ -117,7 +117,7 @@ export function WatchHub() {
       </section>
 
       <section className="px-5 py-16 sm:px-8 lg:px-12 lg:py-24" aria-labelledby="watch-newsletter">
-        <div className="mx-auto grid w-full max-w-[90rem] gap-10 border border-white/12 bg-[var(--portfolio-panel)] p-7 sm:p-10 lg:grid-cols-[1fr_0.9fr] lg:p-14">
+        <div className="portfolio-shell grid gap-10 border border-white/12 bg-[var(--portfolio-panel)] p-7 sm:p-10 lg:grid-cols-[1fr_0.9fr] lg:p-14">
           <div>
             <p className="section-label">Newsletter</p>
             <h2 id="watch-newsletter" className="mt-6 max-w-3xl text-4xl font-medium tracking-[-0.04em] sm:text-5xl">

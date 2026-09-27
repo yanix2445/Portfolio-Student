@@ -3,8 +3,8 @@ import { HomeReveal } from "./home-reveal";
 
 export function HomeFaq() {
   return (
-    <section className="px-4 py-20 sm:px-6" aria-labelledby="home-faq-title">
-      <HomeReveal className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.68fr_1.32fr] lg:gap-14">
+    <section id="faq" className="bg-[var(--home-bg)] px-4 py-20 sm:px-6" aria-labelledby="home-faq-title">
+      <HomeReveal className="portfolio-shell grid gap-10 lg:grid-cols-[0.68fr_1.32fr] lg:gap-14">
         <div>
           <h2 id="home-faq-title" className="max-w-xl text-4xl font-semibold tracking-[-0.035em] text-balance sm:text-5xl">
             L’essentiel avant un premier échange.

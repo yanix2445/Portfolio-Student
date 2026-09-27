@@ -5,7 +5,7 @@ import { HomeProfilePortrait } from "./home-profile-portrait";
 export function HomeHero() {
   return (
     <section id="accueil" className="px-4 pb-20 pt-12 sm:px-6 lg:pt-20">
-      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+      <div className="portfolio-shell grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <div>
           <p className="flex items-center gap-3 text-sm font-semibold text-[var(--home-accent-hover)]">
             <span className="size-2 rounded-full bg-[var(--home-accent)] shadow-[0_0_0_5px_rgba(255,122,0,0.14)]" aria-hidden="true" />
@@ -18,7 +18,7 @@ export function HomeHero() {
             Je suis Yanis Harrat, étudiant en BTS SIO SISR. J’interviens sur le support, l’administration et la fiabilisation des environnements informatiques.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <a href="#experiences" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-[var(--home-accent)] px-5 text-sm font-bold text-black transition-transform duration-150 ease-out active:scale-[0.97]">
+            <a href="#epreuves" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-[var(--home-accent)] px-5 text-sm font-bold text-black transition-transform duration-150 ease-out active:scale-[0.97]">
               Voir mes preuves <ArrowDown className="size-4" aria-hidden="true" />
             </a>
             <a

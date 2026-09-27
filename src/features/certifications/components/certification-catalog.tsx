@@ -122,7 +122,7 @@ export function CertificationCatalog() {
   ));
 
   return (
-    <div className="mx-auto max-w-7xl px-4 pb-28 pt-14 sm:px-6 sm:pt-20 lg:pt-24">
+    <div className="portfolio-shell px-4 pb-28 pt-14 sm:px-6 sm:pt-20 lg:pt-24">
       <header className="grid gap-8 border-b border-white/10 pb-10 lg:grid-cols-[1fr_0.9fr] lg:items-end lg:gap-20">
         <div className={styles.filterBlock}>
           <h1 className="max-w-[14ch] text-5xl leading-none font-semibold tracking-[-0.04em] text-balance sm:text-6xl">Certifications et formations.</h1>

@@ -29,7 +29,7 @@ test("un recruteur comprend le profil et atteint les trois conversions", async (
 
   await expect(page.getByRole("link", { name: /réserver un échange/i }).first()).toHaveAttribute(
     "href",
-    "https://cal.com/yanis-harrat/rdv-30min",
+    "https://cal.com/yanis-harrat",
   );
   await expect(page.getByRole("link", { name: /courriel/i })).toHaveAttribute(
     "href",
@@ -41,6 +41,37 @@ test("un recruteur comprend le profil et atteint les trois conversions", async (
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
     "Des situations réelles aux compétences démontrées",
   );
+});
+
+test("l’ancre de l’URL suit la section visible pendant le défilement", async ({ page }) => {
+  await page.goto("/");
+  await expect.poll(() => new URL(page.url()).hash).toBe("#accueil");
+
+  for (const sectionId of [
+    "competences",
+    "epreuves",
+    "experiences",
+    "projets",
+    "certifications",
+    "veille",
+    "faq",
+  ]) {
+    await page.locator(`#${sectionId}`).evaluate((section) => {
+      section.scrollIntoView({ block: "start" });
+    });
+    await expect.poll(() => new URL(page.url()).hash).toBe(`#${sectionId}`);
+  }
+
+  await page.goto("/#experiences");
+  await expect.poll(() => new URL(page.url()).hash).toBe("#experiences");
+  await page.reload();
+  await expect.poll(() => new URL(page.url()).hash).toBe("#experiences");
+
+  const anchoredTop = await page.locator("#experiences").evaluate((section) =>
+    Math.round(section.getBoundingClientRect().top),
+  );
+  expect(anchoredTop).toBeGreaterThanOrEqual(0);
+  expect(anchoredTop).toBeLessThan(160);
 });
 
 test("les routes publiques possèdent un titre, une description, un H1 et une canonique", async ({

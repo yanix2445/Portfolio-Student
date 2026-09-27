@@ -1,13 +1,16 @@
 import { Download } from "lucide-react";
 import Link from "next/link";
+import { ExamNavigationMenu } from "@/shared/components/exam-navigation-menu";
 import { siteConfig } from "@/shared/config/site.config";
 
 export function SiteHeader() {
+  const [skillsLink, ...secondaryLinks] = siteConfig.navigation;
+
   return (
-    <header className="sticky top-0 z-50 bg-[var(--portfolio-canvas)] px-3 pt-3 sm:px-6 sm:pt-5">
+    <header className="sticky top-0 z-50 px-3 pt-3 sm:px-6 sm:pt-5">
       <nav
         aria-label="Navigation principale"
-        className="mx-auto max-w-7xl overflow-hidden rounded-2xl bg-[color-mix(in_srgb,var(--portfolio-chrome)_92%,transparent)] shadow-[0_18px_50px_rgba(0,0,0,0.38)] ring-1 ring-white/10 backdrop-blur-xl"
+        className="portfolio-shell max-w-[84rem] overflow-hidden rounded-2xl bg-[color-mix(in_srgb,var(--portfolio-chrome)_88%,transparent)] shadow-[0_18px_50px_rgba(0,0,0,0.38)] ring-1 ring-white/10 backdrop-blur-2xl backdrop-brightness-50 backdrop-saturate-75"
       >
         <div className="flex min-h-14 items-center justify-between gap-3 px-3 sm:px-5">
           <Link
@@ -22,7 +25,11 @@ export function SiteHeader() {
           </Link>
 
           <div className="hidden items-center gap-5 text-sm text-[var(--portfolio-text-muted)] lg:flex">
-            {siteConfig.navigation.map((item) => (
+            <Link href={skillsLink.href} className="inline-flex min-h-11 items-center transition-colors duration-150 hover:text-white">
+              {skillsLink.label}
+            </Link>
+            <ExamNavigationMenu />
+            {secondaryLinks.map((item) => (
               <Link key={item.href} href={item.href} className="inline-flex min-h-11 items-center transition-colors duration-150 hover:text-white">
                 {item.label}
               </Link>
@@ -50,7 +57,11 @@ export function SiteHeader() {
 
         <div className="overflow-x-auto border-t border-white/[0.07] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden lg:hidden">
           <div className="flex min-w-max items-center px-2">
-            {siteConfig.navigation.map((item) => (
+            <Link href={skillsLink.href} className="inline-flex min-h-11 items-center px-3 text-xs font-medium text-[var(--portfolio-text-muted)] hover:text-[var(--portfolio-text)]">
+              {skillsLink.label}
+            </Link>
+            <ExamNavigationMenu compact />
+            {secondaryLinks.map((item) => (
               <Link key={item.href} href={item.href} className="inline-flex min-h-11 items-center px-3 text-xs font-medium text-[var(--portfolio-text-muted)] hover:text-[var(--portfolio-text)]">
                 {item.label}
               </Link>

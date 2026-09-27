@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { fireEvent, render, screen, within } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { SiteHeader } from "./site-header";
 
@@ -16,15 +16,22 @@ describe("SiteHeader", () => {
       name: "Navigation principale",
     });
 
-    for (const label of ["Compétences", "Expériences", "Projets", "Certifications", "Veille"]) {
+    for (const label of ["Compétences", "Expériences", "Projets perso", "Certifications", "Veille techno", "FAQ"]) {
       expect(within(navigation).getAllByRole("link", { name: label }).length).toBeGreaterThan(0);
     }
+
+    expect(within(navigation).getAllByRole("button", { name: "Épreuves" }).length).toBeGreaterThan(0);
+
+    fireEvent.click(within(navigation).getAllByRole("button", { name: "Épreuves" })[0]);
+
+    expect(screen.getByRole("menuitem", { name: /E5.*Missions professionnelles/i }).getAttribute("href")).toBe("/epreuves/e5");
+    expect(screen.getByRole("menuitem", { name: /E6.*Réalisations techniques/i }).getAttribute("href")).toBe("/epreuves/e6");
 
     const bookingLinks = screen.getAllByRole("link", {
       name: /réserver un échange/i,
     });
     expect(bookingLinks[0].getAttribute("href")).toBe(
-      "https://cal.com/yanis-harrat/rdv-30min",
+      "https://cal.com/yanis-harrat",
     );
   });
 });

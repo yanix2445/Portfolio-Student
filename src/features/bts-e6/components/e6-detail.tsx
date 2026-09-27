@@ -6,7 +6,7 @@ export function E6Detail({ realization }: { realization: E6Realization }) {
   return (
     <article>
       <header className="border-b border-white/10 bg-[var(--portfolio-panel)] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
-        <div className="mx-auto w-full max-w-[90rem]">
+        <div className="portfolio-shell">
           <Link href="/epreuves/e6" className="inline-flex min-h-11 items-center gap-2 text-sm text-white/58 hover:text-brand">
             <ArrowLeft aria-hidden="true" className="size-4" />
             Retour aux réalisations E6
@@ -26,7 +26,7 @@ export function E6Detail({ realization }: { realization: E6Realization }) {
       </header>
 
       <div className="px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
-        <div className="mx-auto grid w-full max-w-[90rem] gap-12 lg:grid-cols-[1.25fr_0.75fr]">
+        <div className="portfolio-shell grid gap-12 lg:grid-cols-[1.25fr_0.75fr]">
           <div className="grid gap-12">
             <ContentSection title="Contexte">
               <p>{realization.context}</p>

@@ -4,8 +4,8 @@ import { HomeReveal } from "./home-reveal";
 
 export function HomeContactCta() {
   return (
-    <section className="px-4 pb-24 pt-8 sm:px-6">
-      <HomeReveal className="mx-auto grid max-w-7xl gap-7 rounded-2xl bg-[var(--home-accent)] p-7 text-center text-black sm:p-10">
+    <section className="bg-[var(--home-bg)] px-4 pb-24 pt-8 sm:px-6">
+      <HomeReveal className="portfolio-shell grid gap-7 rounded-2xl bg-[var(--home-accent)] p-7 text-center text-black sm:p-10">
         <div className="mx-auto">
           <h2 className="mx-auto max-w-4xl text-4xl font-semibold tracking-[-0.035em] text-balance sm:text-5xl">
             Un besoin en support systèmes et réseaux ? Échangeons pendant 30 minutes.

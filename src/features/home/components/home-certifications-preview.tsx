@@ -11,8 +11,8 @@ const supportingCertifications = certifications.filter(
 
 export function HomeCertificationsPreview() {
   return (
-    <section id="certifications" className="px-4 py-20 sm:px-6 lg:py-24" aria-labelledby="home-certifications-title">
-      <HomeReveal className="mx-auto max-w-7xl">
+    <section id="certifications" className="bg-[var(--home-bg)] px-4 py-20 sm:px-6 lg:py-24" aria-labelledby="home-certifications-title">
+      <HomeReveal className="portfolio-shell">
         <div className="grid gap-6 lg:grid-cols-[0.8fr_1.2fr] lg:items-end lg:gap-14">
           <h2 id="home-certifications-title" className="max-w-3xl text-4xl font-semibold tracking-[-0.035em] text-balance sm:text-5xl">
             Des acquis alignés avec le support, les systèmes et les réseaux.

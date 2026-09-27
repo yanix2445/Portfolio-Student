@@ -84,6 +84,10 @@
   --portfolio-surface: var(--portfolio-neutral-800);
   --portfolio-surface-raised: var(--portfolio-neutral-750);
   --portfolio-surface-warm: var(--portfolio-warm-900);
+  --portfolio-grid-surface: #08090a;
+  --portfolio-grid-line: rgb(255 255 255 / 0.024);
+  --portfolio-grid-size: 3.5rem;
+  --portfolio-content-width: 92rem;
   --portfolio-text: var(--portfolio-neutral-50);
   --portfolio-text-muted: var(--portfolio-neutral-300);
   --portfolio-text-secondary: var(--portfolio-neutral-350);
@@ -186,8 +190,13 @@
 }
 
 @layer components {
-.home-page,
-.portfolio-surface {
+  .portfolio-shell {
+    width: min(100%, var(--portfolio-content-width));
+    margin-inline: auto;
+  }
+
+  .home-page,
+  .portfolio-surface {
     --home-bg: var(--portfolio-canvas);
     --home-surface: var(--portfolio-surface);
     --home-surface-raised: var(--portfolio-surface-raised);
@@ -202,12 +211,20 @@
     font-family: var(--font-geist-sans), sans-serif;
   }
 
-.home-page h1,
-.home-page h2,
-.home-page h3,
-.portfolio-surface h1,
-.portfolio-surface h2,
-.portfolio-surface h3 {
+  .portfolio-surface {
+    background-color: var(--portfolio-grid-surface);
+    background-image:
+      linear-gradient(var(--portfolio-grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--portfolio-grid-line) 1px, transparent 1px);
+    background-size: var(--portfolio-grid-size) var(--portfolio-grid-size);
+  }
+
+  .home-page h1,
+  .home-page h2,
+  .home-page h3,
+  .portfolio-surface h1,
+  .portfolio-surface h2,
+  .portfolio-surface h3 {
     font-family: var(--font-geist-sans), sans-serif;
   }
 

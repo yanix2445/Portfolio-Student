@@ -11,7 +11,7 @@ export function HomeWatchPreview() {
 
   return (
     <section id="veille" className="bg-[var(--home-surface-warm)] px-4 py-20 sm:px-6" aria-labelledby="home-watch-title">
-      <HomeReveal className="mx-auto grid max-w-7xl overflow-hidden rounded-2xl bg-[var(--home-surface-raised)] ring-1 ring-white/[0.09] lg:grid-cols-[1.25fr_0.75fr]">
+      <HomeReveal className="portfolio-shell grid overflow-hidden rounded-2xl bg-[var(--home-surface-raised)] ring-1 ring-white/[0.09] lg:grid-cols-[1.25fr_0.75fr]">
         <div className="p-6 sm:p-8 lg:p-10">
           <div className="flex flex-wrap items-center justify-between gap-3 text-sm">
             <span className="font-semibold text-[var(--home-accent-hover)]">Veille technologique</span>

@@ -6,8 +6,8 @@ import { HomeReveal } from "./home-reveal";
 
 export function HomeEvidencePreview() {
   return (
-    <section id="experiences" className="bg-[var(--home-surface-warm)] px-4 py-20 sm:px-6 lg:py-24" aria-labelledby="home-evidence-title">
-      <HomeReveal className="mx-auto max-w-7xl">
+    <section id="epreuves" className="bg-[var(--home-surface-warm)] px-4 py-20 sm:px-6 lg:py-24" aria-labelledby="home-evidence-title">
+      <HomeReveal className="portfolio-shell">
         <div className="grid gap-6 lg:grid-cols-[0.72fr_1.28fr] lg:items-end lg:gap-14">
           <h2 id="home-evidence-title" className="max-w-3xl text-4xl leading-[1.02] font-semibold tracking-[-0.035em] text-balance sm:text-5xl">
             Six missions réalisées. Deux dossiers techniques en construction.

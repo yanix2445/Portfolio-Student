@@ -357,11 +357,6 @@
   --muted: rgb(245 243 239 / 0.6);
   min-height: 100vh;
   padding: 10rem clamp(1.25rem, 4vw, 5rem) 8rem;
-  background-color: #08090a;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.024) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.024) 1px, transparent 1px);
-  background-size: 56px 56px;
 }
 
 .systemHero,

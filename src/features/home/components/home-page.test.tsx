@@ -35,6 +35,7 @@ describe("HomePage", () => {
       "Ma méthode pour transformer une demande en solution durable",
       "Six compétences reliées à des situations concrètes.",
       "Six missions réalisées. Deux dossiers techniques en construction.",
+      "Un seul rail, quatre étapes qui construisent le même profil.",
       "Un projet réel aujourd’hui, une collection prête à grandir.",
       "Des acquis alignés avec le support, les systèmes et les réseaux.",
       "L’IA appliquée au développement web et applicatif.",
@@ -69,5 +70,30 @@ describe("HomePage", () => {
     const e6Card = screen.getByRole("heading", { level: 3, name: "E6 · Réalisations techniques" }).closest("article");
     expect(e6Card).not.toBeNull();
     expect(within(e6Card as HTMLElement).getAllByText("En cours")).toHaveLength(2);
+  });
+
+  it("presents the four CV experiences in chronological order", () => {
+    render(<HomePage />);
+
+    const timeline = screen.getByRole("list", {
+      name: "Chronologie des expériences professionnelles",
+    });
+    const roles = Array.from(timeline.children).map((step) =>
+      within(step as HTMLElement).getByRole("heading", { level: 3 }).textContent,
+    );
+
+    expect(roles).toEqual([
+      "Technicien fibre optique",
+      "Chef de rang",
+      "Consultant IT junior & développeur",
+      "Technicien helpdesk N1/N2",
+    ]);
+
+    expect(
+      screen.getByText(/ces quatre jalons sont une sélection, pas l’intégralité de mon parcours/i),
+    ).toBeDefined();
+    expect(
+      screen.getByRole("link", { name: /voir toutes mes expériences/i }).getAttribute("href"),
+    ).toBe("/parcours");
   });
 });

@@ -9,8 +9,8 @@ const project = portfolioProjects[0];
 
 export function HomeProjectsPreview() {
   return (
-    <section id="projets" className="px-4 py-20 sm:px-6 lg:py-24" aria-labelledby="home-projects-title">
-      <HomeReveal className="mx-auto max-w-7xl">
+    <section id="projets" className="bg-[var(--home-surface-warm)] px-4 py-20 sm:px-6 lg:py-24" aria-labelledby="home-projects-title">
+      <HomeReveal className="portfolio-shell">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <h2 id="home-projects-title" className="max-w-3xl text-4xl font-semibold tracking-[-0.035em] text-balance sm:text-5xl">
             Un projet réel aujourd’hui, une collection prête à grandir.
