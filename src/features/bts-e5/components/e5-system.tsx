@@ -109,7 +109,7 @@ export function E5System() {
   ).length;
 
   return (
-    <main className={styles.e5SystemPage}>
+    <main className={`${styles.e5SystemPage} portfolio-surface`}>
       <section className={styles.e5SystemHero}>
         <p>Épreuve E5 · BTS SIO SISR</p>
         <h1>Des situations réelles aux compétences démontrées.</h1>

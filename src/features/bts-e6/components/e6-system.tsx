@@ -45,7 +45,7 @@ const e6Deliverables = [
 
 export function E6System() {
   return (
-    <main className={styles.systemPage}>
+    <main className={`${styles.systemPage} portfolio-surface`}>
       <section className={styles.systemHero}>
         <p>Épreuve E6 · BTS SIO SISR</p>
         <h1>Une infrastructure ne se raconte pas. Elle se démontre.</h1>
