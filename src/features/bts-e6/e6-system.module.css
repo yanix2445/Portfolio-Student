@@ -1,0 +1,1180 @@
+.prototype {
+  min-height: 100vh;
+  color: #f5f3ef;
+  background: #050505;
+}
+
+.prototype :where(h1, h2, h3, p, ul, ol, dl) {
+  margin: 0;
+}
+
+.prototype :where(ul, ol) {
+  padding: 0;
+  list-style: none;
+}
+
+.prototype a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.prototype h1 {
+  overflow-wrap: anywhere;
+}
+
+/* Séquence */
+
+.sequencePage {
+  --orange: #ff7900;
+  --line: rgba(255, 255, 255, 0.13);
+  --muted: rgba(245, 243, 239, 0.6);
+  min-height: 100vh;
+  padding: 10rem clamp(1.25rem, 4vw, 5rem) 8rem;
+  background: #070707;
+}
+
+.sequenceHero,
+.sequenceDeliverables,
+.sequenceCompetencies,
+.sequenceRealizations {
+  width: min(100%, 92rem);
+  margin-inline: auto;
+}
+
+.sequenceHero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.45fr) minmax(19rem, 0.55fr);
+  gap: clamp(3rem, 9vw, 9rem);
+  align-items: end;
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.sequenceTitle > p,
+.systemHero > p {
+  color: var(--orange);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sequenceTitle h1 {
+  max-width: 10ch;
+  margin-top: 1.2rem;
+  font-size: clamp(4rem, 9vw, 9.2rem);
+  font-weight: 540;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+}
+
+.sequenceIntro > p {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.sequenceIntro dl {
+  margin-top: 2.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.sequenceIntro dl div {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.sequenceIntro dt {
+  color: rgba(245, 243, 239, 0.43);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+}
+
+.sequenceIntro dd {
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.sequenceExam {
+  display: grid;
+  width: min(100%, 100rem);
+  grid-template-columns: minmax(17rem, 0.65fr) minmax(0, 1.35fr);
+  margin-inline: auto;
+  color: #15120f;
+  background: var(--orange);
+}
+
+.sequenceDuration {
+  display: flex;
+  min-height: 40rem;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(2rem, 5vw, 4.5rem);
+  border-right: 1px solid rgba(21, 18, 15, 0.28);
+}
+
+.sequenceDuration > span {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.sequenceDuration strong {
+  font-size: clamp(5rem, 10vw, 10rem);
+  font-weight: 560;
+  line-height: 0.78;
+  letter-spacing: -0.04em;
+}
+
+.sequenceDuration > p {
+  max-width: 20rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.sequenceFlow {
+  padding: clamp(2rem, 5vw, 4.5rem);
+}
+
+.sequenceFlow > header {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 3rem;
+  align-items: end;
+  padding-bottom: 2.5rem;
+}
+
+.sequenceFlow h2,
+.sequenceDeliverables h2,
+.sequenceCompetencies h2,
+.sequenceRealizations h2 {
+  font-size: clamp(2rem, 4.5vw, 4.6rem);
+  font-weight: 560;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+.sequenceFlow > header p {
+  color: rgba(21, 18, 15, 0.65);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.sequenceFlow ol {
+  border-top: 2px solid #15120f;
+}
+
+.sequenceFlow li {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 1.5rem;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid rgba(21, 18, 15, 0.28);
+}
+
+.sequenceFlow li > span {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.sequenceFlow li strong {
+  font-size: 1.25rem;
+}
+
+.sequenceFlow li p {
+  max-width: 38rem;
+  margin-top: 0.5rem;
+  color: rgba(21, 18, 15, 0.68);
+  font-size: 0.84rem;
+  line-height: 1.6;
+}
+
+.sequenceDeliverables {
+  padding-block: clamp(6rem, 12vw, 11rem);
+}
+
+.sequenceDeliverables > header {
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: end;
+}
+
+.sequenceDeliverables > header h2 {
+  max-width: 17ch;
+}
+
+.sequenceDeliverables > header p,
+.sequenceRealizations > header p {
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.sequenceDeliverables ol {
+  margin-top: 4rem;
+  border-top: 1px solid var(--line);
+}
+
+.sequenceDeliverables li {
+  display: grid;
+  grid-template-columns: 5rem minmax(12rem, 0.65fr) minmax(18rem, 1.35fr);
+  gap: 2rem;
+  align-items: start;
+  padding: 1.6rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.sequenceDeliverables li > span,
+.sequenceCompetencies li > span {
+  color: var(--orange);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.sequenceDeliverables li strong {
+  font-size: 1rem;
+}
+
+.sequenceDeliverables li p {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.65;
+}
+
+.sequenceCompetencies {
+  display: grid;
+  grid-template-columns: minmax(17rem, 0.85fr) minmax(20rem, 1.15fr);
+  gap: clamp(3rem, 8vw, 8rem);
+  padding: clamp(3rem, 7vw, 7rem);
+  background: #111;
+}
+
+.sequenceCompetencies > div > span,
+.systemRealizations header span {
+  color: var(--orange);
+  font-size: 0.72rem;
+  font-weight: 750;
+  text-transform: uppercase;
+}
+
+.sequenceCompetencies h2 {
+  max-width: 13ch;
+  margin-top: 0.8rem;
+}
+
+.sequenceCompetencies ol {
+  border-top: 1px solid var(--line);
+}
+
+.sequenceCompetencies li {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 1rem;
+  padding: 1.3rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.sequenceCompetencies li p {
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.sequenceRealizations {
+  padding-block: clamp(6rem, 11vw, 10rem);
+}
+
+.sequenceRealizations > header {
+  display: grid;
+  grid-template-columns: 1fr 0.65fr;
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: end;
+}
+
+.sequenceRealizations > div {
+  margin-top: 3rem;
+  border-top: 1px solid var(--line);
+}
+
+.sequenceRealizations a {
+  display: grid;
+  grid-template-columns: 4rem 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+  min-height: 9rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--line);
+  transition: color 160ms ease-out;
+}
+
+.sequenceRealizations a:hover {
+  color: var(--orange);
+}
+
+.sequenceRealizations a > span {
+  color: var(--orange);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.75rem;
+}
+
+.sequenceRealizations a small {
+  color: var(--orange);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+}
+
+.sequenceRealizations a strong {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: clamp(1.2rem, 2.4vw, 2rem);
+}
+
+.sequenceRealizations a p {
+  max-width: 54rem;
+  margin-top: 0.45rem;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.sequenceRealizations a > svg {
+  width: 1.2rem;
+}
+
+/* Système */
+
+.systemPage {
+  --orange: #ff7900;
+  --ink: #12110f;
+  --paper: #ece8df;
+  --line: rgba(255, 255, 255, 0.13);
+  --muted: rgba(245, 243, 239, 0.6);
+  min-height: 100vh;
+  padding: 10rem clamp(1.25rem, 4vw, 5rem) 8rem;
+  background-color: #08090a;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.024) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.024) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.systemHero,
+.systemMap,
+.systemReading,
+.systemRealizations {
+  width: min(100%, 92rem);
+  margin-inline: auto;
+}
+
+.systemHero {
+  text-align: center;
+}
+
+.systemHero h1 {
+  max-width: 11ch;
+  margin: 1.3rem auto 0;
+  font-size: clamp(4rem, 9vw, 9.4rem);
+  font-weight: 530;
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+}
+
+.systemHero > div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: end;
+  width: min(100%, 48rem);
+  margin: 3.5rem auto 0;
+  text-align: left;
+}
+
+.systemHero > div > p {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.systemHero > div > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  color: var(--orange);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.systemHero > div > a svg {
+  width: 1rem;
+}
+
+.systemMap {
+  margin-top: clamp(5rem, 10vw, 9rem);
+  padding: clamp(2rem, 5vw, 5rem);
+  color: #f5f3ef;
+  background: #121416;
+  box-shadow: 0 0 0 1px rgba(255, 121, 0, 0.18) inset;
+}
+
+.systemMap > header {
+  display: grid;
+  grid-template-columns: 1fr minmax(18rem, 0.55fr);
+  gap: 3rem;
+  align-items: end;
+}
+
+.systemMap > header p {
+  max-width: 46rem;
+  color: rgba(245, 243, 239, 0.58);
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+.systemMap h2,
+.systemStatement h2,
+.systemRealizations h2 {
+  max-width: 17ch;
+  font-size: clamp(2rem, 4.5vw, 4.7rem);
+  font-weight: 560;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+.systemDiagram {
+  padding-top: clamp(3rem, 6vw, 5rem);
+}
+
+.systemOrbit {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  background: rgba(255, 255, 255, 0.13);
+}
+
+.systemOrbit li {
+  display: flex;
+  min-height: 18rem;
+  padding: clamp(1.35rem, 2.5vw, 2rem);
+  flex-direction: column;
+  background: #121416;
+}
+
+.systemOrbit li svg {
+  width: 1.25rem;
+  margin-top: clamp(2rem, 4vw, 3.5rem);
+  color: var(--orange);
+}
+
+.systemOrbit li > span {
+  color: var(--orange);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.systemOrbit li strong {
+  margin-top: auto;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.systemOrbit li p {
+  max-width: 52rem;
+  margin-top: 0.7rem;
+  color: rgba(245, 243, 239, 0.58);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.systemReading {
+  display: grid;
+  grid-template-columns: minmax(20rem, 0.8fr) minmax(0, 1.2fr);
+  grid-template-areas:
+    "label label"
+    "steps statement";
+  gap: clamp(3rem, 8vw, 8rem);
+  row-gap: 2rem;
+  align-items: center;
+  padding: clamp(4rem, 8vw, 8rem);
+  color: #f5f3ef;
+  border-top: 1px solid rgba(255, 121, 0, 0.5);
+  background: #0e1012;
+}
+
+.systemReadingLabel {
+  grid-area: label;
+  justify-self: start;
+  color: var(--orange);
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.systemStatement {
+  grid-area: statement;
+}
+
+.systemReading > ol {
+  grid-area: steps;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.systemReading li {
+  display: grid;
+  grid-template-columns: 2rem 0.6fr 1.4fr;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.systemReading li > span {
+  color: var(--orange);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.68rem;
+}
+
+.systemReading li strong {
+  font-size: 0.82rem;
+}
+
+.systemReading li p {
+  color: rgba(245, 243, 239, 0.58);
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.systemRealizations {
+  padding-block: clamp(6rem, 11vw, 10rem);
+}
+
+.systemRealizations > header {
+  display: grid;
+  grid-template-columns: 1fr 0.7fr;
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: end;
+}
+
+.systemRealizations > header h2 {
+  margin-top: 0.7rem;
+}
+
+.systemRealizations > header > p {
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+.systemRealizations > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  margin-top: 3rem;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.systemRealizations a {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  grid-template-rows: 1fr auto;
+  column-gap: clamp(1rem, 2.5vw, 2rem);
+  min-height: 14rem;
+  padding: clamp(1.7rem, 3vw, 2.5rem);
+  overflow: hidden;
+  background: #111213;
+  transition:
+    background 180ms ease-out,
+    box-shadow 180ms ease-out;
+}
+
+.systemRealizations a::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: var(--orange);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 240ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.systemRealizations a:hover {
+  z-index: 1;
+  background: #151719;
+  box-shadow: inset 0 0 0 1px rgba(255, 121, 0, 0.32);
+}
+
+.systemRealizations a:hover::before,
+.systemRealizations a:focus-visible::before {
+  transform: scaleX(1);
+}
+
+.systemRealizations a:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+}
+
+.systemCardIndex {
+  grid-row: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.18rem;
+  padding-top: 0.1rem;
+}
+
+.systemCardIndex span {
+  color: var(--orange);
+  font-size: 0.66rem;
+  font-weight: 750;
+  text-transform: uppercase;
+}
+
+.systemCardIndex strong {
+  color: var(--orange);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.74rem;
+}
+
+.systemRealizations a > h3 {
+  max-width: 21ch;
+  align-self: start;
+  font-size: clamp(1.55rem, 2.4vw, 2.45rem);
+  font-weight: 560;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.systemCardFooter {
+  grid-column: 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  align-self: end;
+  margin-top: 2.25rem;
+}
+
+.systemCardFooter small {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: rgba(245, 243, 239, 0.62);
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.systemCardFooter small i {
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 50%;
+  background: var(--orange);
+}
+
+.systemCardFooter > span {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--orange);
+  font-size: 0.72rem;
+  font-weight: 750;
+}
+
+.systemCardFooter > span svg {
+  width: 1rem;
+  transition: transform 180ms ease-out;
+}
+
+.systemRealizations a:hover .systemCardFooter > span svg {
+  transform: translate(2px, -2px);
+}
+
+/* Dossier */
+
+.dossierPage {
+  --orange: #e96800;
+  --ink: #1a1814;
+  --paper: #e9e4d9;
+  --paper-alt: #dcd5c7;
+  --paper-line: rgba(26, 24, 20, 0.2);
+  min-height: 100vh;
+  padding: 10rem clamp(1rem, 4vw, 4rem) 8rem;
+  color: var(--ink);
+  background: #15130f;
+}
+
+.dossierPaper {
+  width: min(100%, 88rem);
+  margin-inline: auto;
+  background: var(--paper);
+  box-shadow: 0 2rem 7rem rgba(0, 0, 0, 0.35);
+}
+
+.dossierCover {
+  min-height: 48rem;
+  padding: clamp(2rem, 5vw, 5rem);
+  color: #f7f2e9;
+  background: var(--ink);
+}
+
+.dossierReference {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(247, 242, 233, 0.25);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+}
+
+.dossierCover > p {
+  margin-top: clamp(4rem, 9vw, 8rem);
+  color: var(--orange);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.dossierCover > h1 {
+  max-width: 12ch;
+  margin-top: 1rem;
+  font-size: clamp(4rem, 9vw, 9rem);
+  font-weight: 550;
+  line-height: 0.87;
+  letter-spacing: -0.04em;
+}
+
+.dossierAbstract {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: end;
+  margin-top: clamp(4rem, 8vw, 7rem);
+}
+
+.dossierAbstract > p {
+  color: rgba(247, 242, 233, 0.68);
+  line-height: 1.75;
+}
+
+.dossierAbstract dl {
+  border-top: 1px solid rgba(247, 242, 233, 0.25);
+}
+
+.dossierAbstract dl div {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 1rem;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid rgba(247, 242, 233, 0.25);
+}
+
+.dossierAbstract dt {
+  color: rgba(247, 242, 233, 0.48);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+}
+
+.dossierAbstract dd {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.dossierPurpose,
+.dossierStages,
+.dossierDeliverables,
+.dossierCompetencies,
+.dossierRealizations {
+  padding: clamp(4rem, 8vw, 8rem) clamp(2rem, 5vw, 5rem);
+}
+
+.dossierPurpose,
+.dossierStages,
+.dossierCompetencies {
+  display: grid;
+  grid-template-columns: minmax(15rem, 0.7fr) minmax(20rem, 1.3fr);
+  gap: clamp(3rem, 8vw, 8rem);
+}
+
+.dossierPurpose > div:first-child > span,
+.dossierStages > div > span,
+.dossierDeliverables > header > span,
+.dossierCompetencies > div > span,
+.dossierRealizations > header span {
+  color: var(--orange);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.dossierPurpose h2,
+.dossierStages h2,
+.dossierDeliverables h2,
+.dossierCompetencies h2,
+.dossierRealizations h2 {
+  margin-top: 0.8rem;
+  font-size: clamp(2rem, 4.2vw, 4.3rem);
+  font-weight: 560;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+.dossierPurpose {
+  border-bottom: 1px solid var(--paper-line);
+}
+
+.dossierPurposeText {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.dossierPurposeText p {
+  color: rgba(26, 24, 20, 0.68);
+  line-height: 1.75;
+}
+
+.dossierStages {
+  background: var(--paper-alt);
+}
+
+.dossierStages ol {
+  border-top: 2px solid var(--ink);
+}
+
+.dossierStages li {
+  display: grid;
+  grid-template-columns: 2rem 0.65fr 1.35fr;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--paper-line);
+}
+
+.dossierStages li > span {
+  color: var(--orange);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.68rem;
+}
+
+.dossierStages li strong {
+  font-size: 0.85rem;
+}
+
+.dossierStages li p {
+  color: rgba(26, 24, 20, 0.64);
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.dossierDeliverables > header {
+  display: grid;
+  grid-template-columns: 3rem 1fr 0.6fr;
+  gap: 2rem;
+  align-items: end;
+}
+
+.dossierDeliverables > header p,
+.dossierRealizations > header > p {
+  color: rgba(26, 24, 20, 0.62);
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+.dossierDeliverables ol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 4rem;
+  border-top: 1px solid var(--paper-line);
+  border-left: 1px solid var(--paper-line);
+}
+
+.dossierDeliverables li {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 1rem;
+  min-height: 12rem;
+  padding: 1.5rem;
+  border-right: 1px solid var(--paper-line);
+  border-bottom: 1px solid var(--paper-line);
+}
+
+.dossierDeliverables li > span {
+  color: var(--orange);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.dossierDeliverables li strong {
+  font-size: 1rem;
+}
+
+.dossierDeliverables li p {
+  margin-top: 0.7rem;
+  color: rgba(26, 24, 20, 0.62);
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.dossierCompetencies {
+  color: #f7f2e9;
+  background: var(--ink);
+}
+
+.dossierCompetencies ol {
+  border-top: 1px solid rgba(247, 242, 233, 0.25);
+}
+
+.dossierCompetencies li {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 1rem;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid rgba(247, 242, 233, 0.25);
+  color: rgba(247, 242, 233, 0.76);
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.dossierCompetencies li span {
+  color: var(--orange);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.7rem;
+}
+
+.dossierRealizations {
+  background: var(--paper-alt);
+}
+
+.dossierRealizations > header {
+  display: grid;
+  grid-template-columns: 1fr 0.6fr;
+  gap: 3rem;
+  align-items: end;
+}
+
+.dossierRealizations > div {
+  margin-top: 3rem;
+  border-top: 2px solid var(--ink);
+}
+
+.dossierRealizations a {
+  display: grid;
+  grid-template-columns: 4rem 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--paper-line);
+}
+
+.dossierRealizations a > span {
+  color: var(--orange);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.dossierRealizations a small {
+  color: var(--orange);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+}
+
+.dossierRealizations a strong {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 1.1rem;
+}
+
+.dossierRealizations a p {
+  max-width: 50rem;
+  margin-top: 0.4rem;
+  color: rgba(26, 24, 20, 0.62);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.dossierRealizations a svg {
+  width: 1.1rem;
+}
+
+@media (max-width: 820px) {
+  .sequencePage,
+  .systemPage {
+    padding: 8rem 1rem 7rem;
+  }
+
+  .sequenceHero,
+  .sequenceExam,
+  .sequenceDeliverables > header,
+  .sequenceCompetencies,
+  .sequenceRealizations > header,
+  .systemHero > div,
+  .systemMap > header,
+  .systemDiagram,
+  .systemReading,
+  .systemRealizations > header,
+  .dossierAbstract,
+  .dossierPurpose,
+  .dossierStages,
+  .dossierCompetencies,
+  .dossierRealizations > header {
+    grid-template-columns: 1fr;
+  }
+
+  .sequenceHero,
+  .sequenceDeliverables > header,
+  .sequenceRealizations > header,
+  .systemRealizations > header {
+    gap: 2rem;
+  }
+
+  .sequenceDuration {
+    min-height: 28rem;
+    border-right: 0;
+    border-bottom: 1px solid rgba(21, 18, 15, 0.28);
+  }
+
+  .sequenceDeliverables li {
+    grid-template-columns: 3.5rem 1fr;
+  }
+
+  .sequenceDeliverables li p {
+    grid-column: 2;
+  }
+
+  .systemHero > div {
+    text-align: center;
+  }
+
+  .systemHero > div > a {
+    justify-self: center;
+  }
+
+  .systemReading {
+    grid-template-areas:
+      "label"
+      "statement"
+      "steps";
+  }
+
+  .systemOrbit {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .systemOrbit li {
+    min-height: 15rem;
+  }
+
+  .systemRealizations > div {
+    grid-template-columns: 1fr;
+  }
+
+  .dossierPage {
+    padding: 8rem 0 6rem;
+  }
+
+  .dossierPurposeText {
+    grid-template-columns: 1fr;
+  }
+
+  .dossierDeliverables > header {
+    grid-template-columns: 3rem 1fr;
+  }
+
+  .dossierDeliverables > header p {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 540px) {
+  .sequenceTitle h1,
+  .systemHero h1,
+  .dossierCover > h1 {
+    overflow-wrap: normal;
+    font-size: clamp(2.8rem, 13vw, 3.7rem);
+  }
+
+  .sequenceFlow > header,
+  .systemOrbit,
+  .dossierDeliverables ol {
+    grid-template-columns: 1fr;
+  }
+
+  .sequenceDeliverables li {
+    grid-template-columns: 2.5rem 1fr;
+    gap: 0.8rem;
+  }
+
+  .sequenceRealizations a,
+  .dossierRealizations a {
+    grid-template-columns: 2.5rem 1fr;
+    gap: 0.8rem;
+  }
+
+  .sequenceRealizations a > svg,
+  .dossierRealizations a > svg {
+    grid-column: 2;
+  }
+
+  .systemMap {
+    padding: 1.25rem;
+  }
+
+  .systemMap > header {
+    gap: 1.5rem;
+  }
+
+  .systemOrbit li {
+    min-height: 13rem;
+  }
+
+  .systemReading {
+    padding: 2rem 1.25rem;
+  }
+
+  .systemReading li {
+    grid-template-columns: 2rem 1fr;
+  }
+
+  .systemReading li p {
+    grid-column: 2;
+  }
+
+  .dossierCover,
+  .dossierPurpose,
+  .dossierStages,
+  .dossierDeliverables,
+  .dossierCompetencies,
+  .dossierRealizations {
+    padding-inline: 1.25rem;
+  }
+
+  .dossierReference {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .dossierStages li {
+    grid-template-columns: 2rem 1fr;
+  }
+
+  .dossierStages li p {
+    grid-column: 2;
+  }
+
+}
