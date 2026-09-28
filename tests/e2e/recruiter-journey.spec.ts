@@ -86,6 +86,7 @@ test("les routes publiques possèdent un titre, une description, un H1 et une ca
     "/projets",
     "/certifications",
     "/veille",
+    "/veille/articles",
   ];
 
   for (const route of routes) {
@@ -109,6 +110,7 @@ test("le sitemap, robots et les données structurées décrivent le site public"
   const sitemapText = await sitemap.text();
   expect(sitemapText).toContain(`${canonicalOrigin}/epreuves/e5/vpn-acces-distant`);
   expect(sitemapText).toContain(`${canonicalOrigin}/veille/nextjs-mcp-agents-developpement`);
+  expect(sitemapText).toContain(`${canonicalOrigin}/veille/articles`);
 
   const robots = await request.get("/robots.txt");
   expect(await robots.text()).toContain(`${canonicalOrigin}/sitemap.xml`);

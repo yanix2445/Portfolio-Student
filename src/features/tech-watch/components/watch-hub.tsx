@@ -1,7 +1,71 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { ArrowRight, ExternalLink, ListChecks, RadioTower } from "lucide-react";
-import { NewsletterForm, subscribeNewsletter } from "@/features/newsletter";
+import { ArrowDown, ArrowRight, ArrowUp, ArrowUpRight, Check, CircleDot, FileText } from "lucide-react";
 import { watchArticles, watchSources, watchTopic } from "../tech-watch.data";
+import styles from "./watch-hub.module.css";
+
+const routeItems = [
+  ["01", "Sujet", "#veille-sujet"],
+  ["02", "Pourquoi", "#veille-pourquoi"],
+  ["03", "Mise en place", "#veille-methode"],
+  ["04", "Sources", "#veille-sources"],
+  ["05", "Articles", "#veille-articles"],
+] as const;
+
+const sourceCategoryLabels: Record<string, string> = {
+  "Référentiels": "Documentations officielles",
+  "Écosystème IA": "Outils et éditeurs IA suivis",
+  "Retours techniques": "Actualités et retours d’expérience",
+};
+
+const watchPresentation = {
+  reason:
+    "J’ai choisi ce thème parce que l’intelligence artificielle entre directement dans les outils de développement que j’utilise et modifie déjà la manière de rechercher, coder, tester et diagnostiquer. Je veux comprendre ce qu’elle apporte réellement, sans confondre nouveauté, promesse et pratique fiable.",
+  connection:
+    "Le sujet relie mon intérêt pour le développement web à mes compétences en systèmes et réseaux : intégration côté serveur, protection des secrets, contrôle des accès, journalisation et maintien d’une validation humaine.",
+  goal:
+    "L’objectif n’est pas de suivre chaque annonce. Il est d’identifier les évolutions assez solides pour changer une pratique, puis d’en expliquer les bénéfices, les limites et les conditions d’usage.",
+} as const;
+
+const watchObjectives = [
+  {
+    title: "Comprendre les usages réels",
+    text: "Observer comment l’IA intervient dans la conception, le code, le diagnostic et la maintenance.",
+  },
+  {
+    title: "Garder la maîtrise technique",
+    text: "Vérifier les frontières serveur-client, la protection des secrets et la place de la revue humaine.",
+  },
+  {
+    title: "Transformer l’information en pratique",
+    text: "Relier chaque évolution à un cas concret plutôt qu’à une simple annonce produit.",
+  },
+] as const;
+
+const setupSteps = [
+  {
+    number: "01",
+    title: "Cadre de recherche",
+    text: "Une question centrale fixe le périmètre : les usages de l’IA qui touchent réellement au développement et à l’exploitation d’une application.",
+  },
+  {
+    number: "02",
+    title: "Collecte manuelle",
+    text: "Chaque semaine, je consulte les documentations officielles et les publications techniques des éditeurs suivis.",
+  },
+  {
+    number: "03",
+    title: "Grille de vérification",
+    text: "Je contrôle l’origine, la stabilité, l’impact concret et les limites de chaque information avant de la conserver.",
+  },
+  {
+    number: "04",
+    title: "Synthèse publiée",
+    text: "Quand un enseignement est vérifiable, je le reformule, je cite les sources consultées et j’explicite mon analyse.",
+  },
+] as const;
 
 const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
   day: "numeric",
@@ -11,125 +75,113 @@ const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
 });
 
 export function WatchHub() {
-  const categories = [...new Set(watchSources.map((source) => source.category))];
+  const latest = [...watchArticles].reverse()[0];
+  const categories = Array.from(new Set(watchSources.map((source) => source.category)));
+  const [activeStep, setActiveStep] = useState(0);
+
+  useEffect(() => {
+    const sections = routeItems
+      .map(([, , href]) => document.querySelector(href))
+      .filter(Boolean) as Element[];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActiveStep(sections.indexOf(visible.target));
+      },
+      { rootMargin: "-20% 0px -55%", threshold: [0.1, 0.35, 0.7] },
+    );
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <main className="portfolio-surface min-h-screen text-[var(--portfolio-text)]">
-      <header className="border-b border-white/10 bg-[var(--portfolio-panel)] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
-        <div className="portfolio-shell">
-          <p className="section-label">Veille technologique</p>
-          <h1 className="mt-6 max-w-6xl text-5xl font-medium leading-[0.98] tracking-[-0.05em] text-balance sm:text-7xl">
-            {watchTopic.title}
-          </h1>
-          <p className="mt-7 max-w-4xl text-lg leading-8 text-white/62">{watchTopic.question}</p>
-          <p className="mt-5 max-w-3xl border-l border-brand pl-5 text-sm leading-7 text-white/48">
-            Collecte manuelle et analyse personnelle : aucun flux RSS ni automatisation de publication n’est encore activé.
-          </p>
-        </div>
-      </header>
-
-      <section className="border-b border-white/10 px-5 py-16 sm:px-8 lg:px-12 lg:py-24" aria-labelledby="watch-method">
-        <div className="portfolio-shell grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-          <div>
-            <p className="section-label">Méthode</p>
-            <h2 id="watch-method" className="mt-6 text-4xl font-medium tracking-[-0.04em] sm:text-5xl">
-              Sélectionner, recouper, restituer.
-            </h2>
-            <p className="mt-6 leading-8 text-white/58">{watchTopic.cadence}</p>
+    <main className={`${styles.watchPage} portfolio-surface`}>
+      <section className={`${styles.routeHero} ${styles.enter}`} id="veille-sujet" aria-labelledby="veille-title">
+        <div className={styles.routeHeroMain}>
+          <h1 id="veille-title">Comprendre ce que l’IA change vraiment dans le développement.</h1>
+          <p className={styles.heroQuestion}>{watchTopic.question}</p>
+          <div className={styles.heroActions}>
+            <a className={styles.secondaryButton} href="#veille-pourquoi">Découvrir ma démarche <ArrowDown aria-hidden="true" /></a>
+            <Link className={styles.primaryButton} href="/veille/articles">Voir les articles <ArrowRight aria-hidden="true" /></Link>
           </div>
-          <ul className="grid gap-px border border-white/12 bg-white/12 sm:grid-cols-2">
-            {watchTopic.selectionCriteria.map((criterion) => (
-              <li key={criterion} className="flex gap-3 bg-[var(--portfolio-panel)] p-6 text-sm leading-6 text-white/68">
-                <ListChecks aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-brand" />
-                {criterion}
+          <dl className={styles.proofStrip}>
+            <div><dt>synthèses publiées</dt><dd>{String(watchArticles.length).padStart(2, "0")}</dd></div>
+            <div><dt>sources présentées</dt><dd>{String(watchSources.length).padStart(2, "0")}</dd></div>
+            <div><dt>revue par semaine</dt><dd>1×</dd></div>
+          </dl>
+        </div>
+        <nav className={styles.routeMap} aria-label="Parcours de la page">
+          <p>Parcours de lecture</p>
+          <ol data-step={activeStep}>
+            {routeItems.map(([number, label, href], index) => (
+              <li key={number} data-active={index === activeStep ? "" : undefined}>
+                <a href={href} aria-current={index === activeStep ? "location" : undefined}><span>{number}</span>{label}</a>
               </li>
             ))}
-          </ul>
+          </ol>
+        </nav>
+      </section>
+
+      <section className={styles.routeFeature} id="veille-pourquoi" aria-labelledby="veille-why-title">
+        <article className={styles.routeLatest}>
+          <div className={styles.routeLatestMeta}><span>Point de départ</span><span>Développement · systèmes · sécurité</span></div>
+          <div className={styles.routeLatestBody}>
+            <div><h2 id="veille-why-title">Un sujet au croisement de mes pratiques.</h2><p>{watchPresentation.reason}</p></div>
+            <ol aria-label="Ce que ce sujet me permet d’étudier">
+              <li><span>01</span>{watchPresentation.connection}</li>
+              <li><span>02</span>{watchPresentation.goal}</li>
+            </ol>
+          </div>
+        </article>
+        <div className={styles.objectiveRail}>
+          {watchObjectives.map((objective, index) => (
+            <article key={objective.title}><span>0{index + 1}</span><div><h3>{objective.title}</h3><p>{objective.text}</p></div></article>
+          ))}
         </div>
       </section>
 
-      <section className="border-b border-white/10 px-5 py-16 sm:px-8 lg:px-12 lg:py-24" aria-labelledby="watch-syntheses">
-        <div className="portfolio-shell">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="section-label">Synthèses</p>
-              <h2 id="watch-syntheses" className="mt-6 text-4xl font-medium tracking-[-0.04em] sm:text-5xl">
-                Ce que je retiens et pourquoi.
-              </h2>
-            </div>
-            <p className="font-mono text-xs text-white/55">{watchArticles.length} publications</p>
-          </div>
-          <div className="mt-10 grid gap-5 lg:grid-cols-2">
-            {watchArticles.map((article) => (
-              <article key={article.slug} className="flex min-h-full flex-col border border-white/12 bg-[var(--portfolio-panel)] p-7 sm:p-8">
-                <div className="flex flex-wrap items-center gap-3 font-mono text-xs text-white/55">
-                  <time dateTime={article.publishedAt}>{dateFormatter.format(new Date(article.publishedAt))}</time>
-                  <span aria-hidden="true">·</span>
-                  <span>{article.readingTime}</span>
-                </div>
-                <h3 className="mt-6 text-3xl font-medium leading-tight tracking-[-0.03em]">{article.title}</h3>
-                <p className="mt-4 flex-1 leading-7 text-white/58">{article.excerpt}</p>
-                <Link href={`/veille/${article.slug}`} className="mt-8 inline-flex min-h-11 items-center gap-2 text-sm font-semibold text-brand">
-                  Lire la synthèse
-                  <ArrowRight aria-hidden="true" className="size-4" />
-                </Link>
-              </article>
-            ))}
-          </div>
+      <section className={styles.routeMethod} id="veille-methode" aria-labelledby="veille-method-title">
+        <header><div aria-hidden="true" /><div><h2 id="veille-method-title">Une routine simple, répétable et vérifiable.</h2><p>{watchTopic.cadence}</p></div></header>
+        <ol className={styles.methodTrack}>
+          {setupSteps.map((step) => (
+            <li key={step.number}><span>{step.number}</span><CircleDot aria-hidden="true" /><div><h3>{step.title}</h3><p>{step.text}</p></div></li>
+          ))}
+        </ol>
+        <ul className={styles.criteriaList}>
+          {watchTopic.selectionCriteria.map((criterion) => <li key={criterion}><Check aria-hidden="true" />{criterion}</li>)}
+        </ul>
+      </section>
+
+      <section className={styles.routeSources} id="veille-sources" aria-labelledby="veille-sources-title">
+        <header>
+          <h2 id="veille-sources-title">Une information n’entre dans la veille qu’avec une provenance.</h2>
+          <p>Cette sélection n’est pas exhaustive : elle présente quelques sources de référence. Le registre évolue avec les documentations, outils, éditeurs, actualités et retours d’expérience consultés au fil de ma veille.</p>
+        </header>
+        <div className={styles.sourceRegistry}>
+          {categories.map((category) => (
+            <section key={category} aria-labelledby={`sources-${category.replaceAll(" ", "-")}`}>
+              <h3 id={`sources-${category.replaceAll(" ", "-")}`}>{sourceCategoryLabels[category] ?? category}</h3>
+              <ul>
+                {watchSources.filter((source) => source.category === category).map((source) => (
+                  <li key={source.url}>
+                    <a href={source.url} target="_blank" rel="noreferrer"><span><strong>{source.name}</strong><small>{source.publisher}</small></span><ArrowUpRight aria-hidden="true" /></a>
+                    <p>{source.rationale}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
         </div>
       </section>
 
-      <section className="border-b border-white/10 px-5 py-16 sm:px-8 lg:px-12 lg:py-24" aria-labelledby="watch-sources">
-        <div className="portfolio-shell grid gap-10 lg:grid-cols-[0.7fr_1.3fr]">
-          <div>
-            <p className="section-label">Sources suivies</p>
-            <h2 id="watch-sources" className="mt-6 text-4xl font-medium tracking-[-0.04em] sm:text-5xl">
-              Des références identifiables.
-            </h2>
-            <p className="mt-6 leading-8 text-white/58">
-              Je privilégie les documentations et publications des éditeurs. Chaque synthèse indique les pages réellement consultées.
-            </p>
-          </div>
-          <div className="grid gap-8">
-            {categories.map((category) => (
-              <section key={category}>
-                <h3 className="inline-flex items-center gap-2 font-mono text-xs tracking-[0.16em] text-brand uppercase">
-                  <RadioTower aria-hidden="true" className="size-4" />
-                  {category}
-                </h3>
-                <ul className="mt-4 grid gap-3">
-                  {watchSources
-                    .filter((source) => source.category === category)
-                    .map((source) => (
-                      <li key={source.url} className="border border-white/12 p-5">
-                        <a href={source.url} target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 font-medium hover:text-brand">
-                          {source.name} · {source.publisher}
-                          <ExternalLink aria-hidden="true" className="size-3.5" />
-                        </a>
-                        <p className="mt-2 text-sm leading-6 text-white/52">{source.rationale}</p>
-                      </li>
-                    ))}
-                </ul>
-              </section>
-            ))}
-          </div>
-        </div>
+      <section className={styles.presentationOutcome} id="veille-articles" aria-labelledby="veille-articles-title">
+        <div><FileText aria-hidden="true" /><h2 id="veille-articles-title">Des articles qui montrent le raisonnement, pas seulement la conclusion.</h2><p>Chaque publication présente la question étudiée, les enseignements retenus, mon analyse, les limites identifiées et les sources utilisées.</p><Link className={styles.darkButton} href="/veille/articles">Voir tous les articles <ArrowRight aria-hidden="true" /></Link></div>
+        <article><span>Dernière synthèse · {dateFormatter.format(new Date(latest.publishedAt))}</span><h3>{latest.title}</h3><p>{latest.excerpt}</p><Link className={styles.textLink} href={`/veille/${latest.slug}`}>Lire la synthèse <ArrowRight aria-hidden="true" /></Link></article>
       </section>
 
-      <section className="px-5 py-16 sm:px-8 lg:px-12 lg:py-24" aria-labelledby="watch-newsletter">
-        <div className="portfolio-shell grid gap-10 border border-white/12 bg-[var(--portfolio-panel)] p-7 sm:p-10 lg:grid-cols-[1fr_0.9fr] lg:p-14">
-          <div>
-            <p className="section-label">Newsletter</p>
-            <h2 id="watch-newsletter" className="mt-6 max-w-3xl text-4xl font-medium tracking-[-0.04em] sm:text-5xl">
-              Recevoir les prochaines synthèses.
-            </h2>
-            <p className="mt-6 max-w-2xl leading-8 text-white/58">
-              Un e-mail uniquement lorsqu’une nouvelle analyse sur l’IA et le développement mérite d’être partagée.
-            </p>
-          </div>
-          <NewsletterForm action={subscribeNewsletter} />
-        </div>
-      </section>
+      <aside className={styles.endNote}><span>Fin du parcours</span><a href="#veille-sujet">Revenir au sujet <ArrowUp aria-hidden="true" /></a></aside>
     </main>
   );
 }

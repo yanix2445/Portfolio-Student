@@ -107,7 +107,7 @@ export function CertificationCatalog() {
   const renderCards = (items: readonly Certification[]) => items.map((item) => (
     <article key={item.slug} className={item.kind === "Formation" ? styles.badgeCardTraining : styles.badgeCard}>
       <div className={styles.badgeVisual}>
-        <CertificationBadge certification={item} className="size-32 sm:size-36" />
+        <CertificationBadge certification={item} className="size-36 sm:size-40" />
       </div>
       <div className={styles.badgeCaption}>
         <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-[var(--home-text-subtle)]">

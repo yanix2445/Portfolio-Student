@@ -15,7 +15,7 @@ test("la veille ne présente aucune violation d’accessibilité critique ou sé
 });
 
 test("le formulaire annonce les erreurs de validation et de fournisseur", async ({ page }) => {
-  await page.goto("/veille");
+  await page.goto("/");
 
   const email = page.getByLabel("Adresse e-mail");
   const consent = page.getByRole("checkbox");

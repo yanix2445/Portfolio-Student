@@ -20,6 +20,10 @@ describe("SiteHeader", () => {
       expect(within(navigation).getAllByRole("link", { name: label }).length).toBeGreaterThan(0);
     }
 
+    for (const experiencesLink of within(navigation).getAllByRole("link", { name: "Expériences" })) {
+      expect(experiencesLink.getAttribute("href")).toBe("/parcours");
+    }
+
     expect(within(navigation).getAllByRole("button", { name: "Épreuves" }).length).toBeGreaterThan(0);
 
     fireEvent.click(within(navigation).getAllByRole("button", { name: "Épreuves" })[0]);

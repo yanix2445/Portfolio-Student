@@ -1,0 +1,841 @@
+.watchPage {
+  --watch-black: #050505;
+  --watch-panel: #111214;
+  --watch-panel-strong: #18191b;
+  --watch-orange: #ff7a00;
+  --watch-orange-soft: #ff9838;
+  --watch-white: #f6f6f6;
+  --watch-muted: #b5b5b5;
+  --watch-subtle: #8c8c8c;
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--watch-black);
+  color: var(--watch-white);
+}
+
+.watchPage h1,
+.watchPage h2,
+.watchPage h3,
+.watchPage p {
+  margin: 0;
+}
+
+.watchPage h1 {
+  max-width: 14ch;
+  font-size: clamp(3rem, 6.3vw, 6rem);
+  line-height: 0.91;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.watchPage h2 {
+  font-size: clamp(2rem, 4vw, 4.75rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.watchPage h3 {
+  font-size: clamp(1.15rem, 1.65vw, 1.55rem);
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+.watchPage p {
+  color: var(--watch-muted);
+  line-height: 1.7;
+}
+
+.routeHero,
+.routeFeature,
+.routeMethod,
+.routeSources,
+.endNote {
+  width: min(calc(100% - 32px), 92rem);
+  margin-inline: auto;
+}
+
+.routeHero,
+.routeFeature,
+.routeMethod,
+.routeSources,
+.presentationOutcome {
+  scroll-margin-top: 7rem;
+}
+
+.routeHero {
+  display: grid;
+  min-height: min(760px, calc(100vh - 100px));
+  grid-template-columns: minmax(0, 1.45fr) minmax(17rem, 0.55fr);
+  gap: clamp(48px, 8vw, 120px);
+  align-items: center;
+  padding-block: clamp(76px, 10vw, 144px);
+}
+
+.routeHeroMain {
+  display: grid;
+  gap: 26px;
+}
+
+.heroQuestion {
+  max-width: 72ch;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.primaryButton,
+.secondaryButton,
+.darkButton {
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 0;
+  border-radius: 10px;
+  padding: 0 18px;
+  font-size: 0.9rem;
+  font-weight: 750;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 150ms cubic-bezier(0.23, 1, 0.32, 1), background-color 150ms ease-out, color 150ms ease-out;
+}
+
+.primaryButton {
+  background: var(--watch-orange);
+  color: #111;
+}
+
+.secondaryButton {
+  background: var(--watch-panel-strong);
+  color: var(--watch-white);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1);
+}
+
+.darkButton {
+  width: fit-content;
+  background: #0b0b0b;
+  color: #fff;
+}
+
+.primaryButton svg,
+.secondaryButton svg,
+.darkButton svg,
+.textLink svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+.primaryButton:active,
+.secondaryButton:active,
+.darkButton:active {
+  transform: scale(0.96);
+}
+
+.proofStrip {
+  display: grid;
+  width: min(100%, 48rem);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin: 14px 0 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: rgb(255 255 255 / 0.09);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.09);
+}
+
+.proofStrip > div {
+  display: flex;
+  min-height: 86px;
+  flex-direction: column-reverse;
+  justify-content: center;
+  gap: 4px;
+  padding: 16px 18px;
+  background: var(--watch-panel);
+}
+
+.proofStrip dt {
+  color: var(--watch-subtle);
+  font-size: 0.75rem;
+}
+
+.proofStrip dd {
+  margin: 0;
+  color: var(--watch-orange-soft);
+  font-size: 1.5rem;
+  font-weight: 720;
+  font-variant-numeric: tabular-nums;
+}
+
+.routeMap {
+  position: relative;
+  padding: 26px;
+  border-radius: 14px;
+  background: var(--watch-panel);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1);
+}
+
+.routeMap > p {
+  margin-bottom: 16px;
+  color: var(--watch-subtle);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.routeMap ol {
+  --route-progress: 0;
+  position: relative;
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.routeMap ol[data-step="1"] { --route-progress: 0.25; }
+.routeMap ol[data-step="2"] { --route-progress: 0.5; }
+.routeMap ol[data-step="3"] { --route-progress: 0.75; }
+.routeMap ol[data-step="4"] { --route-progress: 1; }
+
+.routeMap ol::before,
+.routeMap ol::after {
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  left: 18px;
+  width: 1px;
+  content: "";
+}
+
+.routeMap ol::before {
+  background: rgb(255 255 255 / 0.14);
+}
+
+.routeMap ol::after {
+  background: var(--watch-orange);
+  transform: scaleY(var(--route-progress));
+  transform-origin: top;
+}
+
+.routeMap a {
+  position: relative;
+  display: grid;
+  min-height: 56px;
+  grid-template-columns: 38px 1fr;
+  align-items: center;
+  gap: 12px;
+  color: var(--watch-muted);
+  text-decoration: none;
+}
+
+.routeMap a span {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--watch-panel-strong);
+  color: var(--watch-subtle);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.75rem;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.1);
+  transition: transform 180ms cubic-bezier(0.23, 1, 0.32, 1), background-color 180ms ease-out, color 180ms ease-out;
+}
+
+.routeMap li[data-active] a,
+.routeMap li[data-active] a span {
+  color: var(--watch-white);
+}
+
+.routeMap li[data-active] a span {
+  background: var(--watch-orange);
+  color: #111;
+  transform: scale(1.06);
+}
+
+.routeFeature,
+.routeMethod,
+.routeSources {
+  padding-block: clamp(72px, 8vw, 112px);
+}
+
+.routeLatest {
+  overflow: hidden;
+  border-radius: 16px;
+  background: var(--watch-orange);
+  color: #111;
+}
+
+.routeLatestMeta {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px clamp(24px, 4vw, 52px);
+  border-bottom: 1px solid rgb(0 0 0 / 0.18);
+  color: #4b2400;
+  font-size: 0.76rem;
+  font-weight: 650;
+}
+
+.routeLatestBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.65fr);
+  gap: clamp(40px, 7vw, 100px);
+  padding: clamp(32px, 6vw, 76px);
+}
+
+.routeLatestBody h2 {
+  max-width: 15ch;
+  margin-bottom: 24px;
+}
+
+.routeLatestBody > div > p {
+  max-width: 72ch;
+  color: rgb(0 0 0 / 0.72);
+}
+
+.routeLatestBody ol {
+  display: grid;
+  align-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.routeLatestBody ol li {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 12px;
+  padding: 18px 0;
+  border-top: 1px solid rgb(0 0 0 / 0.18);
+  color: rgb(0 0 0 / 0.75);
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+
+.routeLatestBody ol span {
+  font-family: var(--font-geist-mono), monospace;
+  font-weight: 750;
+}
+
+.objectiveRail {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  margin-top: 16px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: rgb(255 255 255 / 0.1);
+}
+
+.objectiveRail article {
+  display: grid;
+  min-height: 190px;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 14px;
+  align-content: end;
+  padding: 26px;
+  background: var(--watch-panel);
+}
+
+.objectiveRail article > span {
+  color: var(--watch-orange-soft);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.75rem;
+}
+
+.objectiveRail h3 {
+  margin-bottom: 10px;
+}
+
+.objectiveRail p {
+  color: var(--watch-subtle);
+  font-size: 0.82rem;
+}
+
+.routeMethod {
+  border-top: 1px solid rgb(255 255 255 / 0.09);
+}
+
+.routeMethod > header {
+  display: grid;
+  grid-template-columns: 10rem minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.routeMethod > header > div:first-child {
+  width: 100%;
+  height: 1px;
+  margin-top: 1rem;
+  background: var(--watch-orange);
+}
+
+.routeMethod header > div:last-child p,
+.routeSources header p {
+  max-width: 46rem;
+  margin-top: 20px;
+}
+
+.methodTrack {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 64px 0 28px;
+  padding: 0;
+  list-style: none;
+}
+
+.methodTrack::before {
+  position: absolute;
+  top: 22px;
+  right: 12.5%;
+  left: 12.5%;
+  height: 1px;
+  background: var(--watch-orange);
+  content: "";
+}
+
+.methodTrack > li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  text-align: center;
+}
+
+.methodTrack > li > span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: var(--watch-subtle);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.75rem;
+}
+
+.methodTrack svg {
+  position: relative;
+  z-index: 1;
+  width: 44px;
+  height: 44px;
+  padding: 12px;
+  border-radius: 999px;
+  background: var(--watch-black);
+  color: var(--watch-orange);
+  box-shadow: 0 0 0 1px var(--watch-orange);
+}
+
+.methodTrack div {
+  max-width: 20rem;
+  padding: 28px 22px 8px;
+}
+
+.methodTrack p {
+  margin-top: 10px;
+  color: var(--watch-subtle);
+  font-size: 0.84rem;
+}
+
+.criteriaList {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0;
+  padding: 1px;
+  border-radius: 12px;
+  background: rgb(255 255 255 / 0.1);
+  list-style: none;
+}
+
+.criteriaList li {
+  display: flex;
+  min-height: 76px;
+  align-items: center;
+  gap: 12px;
+  padding: 18px;
+  background: var(--watch-panel);
+  color: var(--watch-muted);
+  font-size: 0.88rem;
+}
+
+.criteriaList svg {
+  width: 17px;
+  height: 17px;
+  flex: none;
+  color: var(--watch-orange-soft);
+}
+
+.routeSources > header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(16rem, 0.6fr);
+  gap: 48px;
+  align-items: end;
+  margin-bottom: 48px;
+}
+
+.sourceRegistry {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: rgb(255 255 255 / 0.1);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.1);
+}
+
+.sourceRegistry section {
+  min-width: 0;
+  padding: clamp(22px, 3vw, 36px);
+  background: var(--watch-panel);
+}
+
+.sourceRegistry h3 {
+  margin-bottom: 24px;
+  color: var(--watch-orange-soft);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.sourceRegistry ul {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sourceRegistry li {
+  padding: 18px 0;
+  border-top: 1px solid rgb(255 255 255 / 0.09);
+}
+
+.sourceRegistry li:first-child {
+  border-top: 0;
+}
+
+.sourceRegistry a {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--watch-white);
+  text-decoration: none;
+}
+
+.sourceRegistry a span {
+  display: grid;
+  gap: 5px;
+}
+
+.sourceRegistry strong {
+  font-size: 0.96rem;
+}
+
+.sourceRegistry small {
+  color: var(--watch-subtle);
+}
+
+.sourceRegistry svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  color: var(--watch-orange-soft);
+}
+
+.sourceRegistry li > p {
+  margin-top: 8px;
+  color: var(--watch-subtle);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.presentationOutcome {
+  display: grid;
+  width: min(calc(100% - 32px), 92rem);
+  grid-template-columns: minmax(0, 1.25fr) minmax(19rem, 0.75fr);
+  gap: 1px;
+  margin-inline: auto;
+  overflow: hidden;
+  border-radius: 16px;
+  background: rgb(0 0 0 / 0.2);
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.18);
+}
+
+.presentationOutcome > div {
+  padding: clamp(32px, 6vw, 72px);
+  background: var(--watch-orange);
+  color: #111;
+}
+
+.presentationOutcome > div > svg {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 28px;
+}
+
+.presentationOutcome > div h2 {
+  max-width: 15ch;
+}
+
+.presentationOutcome > div p {
+  max-width: 46rem;
+  margin: 24px 0;
+  color: rgb(0 0 0 / 0.68);
+}
+
+.presentationOutcome article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(30px, 5vw, 58px);
+  background: var(--watch-panel);
+}
+
+.presentationOutcome article > span {
+  color: var(--watch-orange-soft);
+  font-size: 0.75rem;
+}
+
+.presentationOutcome article h3 {
+  margin: 18px 0;
+  font-size: clamp(1.5rem, 2.4vw, 2.35rem);
+}
+
+.presentationOutcome article p {
+  color: var(--watch-subtle);
+  font-size: 0.86rem;
+}
+
+.textLink {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 44px;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  color: var(--watch-orange-soft);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.endNote {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 0 100px;
+  border-top: 1px solid rgb(255 255 255 / 0.1);
+  color: var(--watch-subtle);
+  font-size: 0.78rem;
+}
+
+.endNote a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 8px;
+  color: var(--watch-orange-soft);
+  text-decoration: none;
+}
+
+.endNote svg {
+  width: 14px;
+  height: 14px;
+}
+
+@keyframes veille-enter {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .enter {
+    animation: veille-enter 280ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  }
+
+  .routeMap ol::after {
+    transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .primaryButton:hover { background: var(--watch-orange-soft); }
+  .secondaryButton:hover { background: #222326; }
+  .textLink:hover { color: #fff; }
+  .sourceRegistry a:hover strong { color: var(--watch-orange-soft); }
+  .routeMap a:hover { color: #fff; }
+}
+
+@media (max-width: 68rem) {
+  .routeHero {
+    min-height: auto;
+    grid-template-columns: 1fr;
+  }
+
+  .routeMap ol {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .routeMap ol::before,
+  .routeMap ol::after {
+    top: 18px;
+    right: 10%;
+    bottom: auto;
+    left: 10%;
+    width: auto;
+    height: 1px;
+  }
+
+  .routeMap ol::after {
+    transform: scaleX(var(--route-progress));
+    transform-origin: left;
+  }
+
+  .routeMap a {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  .routeLatestBody {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 52rem) {
+  .watchPage h1 { font-size: clamp(2.5rem, 12vw, 5rem); }
+  .watchPage h2 { font-size: clamp(2rem, 8vw, 3.4rem); }
+
+  .proofStrip,
+  .objectiveRail,
+  .presentationOutcome,
+  .sourceRegistry,
+  .criteriaList,
+  .routeMethod > header,
+  .routeSources > header {
+    grid-template-columns: 1fr;
+  }
+
+  .proofStrip > div {
+    min-height: 66px;
+  }
+
+  .routeMap ol {
+    grid-template-columns: 1fr;
+  }
+
+  .routeMap ol::before,
+  .routeMap ol::after {
+    top: 18px;
+    right: auto;
+    bottom: 18px;
+    left: 18px;
+    width: 1px;
+    height: auto;
+  }
+
+  .routeMap ol::after {
+    transform: scaleY(var(--route-progress));
+    transform-origin: top;
+  }
+
+  .routeMap a {
+    grid-template-columns: 38px 1fr;
+    justify-items: start;
+    text-align: left;
+  }
+
+  .methodTrack {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .methodTrack::before {
+    top: 22px;
+    right: auto;
+    bottom: 22px;
+    left: 22px;
+    width: 1px;
+    height: auto;
+  }
+
+  .methodTrack > li {
+    grid-template-columns: 44px 1fr;
+    justify-items: start;
+    text-align: left;
+  }
+
+  .methodTrack > li > span {
+    display: none;
+  }
+
+  .methodTrack div {
+    padding: 0 0 0 18px;
+  }
+}
+
+@media (max-width: 36rem) {
+  .routeHero,
+  .routeFeature,
+  .routeMethod,
+  .routeSources,
+  .endNote,
+  .presentationOutcome {
+    width: min(calc(100% - 24px), 92rem);
+  }
+
+  .heroActions {
+    display: grid;
+  }
+
+  .routeMap {
+    padding: 20px;
+  }
+
+  .routeLatestMeta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .routeLatestBody {
+    padding: 28px 22px;
+  }
+
+  .routeLatestBody ol li {
+    grid-template-columns: 28px 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .watchPage *,
+  .watchPage *::before,
+  .watchPage *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .primaryButton,
+  .secondaryButton,
+  .darkButton,
+  .routeMap,
+  .routeLatest,
+  .sourceRegistry,
+  .presentationOutcome {
+    border: 1px solid CanvasText;
+  }
+}

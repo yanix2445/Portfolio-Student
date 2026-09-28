@@ -14,6 +14,7 @@ const staticRoutes = [
   "/projets",
   "/certifications",
   "/veille",
+  "/veille/articles",
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
