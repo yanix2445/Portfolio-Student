@@ -1,3 +1,27 @@
 {
-  "buildPath": "code"
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "layout-transition",
+        "value": "*",
+        "files": [
+          "src/app/prototypes/e5/prototype.module.css"
+        ],
+        "createdAt": "2026-09-27T15:45:34.736Z",
+        "reason": "Prototype picker specification requires the isolated sliding highlight to animate width; PICKER.md explicitly sanctions this narrow exception."
+      },
+      {
+        "rule": "layout-transition",
+        "value": "*",
+        "files": [
+          "src/app/prototypes/e6/prototype.module.css"
+        ],
+        "createdAt": "2026-09-27T16:16:49.424Z",
+        "reason": "The user previously confirmed the floating prototype selector; its highlight intentionally morphs between differently sized labels."
+      }
+    ]
+  }
 }
