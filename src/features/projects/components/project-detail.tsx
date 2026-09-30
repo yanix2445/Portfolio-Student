@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { ArrowLeft, ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { PortfolioBackLink } from "@/shared/components/portfolio-back-link";
 import type { PortfolioProject } from "../project.types";
 
 export function ProjectDetail({ project }: { project: PortfolioProject }) {
@@ -7,10 +7,9 @@ export function ProjectDetail({ project }: { project: PortfolioProject }) {
     <article>
       <header className="border-b border-white/10 bg-[var(--portfolio-panel)] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
         <div className="portfolio-shell">
-          <Link href="/projets" className="inline-flex min-h-11 items-center gap-2 text-sm text-white/58 hover:text-brand">
-            <ArrowLeft aria-hidden="true" className="size-4" />
+          <PortfolioBackLink href="/projets">
             Retour aux projets
-          </Link>
+          </PortfolioBackLink>
           <p className="section-label mt-8">{project.kind} · {project.status}</p>
           <h1 className="mt-6 max-w-6xl text-5xl font-medium leading-[0.98] tracking-[-0.05em] text-balance sm:text-7xl">
             {project.title}

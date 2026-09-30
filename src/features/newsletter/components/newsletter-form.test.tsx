@@ -1,4 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { forwardRef, useImperativeHandle } from "react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { NewsletterForm } from "./newsletter-form";
 import type { NewsletterAction } from "../newsletter.types";
@@ -7,25 +8,65 @@ import { subscribeNewsletter } from "../actions/subscribe-newsletter.action";
 const resendMocks = vi.hoisted(() => ({
   create: vi.fn(),
   update: vi.fn(),
+  addToSegment: vi.fn(),
+  updateTopics: vi.fn(),
   getClient: vi.fn(),
+  verifyTurnstile: vi.fn(),
 }));
+
+vi.mock("server-only", () => ({}));
 
 vi.mock("@/server/integrations/resend.client", () => ({
   getResendNewsletterClient: resendMocks.getClient,
 }));
 
+vi.mock("@/server/security/turnstile", () => ({
+  verifyTurnstileToken: resendMocks.verifyTurnstile,
+}));
+
+vi.mock("@/shared/components/turnstile-widget", () => ({
+  TurnstileWidget: forwardRef(function MockTurnstileWidget(
+    { onTokenChange }: { onTokenChange: (token: string) => void },
+    ref,
+  ) {
+    useImperativeHandle(
+      ref,
+      () => ({
+        verify: async () => {
+          onTokenChange("turnstile_test_token");
+          return "turnstile_test_token";
+        },
+        reset: () => onTokenChange(""),
+      }),
+      [onTokenChange],
+    );
+    return <div data-testid="turnstile-widget" />;
+  }),
+}));
+
 beforeEach(() => {
   resendMocks.create.mockReset();
   resendMocks.update.mockReset();
+  resendMocks.addToSegment.mockReset();
+  resendMocks.updateTopics.mockReset();
   resendMocks.getClient.mockReset();
+  resendMocks.verifyTurnstile.mockReset();
+  resendMocks.verifyTurnstile.mockResolvedValue(true);
   resendMocks.getClient.mockReturnValue({
     resend: {
       contacts: {
         create: resendMocks.create,
         update: resendMocks.update,
+        segments: {
+          add: resendMocks.addToSegment,
+        },
+        topics: {
+          update: resendMocks.updateTopics,
+        },
       },
     },
-    audienceId: "audience_test",
+    segmentId: "segment_test",
+    topicId: "topic_test",
   });
 });
 
@@ -71,10 +112,12 @@ describe("NewsletterForm", () => {
 
   it("shows and disables the pending state", async () => {
     let resolveAction: ((value: Awaited<ReturnType<NewsletterAction>>) => void) | undefined;
-    const pendingAction: NewsletterAction = () =>
-      new Promise((resolve) => {
-        resolveAction = resolve;
-      });
+    const pendingAction = vi.fn<NewsletterAction>(
+      () =>
+        new Promise((resolve) => {
+          resolveAction = resolve;
+        }),
+    );
 
     render(<NewsletterForm action={pendingAction} />);
 
@@ -82,20 +125,49 @@ describe("NewsletterForm", () => {
       target: { value: "yanis@example.com" },
     });
     fireEvent.click(screen.getByRole("checkbox"));
-    fireEvent.submit(screen.getByRole("button", { name: "Recevoir les synthèses" }).closest("form")!);
+    const form = screen
+      .getByRole("button", { name: "Recevoir les synthèses" })
+      .closest("form")!;
+    fireEvent.submit(form);
+    fireEvent.submit(form);
 
-    const pendingButton = await screen.findByRole("button", { name: "Inscription en cours…" });
-    expect(pendingButton.getAttribute("disabled")).not.toBeNull();
+    expect(await screen.findByText("Votre inscription est prête")).toBeDefined();
+    await waitFor(() => expect(pendingAction).toHaveBeenCalledTimes(1));
+    expect(
+      screen.getByText("Votre inscription est prête").closest("form")?.getAttribute("aria-busy"),
+    ).toBe("true");
 
     resolveAction?.({ status: "success", message: "Inscription confirmée." });
     await waitFor(() => {
       expect(screen.getByRole("status").textContent).toContain("Inscription confirmée");
-    });
+    }, { timeout: 4_000 });
   });
 });
 
 describe("subscribeNewsletter", () => {
   const idleState = { status: "idle", message: "" } as const;
+
+  it("creates a contact subscribed to the newsletter topic and segment", async () => {
+    resendMocks.create.mockResolvedValue({
+      data: { id: "contact_1", object: "contact" },
+      error: null,
+      headers: null,
+    });
+    const data = new FormData();
+    data.set("email", "nouveau@example.com");
+    data.set("consent", "on");
+    data.set("cf-turnstile-response", "turnstile_test_token");
+
+    const state = await subscribeNewsletter(idleState, data);
+
+    expect(state.status).toBe("success");
+    expect(resendMocks.create).toHaveBeenCalledWith({
+      email: "nouveau@example.com",
+      unsubscribed: false,
+      segments: [{ id: "segment_test" }],
+      topics: [{ id: "topic_test", subscription: "opt_in" }],
+    });
+  });
 
   it("rejects an invalid address before calling Resend", async () => {
     const data = new FormData();
@@ -132,17 +204,35 @@ describe("subscribeNewsletter", () => {
       error: null,
       headers: null,
     });
+    resendMocks.addToSegment.mockResolvedValue({
+      data: { id: "contact_1" },
+      error: null,
+      headers: null,
+    });
+    resendMocks.updateTopics.mockResolvedValue({
+      data: { id: "contact_1" },
+      error: null,
+      headers: null,
+    });
     const data = new FormData();
     data.set("email", "abonne@example.com");
     data.set("consent", "on");
+    data.set("cf-turnstile-response", "turnstile_test_token");
 
     const state = await subscribeNewsletter(idleState, data);
 
     expect(state.status).toBe("success");
     expect(resendMocks.update).toHaveBeenCalledWith({
-      audienceId: "audience_test",
       email: "abonne@example.com",
       unsubscribed: false,
+    });
+    expect(resendMocks.addToSegment).toHaveBeenCalledWith({
+      email: "abonne@example.com",
+      segmentId: "segment_test",
+    });
+    expect(resendMocks.updateTopics).toHaveBeenCalledWith({
+      email: "abonne@example.com",
+      topics: [{ id: "topic_test", subscription: "opt_in" }],
     });
   });
 
@@ -151,11 +241,26 @@ describe("subscribeNewsletter", () => {
     const data = new FormData();
     data.set("email", "yanis@example.com");
     data.set("consent", "on");
+    data.set("cf-turnstile-response", "turnstile_test_token");
 
     const state = await subscribeNewsletter(idleState, data);
 
     expect(state.status).toBe("error");
     expect(state.message).toContain("momentanément indisponible");
     expect(state.message).not.toContain("private provider failure");
+  });
+
+  it("rejects an expired anti-robot verification", async () => {
+    resendMocks.verifyTurnstile.mockResolvedValue(false);
+    const data = new FormData();
+    data.set("email", "yanis@example.com");
+    data.set("consent", "on");
+    data.set("cf-turnstile-response", "expired_token");
+
+    const state = await subscribeNewsletter(idleState, data);
+
+    expect(state.status).toBe("error");
+    expect(state.message).toContain("anti-robot");
+    expect(resendMocks.create).not.toHaveBeenCalled();
   });
 });

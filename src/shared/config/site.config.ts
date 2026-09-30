@@ -18,6 +18,7 @@ export const siteConfig = {
     { label: "Certifications", href: "/certifications" },
     { label: "Veille techno", href: "/veille" },
     { label: "FAQ", href: "/#faq" },
+    { label: "Contact", href: "/contact" },
   ],
   examNavigation: [
     {

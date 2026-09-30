@@ -9,7 +9,7 @@
   --watch-subtle: #8c8c8c;
   min-height: 100vh;
   overflow: hidden;
-  background: var(--watch-black);
+  background-color: var(--watch-black);
   color: var(--watch-white);
 }
 

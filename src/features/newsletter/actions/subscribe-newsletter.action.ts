@@ -1,7 +1,8 @@
 "use server";
 
-import { getResendNewsletterClient } from "@/server/integrations/resend.client";
+import { verifyTurnstileToken } from "@/server/security/turnstile";
 import { newsletterSchema } from "../newsletter.schema";
+import { registerNewsletterSubscription } from "../server/register-newsletter-subscription";
 import type { NewsletterState } from "../newsletter.types";
 
 const successState: NewsletterState = {
@@ -40,28 +41,21 @@ export async function subscribeNewsletter(
   }
 
   try {
-    const { resend, audienceId } = getResendNewsletterClient();
-    const creation = await resend.contacts.create({
-      audienceId,
-      email: parsed.data.email,
-      unsubscribed: false,
-    });
+    const turnstileToken = String(
+      formData.get("cf-turnstile-response") ?? "",
+    );
+    const isHuman = await verifyTurnstileToken(turnstileToken, "newsletter");
 
-    if (!creation.error) {
-      return successState;
+    if (!isHuman) {
+      return {
+        status: "error",
+        message:
+          "La vérification anti-robot a expiré. Recommencez la vérification puis réessayez.",
+      };
     }
 
-    if (creation.error.statusCode === 409) {
-      const update = await resend.contacts.update({
-        audienceId,
-        email: parsed.data.email,
-        unsubscribed: false,
-      });
-
-      if (!update.error) {
-        return successState;
-      }
-    }
+    await registerNewsletterSubscription(parsed.data.email);
+    return successState;
   } catch {
     // Provider and configuration details must stay on the server.
   }

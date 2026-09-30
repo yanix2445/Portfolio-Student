@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { ArrowLeft, Search } from "lucide-react";
+import { Search } from "lucide-react";
+import { PortfolioBackLink } from "@/shared/components/portfolio-back-link";
 
 export default function NotFound() {
   return (
@@ -13,13 +13,9 @@ export default function NotFound() {
         <p className="mt-6 max-w-2xl text-lg leading-8 text-white/58">
           Le contenu a peut-être été déplacé. L’accueil permet de retrouver les compétences, les épreuves BTS, les projets et la veille.
         </p>
-        <Link
-          href="/"
-          className="mt-9 inline-flex min-h-12 items-center gap-2 bg-brand px-5 text-sm font-semibold text-brand-foreground"
-        >
-          <ArrowLeft aria-hidden="true" className="size-4" />
+        <PortfolioBackLink href="/" className="mt-9">
           Revenir à l’accueil
-        </Link>
+        </PortfolioBackLink>
       </div>
     </main>
   );

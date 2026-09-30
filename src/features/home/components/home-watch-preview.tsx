@@ -29,7 +29,7 @@ export function HomeWatchPreview() {
         </div>
 
         <aside className="border-t border-white/[0.09] bg-[var(--home-chrome)] p-6 lg:border-t-0 lg:border-l sm:p-8 lg:p-10" aria-labelledby="home-newsletter-title">
-          <h3 id="home-newsletter-title" className="text-2xl font-semibold tracking-[-0.02em] text-balance">Recevoir uniquement les nouvelles synthèses.</h3>
+          <h3 id="home-newsletter-title" className="text-2xl font-semibold tracking-[-0.02em] text-balance">Recevoir les nouvelles synthèses.</h3>
           <p className="mt-3 text-sm leading-6 text-[var(--home-text-muted)]">Pas de calendrier artificiel : un message seulement lorsqu’une analyse utile est publiée.</p>
           <div className="mt-7">
             <NewsletterForm action={subscribeNewsletter} appearance="home" />

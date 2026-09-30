@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { watchArticles } from "@/features/tech-watch";
+import { PortfolioBackLink } from "@/shared/components/portfolio-back-link";
 
 export const metadata: Metadata = {
   title: "Articles de veille technologique",
@@ -23,13 +24,9 @@ export default function WatchArticlesPage() {
   return (
     <main className="portfolio-surface min-h-screen px-5 pb-24 pt-16 text-[var(--portfolio-text)] sm:px-8 lg:px-12 lg:pb-32 lg:pt-24">
       <div className="portfolio-shell">
-        <Link
-          href="/veille"
-          className="inline-flex min-h-11 items-center gap-2 text-sm text-white/58 transition-colors hover:text-brand"
-        >
-          <ArrowLeft aria-hidden="true" className="size-4" />
+        <PortfolioBackLink href="/veille">
           Retour à la démarche de veille
-        </Link>
+        </PortfolioBackLink>
 
         <header className="grid gap-8 border-b border-white/10 pb-12 pt-10 lg:grid-cols-[1.35fr_0.65fr] lg:items-end lg:pb-16 lg:pt-16">
           <div>

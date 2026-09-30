@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { ArrowLeft, CheckCircle2, ExternalLink, ShieldAlert } from "lucide-react";
+import { CheckCircle2, ExternalLink, ShieldAlert } from "lucide-react";
+import { PortfolioBackLink } from "@/shared/components/portfolio-back-link";
 import type { WatchArticle as WatchArticleType } from "../tech-watch.types";
 
 const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
@@ -14,10 +14,9 @@ export function WatchArticle({ article }: { article: WatchArticleType }) {
     <article>
       <header className="border-b border-white/10 bg-[var(--portfolio-panel)] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
         <div className="portfolio-shell">
-          <Link href="/veille" className="inline-flex min-h-11 items-center gap-2 text-sm text-white/58 hover:text-brand">
-            <ArrowLeft aria-hidden="true" className="size-4" />
+          <PortfolioBackLink href="/veille">
             Retour à la veille
-          </Link>
+          </PortfolioBackLink>
           <p className="section-label mt-8">Synthèse de veille</p>
           <h1 className="mt-6 max-w-6xl text-5xl font-medium leading-[0.98] tracking-[-0.05em] text-balance sm:text-7xl">
             {article.title}
