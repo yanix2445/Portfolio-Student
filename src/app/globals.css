@@ -293,6 +293,47 @@
     outline-offset: 0.5rem;
   }
 
+  .portfolio-back-link {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.625rem;
+    margin-inline-start: -0.75rem;
+    border-radius: 0.625rem;
+    padding-inline: 0.75rem;
+    color: var(--portfolio-accent-hover);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .portfolio-back-link svg {
+    width: 1rem;
+    height: 1rem;
+    flex: none;
+    stroke-width: 2;
+    transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .portfolio-back-link:focus-visible {
+    outline-offset: 0.125rem;
+  }
+
+  .portfolio-back-link:focus-visible svg {
+    transform: translateX(-0.25rem);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .portfolio-back-link:hover svg {
+      transform: translateX(-0.25rem);
+    }
+
+    .portfolio-back-link:active svg {
+      transform: translateX(-0.125rem);
+      transition-duration: 80ms;
+    }
+  }
+
   .reveal {
     animation: reveal-up 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
@@ -340,6 +381,16 @@
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .portfolio-back-link svg {
+    transition: none;
+  }
+
+  .portfolio-back-link:focus-visible svg,
+  .portfolio-back-link:hover svg,
+  .portfolio-back-link:active svg {
+    transform: none;
   }
 
   .reveal,

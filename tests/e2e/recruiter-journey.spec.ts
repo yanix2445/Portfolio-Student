@@ -31,11 +31,18 @@ test("un recruteur comprend le profil et atteint les trois conversions", async (
     "href",
     "https://cal.com/yanis-harrat",
   );
-  await expect(page.getByRole("link", { name: /courriel/i })).toHaveAttribute(
-    "href",
-    "mailto:contact@yanis-harrat.com",
+  const contactLink = page.getByRole("link", { name: "Me contacter" });
+  await expect(contactLink).toHaveAttribute("href", "/contact");
+  await contactLink.click();
+  await expect(page).toHaveURL(/\/contact$/);
+  await expect(page.getByRole("heading", { level: 1 })).toContainText(
+    "Un échange clair commence par le bon contexte",
   );
+  await expect(
+    page.getByRole("link", { name: "contact@yanis-harrat.com" }),
+  ).toHaveAttribute("href", "mailto:contact@yanis-harrat.com");
 
+  await page.goto("/");
   await page.getByRole("link", { name: "Espace E5" }).click();
   await expect(page).toHaveURL(/\/epreuves\/e5$/);
   await expect(page.getByRole("heading", { level: 1 })).toContainText(
@@ -99,6 +106,91 @@ test("les routes publiques possèdent un titre, une description, un H1 et une ca
       route === "/" ? canonicalOrigin : `${canonicalOrigin}${route}`,
     );
   }
+});
+
+test("le quadrillage habille toutes les pages internes, mais pas l’accueil", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("main.home-page")).toHaveCSS("background-image", "none");
+
+  for (const route of [
+    "/competences",
+    "/parcours",
+    "/epreuves/e5",
+    "/epreuves/e6",
+    "/projets",
+    "/certifications",
+    "/veille",
+    "/veille/articles",
+  ]) {
+    await page.goto(route);
+    await expect(page.locator("main.portfolio-surface")).toHaveCSS(
+      "background-image",
+      /linear-gradient/,
+    );
+  }
+});
+
+test("tous les retours de page partagent exactement le même composant", async ({ page }) => {
+  const routes = [
+    ["/epreuves/e5/migration-serveur-impression-cloud", "/epreuves/e5"],
+    ["/epreuves/e6/infrastructure-pme-automatisation", "/epreuves/e6"],
+    ["/projets/portfolio-professionnel", "/projets"],
+    ["/veille/integrer-ia-frontieres-serveur", "/veille"],
+    ["/veille/articles", "/veille"],
+    ["/page-inexistante", "/"],
+  ] as const;
+  let referenceStyle: Record<string, string> | undefined;
+
+  for (const [route, destination] of routes) {
+    await page.goto(route);
+    const backLink = page.locator(".portfolio-back-link").first();
+    await expect(backLink).toBeVisible();
+    await expect(backLink).toHaveAttribute("href", destination);
+    await backLink.focus();
+
+    const style = await backLink.evaluate((element) => {
+      const computed = getComputedStyle(element);
+      return {
+        minHeight: computed.minHeight,
+        gap: computed.gap,
+        paddingInlineStart: computed.paddingInlineStart,
+        paddingInlineEnd: computed.paddingInlineEnd,
+        borderRadius: computed.borderRadius,
+        color: computed.color,
+        fontSize: computed.fontSize,
+        fontWeight: computed.fontWeight,
+        outlineStyle: computed.outlineStyle,
+      };
+    });
+
+    referenceStyle ??= style;
+    expect(style).toEqual(referenceStyle);
+    expect(style.outlineStyle).not.toBe("none");
+
+    await backLink.hover();
+    await expect(backLink).toHaveCSS("background-color", "rgba(0, 0, 0, 0)");
+    await expect(backLink).toHaveCSS("color", style.color);
+    await expect(backLink.locator("svg")).toHaveCSS(
+      "transform",
+      "matrix(1, 0, 0, 1, -4, 0)",
+    );
+  }
+});
+
+test("la route de prototype n’est pas exposée en production", async ({
+  request,
+}) => {
+  const response = await request.get("/prototypes/articles");
+  expect(response.status()).toBe(404);
+});
+
+test("l’animation des retours respecte la réduction des mouvements", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/projets/portfolio-professionnel");
+
+  const backLink = page.locator(".portfolio-back-link").first();
+  await backLink.hover();
+  await expect(backLink.locator("svg")).toHaveCSS("transform", "none");
 });
 
 test("le sitemap, robots et les données structurées décrivent le site public", async ({

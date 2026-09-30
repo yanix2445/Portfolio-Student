@@ -1,38 +1,43 @@
-# Portfolio Student
+# Portfolio de Yanis Harrat
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Portfolio professionnel Next.js de Yanis Harrat, technicien support systèmes et réseaux en BTS SIO SISR.
 
-## Getting Started
-
-First, run the development server:
+## Développement local
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+cp .env.example .env.local
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+L'application est disponible sur `http://localhost:3000`. En développement, Turnstile utilise automatiquement les clés de test officielles Cloudflare.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Variables requises
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Consultez `.env.example` pour le contrat complet. Les secrets Resend et Turnstile restent côté serveur; seule la clé publique Turnstile porte le préfixe `NEXT_PUBLIC_`.
 
-## Learn More
+`TURNSTILE_TEST_MODE=1` est réservé à la suite Playwright. Cette variable ne doit jamais être créée dans Vercel Preview ou Production.
 
-To learn more about Next.js, take a look at the following resources:
+## Validation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+git diff --check
+pnpm lint
+pnpm exec tsc --noEmit
+pnpm test:run
+pnpm build
+pnpm test:e2e
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Playwright reconstruit une version de production isolée avec Turnstile de test et sans accès au compte Resend réel.
 
-## Deploy on Vercel
+Pour rejouer les contrôles non destructifs sur une Preview ou la production, définir `E2E_BASE_URL` avec l’URL cible. Une Preview protégée accepte en plus `VERCEL_AUTOMATION_BYPASS_SECRET`. Dans ce mode, Playwright ne démarre aucun serveur local et n’injecte aucune clé de test.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Production
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Hébergement et Server Actions : Vercel, projet `yanis`
+- Domaine et protection anti-robot : Cloudflare DNS et Turnstile
+- Envoi applicatif : Resend
+- Réception professionnelle : Infomaniak Mail
+
+Les branches publient une Preview Vercel. La branche `main` publie `https://www.yanis-harrat.com` et `https://yanis-harrat.com`.

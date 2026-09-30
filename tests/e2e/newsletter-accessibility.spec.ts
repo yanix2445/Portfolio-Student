@@ -1,5 +1,23 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
+
+async function mockTurnstile(page: Page) {
+  await page.addInitScript(() => {
+    let callback: ((token: string) => void) | undefined;
+
+    window.turnstile = {
+      render: (_container, options) => {
+        callback = options.callback;
+        return "newsletter-test-widget";
+      },
+      execute: () => {
+        window.setTimeout(() => callback?.("XXXX.DUMMY.TOKEN.XXXX"), 0);
+      },
+      reset: () => undefined,
+      remove: () => undefined,
+    };
+  });
+}
 
 test("la veille ne présente aucune violation d’accessibilité critique ou sérieuse", async ({
   page,
@@ -15,6 +33,7 @@ test("la veille ne présente aucune violation d’accessibilité critique ou sé
 });
 
 test("le formulaire annonce les erreurs de validation et de fournisseur", async ({ page }) => {
+  await mockTurnstile(page);
   await page.goto("/");
 
   const email = page.getByLabel("Adresse e-mail");

@@ -16,7 +16,7 @@ describe("SiteHeader", () => {
       name: "Navigation principale",
     });
 
-    for (const label of ["Compétences", "Expériences", "Projets perso", "Certifications", "Veille techno", "FAQ"]) {
+    for (const label of ["Compétences", "Expériences", "Projets perso", "Certifications", "Veille techno", "FAQ", "Contact"]) {
       expect(within(navigation).getAllByRole("link", { name: label }).length).toBeGreaterThan(0);
     }
 

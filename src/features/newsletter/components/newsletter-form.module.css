@@ -1,0 +1,129 @@
+.formShell {
+  isolation: isolate;
+  overflow: hidden;
+  position: relative;
+}
+
+.formContent {
+  filter: blur(0);
+  opacity: 1;
+  transform: scale(1);
+  transform-origin: center;
+  transition:
+    opacity 180ms ease-out,
+    filter 220ms ease-out,
+    transform 260ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.formShell:not([data-stage="idle"]) .formContent {
+  filter: blur(7px);
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.985);
+}
+
+.compactScene {
+  min-height: 100%;
+  padding: 0.5rem 1rem;
+}
+
+.compactInner {
+  max-width: 23rem;
+}
+
+.compactVisual {
+  height: 5.75rem;
+}
+
+.compactSpinner {
+  height: 3.5rem;
+  width: 3.5rem;
+}
+
+.compactSpinner svg {
+  height: 1.4rem;
+  width: 1.4rem;
+}
+
+.compactRoute {
+  --travel-distance: clamp(8.5rem, 35vw, 13.5rem);
+  height: 5.5rem;
+  max-width: 20rem;
+}
+
+.compactEnvelope {
+  height: 2.75rem;
+  width: 4rem;
+}
+
+.compactLetter {
+  bottom: 0.32rem;
+  height: 2.3rem;
+  left: 0.4rem;
+  width: 3.2rem;
+}
+
+.compactLetter::before,
+.compactLetter::after {
+  left: 0.45rem;
+}
+
+.compactLetter::before {
+  right: 0.45rem;
+  top: 0.62rem;
+}
+
+.compactLetter::after {
+  right: 1rem;
+  top: 1rem;
+}
+
+.compactFlap {
+  height: 1.9rem;
+}
+
+.compactMailbox,
+.compactMailbox svg {
+  height: 3.5rem;
+  width: 3.5rem;
+}
+
+.compactCheck {
+  height: 3.5rem;
+  width: 3.5rem;
+}
+
+.compactCheck svg {
+  height: 1.7rem;
+  width: 1.7rem;
+}
+
+.compactScene[data-stage="success"] .compactVisual {
+  height: 3.75rem;
+}
+
+.compactCopy h3 {
+  font-size: clamp(1.35rem, 5vw, 1.75rem);
+  margin-top: 0.45rem;
+}
+
+.compactCopy > p:last-child {
+  font-size: 0.825rem;
+  line-height: 1.5;
+  margin-top: 0.55rem;
+}
+
+.compactReset {
+  margin-top: 0.75rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .formContent {
+    transition: opacity 120ms ease-out;
+  }
+
+  .formShell:not([data-stage="idle"]) .formContent {
+    filter: none;
+    transform: none;
+  }
+}

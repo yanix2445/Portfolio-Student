@@ -1,4 +1,5 @@
 import { FileCheck2, Mail } from "lucide-react";
+import Link from "next/link";
 import { siteConfig } from "@/shared/config/site.config";
 import { HomeReveal } from "./home-reveal";
 
@@ -19,9 +20,9 @@ export function HomeContactCta() {
           <a href={siteConfig.cvUrl} download="CV-Yanis-Harrat-Technicien-Systemes-Reseaux.pdf" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-white/75 px-5 text-sm font-bold">
             <FileCheck2 className="size-4" aria-hidden="true" /> CV
           </a>
-          <a href={`mailto:${siteConfig.email}`} className="inline-flex min-h-12 items-center gap-2 px-3 text-sm font-bold underline underline-offset-8">
-            <Mail className="size-4" aria-hidden="true" /> Courriel
-          </a>
+          <Link href="/contact" className="inline-flex min-h-12 items-center gap-2 px-3 text-sm font-bold underline underline-offset-8">
+            <Mail className="size-4" aria-hidden="true" /> Me contacter
+          </Link>
         </div>
       </HomeReveal>
     </section>

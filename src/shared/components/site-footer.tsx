@@ -1,4 +1,5 @@
 import { siteConfig } from "@/shared/config/site.config";
+import Link from "next/link";
 
 export function SiteFooter() {
   return (
@@ -8,7 +9,7 @@ export function SiteFooter() {
         <div className="flex flex-wrap gap-2">
           <a className="inline-flex min-h-11 items-center px-2 hover:text-[var(--portfolio-text)]" href={siteConfig.githubUrl} target="_blank" rel="noreferrer">GitHub</a>
           <a className="inline-flex min-h-11 items-center px-2 hover:text-[var(--portfolio-text)]" href={siteConfig.linkedInUrl} target="_blank" rel="noreferrer">LinkedIn</a>
-          <a className="inline-flex min-h-11 items-center px-2 hover:text-[var(--portfolio-text)]" href={`mailto:${siteConfig.email}`}>Contact</a>
+          <Link className="inline-flex min-h-11 items-center px-2 hover:text-[var(--portfolio-text)]" href="/contact">Contact</Link>
         </div>
       </div>
     </footer>

@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { ArrowLeft, CheckCircle2, Clock3, ShieldAlert, Wrench } from "lucide-react";
+import { CheckCircle2, Clock3, ShieldAlert, Wrench } from "lucide-react";
+import { PortfolioBackLink } from "@/shared/components/portfolio-back-link";
 import type { E6Realization } from "../e6.types";
 
 export function E6Detail({ realization }: { realization: E6Realization }) {
@@ -7,10 +7,9 @@ export function E6Detail({ realization }: { realization: E6Realization }) {
     <article>
       <header className="border-b border-white/10 bg-[var(--portfolio-panel)] px-5 py-16 sm:px-8 lg:px-12 lg:py-24">
         <div className="portfolio-shell">
-          <Link href="/epreuves/e6" className="inline-flex min-h-11 items-center gap-2 text-sm text-white/58 hover:text-brand">
-            <ArrowLeft aria-hidden="true" className="size-4" />
+          <PortfolioBackLink href="/epreuves/e6">
             Retour aux réalisations E6
-          </Link>
+          </PortfolioBackLink>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <p className="section-label">BTS SIO SISR · E6</p>
             <span className="inline-flex items-center gap-2 border border-brand/40 bg-brand/10 px-3 py-1 font-mono text-xs font-semibold text-brand uppercase">
