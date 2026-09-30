@@ -3,6 +3,8 @@ import { defineConfig, devices } from "@playwright/test";
 const port = 3100;
 const turnstileTestSiteKey = "1x00000000000000000000AA";
 const externalBaseUrl = process.env.E2E_BASE_URL;
+const vercelProtectionBypass =
+  process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
 
 export default defineConfig({
   testDir: "./tests/e2e",
@@ -12,6 +14,9 @@ export default defineConfig({
   reporter: process.env.CI ? "github" : "list",
   use: {
     baseURL: externalBaseUrl ?? `http://127.0.0.1:${port}`,
+    extraHTTPHeaders: vercelProtectionBypass
+      ? { "x-vercel-protection-bypass": vercelProtectionBypass }
+      : undefined,
     trace: "retain-on-failure",
   },
   projects: [

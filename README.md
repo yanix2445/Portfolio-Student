@@ -31,7 +31,7 @@ pnpm test:e2e
 
 Playwright reconstruit une version de production isolée avec Turnstile de test et sans accès au compte Resend réel.
 
-Pour rejouer les contrôles non destructifs sur une Preview ou la production, définir `E2E_BASE_URL` avec l’URL cible. Dans ce mode, Playwright ne démarre aucun serveur local et n’injecte aucune clé de test.
+Pour rejouer les contrôles non destructifs sur une Preview ou la production, définir `E2E_BASE_URL` avec l’URL cible. Une Preview protégée accepte en plus `VERCEL_AUTOMATION_BYPASS_SECRET`. Dans ce mode, Playwright ne démarre aucun serveur local et n’injecte aucune clé de test.
 
 ## Production
 
