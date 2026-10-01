@@ -16,6 +16,19 @@ L'application est disponible sur `http://localhost:3000`. En développement, Tur
 
 Consultez `.env.example` pour le contrat complet. Les secrets Resend et Turnstile restent côté serveur; seule la clé publique Turnstile porte le préfixe `NEXT_PUBLIC_`.
 
+Les e-mails transactionnels utilisent trois modèles Resend **pilotés par le code** et versionnés dans `src/emails/`. Les composants React Email, leur texte brut, leurs variables et leur identité visuelle constituent la source de vérité ; l’éditeur web Resend sert uniquement à contrôler le rendu et l’historique. Leurs identifiants sont fournis par `RESEND_CONTACT_OWNER_TEMPLATE_ID`, `RESEND_CONTACT_RECEIPT_TEMPLATE_ID` et `RESEND_WATCH_DIGEST_TEMPLATE_ID`. Pour synchroniser les brouillons puis les publier :
+
+```bash
+pnpm email:dev
+pnpm email:render
+pnpm email:sync
+pnpm email:publish
+```
+
+`email:dev` ouvre la prévisualisation React Email locale. `email:render` génère les versions HTML et texte dans le dossier ignoré `.resend/`. La synchronisation met à jour les brouillons distants ; la publication reste une étape séparée afin de préserver la version active tant que le nouveau rendu n’est pas validé.
+
+Les alias publiés sont `portfolio-contact-owner-v2`, `portfolio-contact-receipt-v2` et `portfolio-watch-digest`. Les noms `FIRST_NAME`, `LAST_NAME`, `EMAIL`, `UNSUBSCRIBE_URL`, `contact` et `this` sont réservés par Resend et ne doivent pas être déclarés comme variables personnalisées.
+
 `TURNSTILE_TEST_MODE=1` est réservé à la suite Playwright. Cette variable ne doit jamais être créée dans Vercel Preview ou Production.
 
 ## Validation

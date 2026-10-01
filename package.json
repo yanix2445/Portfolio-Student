@@ -7,6 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint --max-warnings 0",
+    "email:dev": "email dev --dir src/emails/templates",
+    "email:render": "node --import tsx scripts/render-resend-templates.ts",
+    "email:sync": "node --env-file-if-exists=.env.local --import tsx scripts/sync-resend-templates.ts",
+    "email:publish": "pnpm email:sync --publish",
     "test": "vitest",
     "test:run": "vitest run",
     "test:e2e": "playwright test"
@@ -40,7 +44,9 @@
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
     "jsdom": "^30.1.0",
+    "react-email": "^6.11.0",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5",
     "vitest": "^5.0.1"
   },

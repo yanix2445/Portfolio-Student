@@ -5,7 +5,6 @@ import { verifyTurnstileToken } from "@/server/security/turnstile";
 import {
   contactReasonLabels,
   contactSchema,
-  type ContactInput,
 } from "../contact.schema";
 import type { ContactState } from "../contact.types";
 import { registerNewsletterSubscription } from "@/features/newsletter/server/register-newsletter-subscription";
@@ -13,39 +12,14 @@ import { registerNewsletterSubscription } from "@/features/newsletter/server/reg
 const successMessage =
   "Votre message a bien été envoyé. Je vous répondrai depuis contact@yanis-harrat.com.";
 
-function formatOwnerMessage(input: ContactInput) {
-  return [
-    "Nouvelle demande reçue depuis yanis-harrat.com/contact",
-    "",
-    `Nom : ${input.firstName} ${input.lastName}`,
-    `E-mail : ${input.email}`,
-    `Téléphone : ${input.phone || "Non renseigné"}`,
-    `Organisation : ${input.organization || "Non renseignée"}`,
-    `Objet : ${contactReasonLabels[input.reason]}`,
-    `Newsletter : ${input.newsletter ? "Accord explicite donné" : "Non demandée"}`,
-    "Consentement : traitement et suivi de la demande accepté",
-    "",
-    "Message :",
-    input.message,
-  ].join("\n");
-}
+function toSafeTemplateText(value: string, fallback: string) {
+  const normalized = value.trim();
 
-function formatVisitorReceipt(input: ContactInput) {
-  return [
-    `Bonjour ${input.firstName},`,
-    "",
-    "Merci pour votre message. Votre demande a bien été transmise et je vous répondrai directement depuis contact@yanis-harrat.com.",
-    "",
-    `Objet : ${contactReasonLabels[input.reason]}`,
-    "",
-    "Pour choisir dès maintenant un créneau d’échange audio ou visioconférence :",
-    "https://cal.com/yanis-harrat",
-    "",
-    "Bien cordialement,",
-    "Yanis Harrat",
-    "Technicien support systèmes et réseaux",
-    "https://yanis-harrat.com",
-  ].join("\n");
+  if (!normalized) {
+    return fallback;
+  }
+
+  return normalized.replaceAll("<", "‹").replaceAll(">", "›");
 }
 
 export async function submitContact(
@@ -115,23 +89,50 @@ export async function submitContact(
   }
 
   try {
-    const { resend, fromEmail, toEmail } = getResendContactClient();
+    const {
+      resend,
+      fromEmail,
+      toEmail,
+      ownerTemplateId,
+      receiptTemplateId,
+    } = getResendContactClient();
     const delivery = await resend.batch.send(
       [
         {
           from: fromEmail,
           to: toEmail,
           replyTo: parsed.data.email,
-          subject: `[Portfolio] ${contactReasonLabels[parsed.data.reason]} — ${parsed.data.firstName} ${parsed.data.lastName}`,
-          text: formatOwnerMessage(parsed.data),
+          template: {
+            id: ownerTemplateId,
+            variables: {
+              VISITOR_FIRST_NAME: parsed.data.firstName,
+              VISITOR_LAST_NAME: parsed.data.lastName,
+              VISITOR_EMAIL: parsed.data.email,
+              PHONE: toSafeTemplateText(parsed.data.phone, "Non renseigné"),
+              ORGANIZATION: toSafeTemplateText(
+                parsed.data.organization,
+                "Non renseignée",
+              ),
+              REASON: contactReasonLabels[parsed.data.reason],
+              MESSAGE: toSafeTemplateText(parsed.data.message, "Sans message"),
+              NEWSLETTER_STATUS: parsed.data.newsletter
+                ? "Accord explicite donné"
+                : "Non demandée",
+            },
+          },
           tags: [{ name: "source", value: "portfolio-contact" }],
         },
         {
           from: fromEmail,
           to: parsed.data.email,
           replyTo: toEmail,
-          subject: "Votre message à Yanis Harrat a bien été reçu",
-          text: formatVisitorReceipt(parsed.data),
+          template: {
+            id: receiptTemplateId,
+            variables: {
+              VISITOR_FIRST_NAME: parsed.data.firstName,
+              REASON: contactReasonLabels[parsed.data.reason],
+            },
+          },
           tags: [{ name: "source", value: "portfolio-receipt" }],
         },
       ],
