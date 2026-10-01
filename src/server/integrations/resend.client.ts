@@ -29,10 +29,18 @@ export function getResendNewsletterClient() {
 export function getResendContactClient() {
   const fromEmail = process.env.RESEND_FROM_EMAIL;
   const toEmail = process.env.CONTACT_TO_EMAIL;
+  const ownerTemplateId = process.env.RESEND_CONTACT_OWNER_TEMPLATE_ID;
+  const receiptTemplateId = process.env.RESEND_CONTACT_RECEIPT_TEMPLATE_ID;
 
-  if (!fromEmail || !toEmail) {
+  if (!fromEmail || !toEmail || !ownerTemplateId || !receiptTemplateId) {
     throw new Error("Resend contact configuration is missing.");
   }
 
-  return { resend: getResendClient(), fromEmail, toEmail };
+  return {
+    resend: getResendClient(),
+    fromEmail,
+    toEmail,
+    ownerTemplateId,
+    receiptTemplateId,
+  };
 }

@@ -25,4 +25,5 @@ flowchart LR
 - Vercel héberge l'application Next.js et ses Server Actions.
 - Cloudflare fournit le DNS du domaine et Turnstile; il n'héberge pas l'application.
 - Infomaniak reste le fournisseur de réception pour `yanis-harrat.com`.
-- Resend envoie les messages transactionnels et maintient le segment/topic de veille.
+- Resend envoie les messages transactionnels depuis des modèles de marque publiés, dont la source React Email est versionnée dans le dépôt, et maintient le segment/topic de veille.
+- La réception du domaine reste chez Infomaniak : les modèles Resend n’impliquent aucun changement des MX.

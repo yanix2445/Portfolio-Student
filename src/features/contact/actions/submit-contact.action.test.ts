@@ -55,6 +55,8 @@ beforeEach(() => {
     resend: { batch: { send: contactMocks.sendBatch } },
     fromEmail: "Yanis Harrat <contact@yanis-harrat.com>",
     toEmail: "contact@yanis-harrat.com",
+    ownerTemplateId: "owner_template_id",
+    receiptTemplateId: "receipt_template_id",
   });
 });
 
@@ -117,13 +119,36 @@ describe("submitContact", () => {
     expect(emails[0]).toMatchObject({
       to: "contact@yanis-harrat.com",
       replyTo: "jean@example.com",
+      template: {
+        id: "owner_template_id",
+        variables: {
+          VISITOR_FIRST_NAME: "Jean",
+          VISITOR_LAST_NAME: "Dupont",
+          VISITOR_EMAIL: "jean@example.com",
+          PHONE: "+33 6 00 00 00 00",
+          ORGANIZATION: "Entreprise Exemple",
+          REASON: "Opportunité professionnelle",
+          NEWSLETTER_STATUS: "Non demandée",
+        },
+      },
     });
     expect(emails[1]).toMatchObject({
       to: "jean@example.com",
       replyTo: "contact@yanis-harrat.com",
+      template: {
+        id: "receipt_template_id",
+        variables: {
+          VISITOR_FIRST_NAME: "Jean",
+          REASON: "Opportunité professionnelle",
+        },
+      },
     });
     expect(emails[0]).not.toHaveProperty("attachments");
     expect(emails[1]).not.toHaveProperty("attachments");
+    expect(emails[0]).not.toHaveProperty("html");
+    expect(emails[0]).not.toHaveProperty("text");
+    expect(emails[1]).not.toHaveProperty("html");
+    expect(emails[1]).not.toHaveProperty("text");
     expect(options.idempotencyKey).toBe(
       "portfolio-contact-550e8400-e29b-41d4-a716-446655440000",
     );
@@ -147,6 +172,20 @@ describe("submitContact", () => {
     expect(contactMocks.sendBatch.mock.calls[1][1].idempotencyKey).toBe(
       "portfolio-contact-550e8400-e29b-41d4-a716-446655440001",
     );
+  });
+
+  it("neutralizes HTML-like characters before passing user content to templates", async () => {
+    const data = createValidFormData();
+    data.set(
+      "message",
+      "Pouvez-vous relire ce contenu <script>alert('test')</script> avant notre échange ?",
+    );
+
+    await submitContact(idleState, data);
+
+    const [emails] = contactMocks.sendBatch.mock.calls[0];
+    expect(emails[0].template.variables.MESSAGE).toContain("‹script›");
+    expect(emails[0].template.variables.MESSAGE).not.toContain("<script>");
   });
 
   it("registers the newsletter only after explicit optional consent", async () => {
