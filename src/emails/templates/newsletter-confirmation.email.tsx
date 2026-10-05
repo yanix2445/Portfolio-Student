@@ -25,9 +25,9 @@ export function NewsletterConfirmationEmail({
           Des synthèses courtes, sourcées et directement utiles.
         </Text>
         <Text style={{ ...emailStyles.bodyCopy, marginBottom: "0" }}>
-          Je partage mes analyses sur l’IA appliquée au développement web et
-          applicatif, sans calendrier artificiel ni message promotionnel entre
-          deux publications.
+          Je partage mes analyses sur l’IA appliquée à l’administration des
+          systèmes, aux réseaux et à la cybersécurité, sans message
+          promotionnel entre deux publications.
         </Text>
       </Section>
 

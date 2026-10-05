@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { WatchHub } from "@/features/tech-watch";
 
 export const metadata: Metadata = {
-  title: "Veille technologique",
+  title: "Veille technologique SISR",
   description:
-    "Veille de Yanis Harrat sur l’intelligence artificielle appliquée au développement web et applicatif.",
+    "Veille de Yanis Harrat sur l’impact de l’intelligence artificielle dans l’administration des systèmes, des réseaux et la cybersécurité.",
   alternates: { canonical: "/veille" },
 };
 

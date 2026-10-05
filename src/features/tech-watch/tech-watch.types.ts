@@ -1,4 +1,7 @@
-export type WatchSourceCategory = "Référentiels" | "Écosystème IA" | "Retours techniques";
+export type WatchSourceCategory =
+  | "Administration et réseau"
+  | "Cybersécurité"
+  | "Référentiels";
 
 export type WatchSource = {
   name: string;

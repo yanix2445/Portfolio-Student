@@ -38,11 +38,11 @@ export const projectCollection: readonly ProjectCollectionItem[] = [
   },
   {
     slug: "veille-ia",
-    title: "Veille automatisée sur l’IA appliquée au développement",
+    title: "Veille automatisée sur l’IA appliquée aux systèmes et réseaux",
     kind: "Projet personnel",
     status: "À documenter",
     year: "2026",
-    summary: "Collecte de sources, alertes, qualification de l’information et publication de synthèses techniques.",
+    summary: "Collecte de sources, qualification de l’information et publication de synthèses sur l’administration, le réseau et la cybersécurité.",
     tools: ["RSS", "Alertes", "Synthèses"],
     visual: "watch",
   },

@@ -201,8 +201,27 @@ test("le sitemap, robots et les données structurées décrivent le site public"
   expect(sitemap.ok()).toBeTruthy();
   const sitemapText = await sitemap.text();
   expect(sitemapText).toContain(`${canonicalOrigin}/epreuves/e5/vpn-acces-distant`);
-  expect(sitemapText).toContain(`${canonicalOrigin}/veille/nextjs-mcp-agents-developpement`);
+  expect(sitemapText).toContain(`${canonicalOrigin}/veille/ia-diagnostic-reseau-cisco-catalyst`);
+  expect(sitemapText).toContain(`${canonicalOrigin}/veille/security-copilot-intune-administration`);
   expect(sitemapText).toContain(`${canonicalOrigin}/veille/articles`);
+
+  const legacyNetworkArticle = await request.get(
+    "/veille/nextjs-mcp-agents-developpement",
+    { maxRedirects: 0 },
+  );
+  expect(legacyNetworkArticle.status()).toBe(308);
+  expect(
+    new URL(legacyNetworkArticle.headers().location, canonicalOrigin).pathname,
+  ).toBe("/veille/ia-diagnostic-reseau-cisco-catalyst");
+
+  const legacyIntuneArticle = await request.get(
+    "/veille/integrer-ia-frontieres-serveur",
+    { maxRedirects: 0 },
+  );
+  expect(legacyIntuneArticle.status()).toBe(308);
+  expect(
+    new URL(legacyIntuneArticle.headers().location, canonicalOrigin).pathname,
+  ).toBe("/veille/security-copilot-intune-administration");
 
   const robots = await request.get("/robots.txt");
   expect(await robots.text()).toContain(`${canonicalOrigin}/sitemap.xml`);

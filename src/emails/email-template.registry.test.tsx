@@ -107,5 +107,6 @@ describe("email template registry", () => {
     expect(html).toContain("Votre inscription est confirmée");
     expect(html).toContain("{{{SUBSCRIBER_EMAIL}}}");
     expect(html).toContain('href="https://www.yanis-harrat.com/veille"');
+    expect(html).toMatch(/systèmes.*réseaux.*cybersécurité/i);
   });
 });

@@ -38,7 +38,7 @@ describe("HomePage", () => {
       "Un seul rail, quatre étapes qui construisent le même profil.",
       "Un projet réel aujourd’hui, une collection prête à grandir.",
       "Des acquis alignés avec le support, les systèmes et les réseaux.",
-      "L’IA appliquée au développement web et applicatif.",
+      "Comment l’intelligence artificielle transforme l’administration des systèmes, des réseaux et la cybersécurité.",
       "L’essentiel avant un premier échange.",
       "Un besoin en support systèmes et réseaux ? Échangeons pendant 30 minutes.",
     ]);

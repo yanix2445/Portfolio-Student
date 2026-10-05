@@ -130,7 +130,7 @@ export const emailTemplateRegistry: EmailTemplateDefinition[] = [
       `Adresse inscrite : ${variable.subscriberEmail}`,
       "",
       "Vous recevrez uniquement une nouvelle synthèse lorsqu’une analyse utile sera publiée.",
-      "Les synthèses sont courtes, sourcées et consacrées à l’IA appliquée au développement web et applicatif.",
+      "Les synthèses sont courtes, sourcées et consacrées à l’IA appliquée aux systèmes, aux réseaux et à la cybersécurité.",
       "",
       "Découvrir la veille : https://www.yanis-harrat.com/veille",
       "",

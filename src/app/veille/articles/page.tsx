@@ -5,9 +5,9 @@ import { watchArticles } from "@/features/tech-watch";
 import { PortfolioBackLink } from "@/shared/components/portfolio-back-link";
 
 export const metadata: Metadata = {
-  title: "Articles de veille technologique",
+  title: "Synthèses de veille technologique SISR",
   description:
-    "Les synthèses de veille de Yanis Harrat sur l’intelligence artificielle appliquée au développement web et applicatif.",
+    "Les synthèses de Yanis Harrat sur l’intelligence artificielle appliquée aux systèmes, aux réseaux et à la cybersécurité.",
   alternates: { canonical: "/veille/articles" },
 };
 

@@ -15,32 +15,32 @@ const routeItems = [
 ] as const;
 
 const sourceCategoryLabels: Record<string, string> = {
+  "Administration et réseau": "Administration des systèmes et des réseaux",
+  "Cybersécurité": "Opérations et contrôle des accès",
   "Référentiels": "Documentations officielles",
-  "Écosystème IA": "Outils et éditeurs IA suivis",
-  "Retours techniques": "Actualités et retours d’expérience",
 };
 
 const watchPresentation = {
   reason:
-    "J’ai choisi ce thème parce que l’intelligence artificielle entre directement dans les outils de développement que j’utilise et modifie déjà la manière de rechercher, coder, tester et diagnostiquer. Je veux comprendre ce qu’elle apporte réellement, sans confondre nouveauté, promesse et pratique fiable.",
+    "J’ai choisi ce thème parce que l’intelligence artificielle entre désormais dans les outils de supervision, d’administration et de cybersécurité. Je veux comprendre ce qu’elle apporte réellement à un technicien SISR, sans confondre automatisation, promesse commerciale et pratique fiable.",
   connection:
-    "Le sujet relie mon intérêt pour le développement web à mes compétences en systèmes et réseaux : intégration côté serveur, protection des secrets, contrôle des accès, journalisation et maintien d’une validation humaine.",
+    "Le sujet est directement lié à mon BTS SIO SISR : administration des postes et des serveurs, diagnostic réseau, support, supervision, gestion des accès et réponse aux incidents.",
   goal:
-    "L’objectif n’est pas de suivre chaque annonce. Il est d’identifier les évolutions assez solides pour changer une pratique, puis d’en expliquer les bénéfices, les limites et les conditions d’usage.",
+    "L’objectif n’est pas de suivre chaque annonce. Il est d’identifier les usages assez solides pour améliorer une pratique, puis d’en expliquer les bénéfices, les prérequis, les risques et les contrôles à conserver.",
 } as const;
 
 const watchObjectives = [
   {
-    title: "Comprendre les usages réels",
-    text: "Observer comment l’IA intervient dans la conception, le code, le diagnostic et la maintenance.",
+    title: "Observer l’administration augmentée",
+    text: "Étudier comment l’IA aide à superviser un parc, comprendre une politique et diagnostiquer un équipement.",
   },
   {
-    title: "Garder la maîtrise technique",
-    text: "Vérifier les frontières serveur-client, la protection des secrets et la place de la revue humaine.",
+    title: "Évaluer l’apport en cybersécurité",
+    text: "Mesurer ce que l’IA apporte à la détection, à l’analyse d’incidents et à la priorisation des actions.",
   },
   {
-    title: "Transformer l’information en pratique",
-    text: "Relier chaque évolution à un cas concret plutôt qu’à une simple annonce produit.",
+    title: "Conserver le contrôle humain",
+    text: "Vérifier les droits, les données, les preuves techniques et l’impact avant toute action sur l’infrastructure.",
   },
 ] as const;
 
@@ -48,7 +48,7 @@ const setupSteps = [
   {
     number: "01",
     title: "Cadre de recherche",
-    text: "Une question centrale fixe le périmètre : les usages de l’IA qui touchent réellement au développement et à l’exploitation d’une application.",
+    text: "Une question centrale fixe le périmètre : les usages de l’IA qui touchent réellement aux systèmes, aux réseaux, au support et à la cybersécurité.",
   },
   {
     number: "02",
@@ -100,7 +100,7 @@ export function WatchHub() {
     <main className={`${styles.watchPage} portfolio-surface`}>
       <section className={`${styles.routeHero} ${styles.enter}`} id="veille-sujet" aria-labelledby="veille-title">
         <div className={styles.routeHeroMain}>
-          <h1 id="veille-title">Comprendre ce que l’IA change vraiment dans le développement.</h1>
+          <h1 id="veille-title">{watchTopic.title}.</h1>
           <p className={styles.heroQuestion}>{watchTopic.question}</p>
           <div className={styles.heroActions}>
             <a className={styles.secondaryButton} href="#veille-pourquoi">Découvrir ma démarche <ArrowDown aria-hidden="true" /></a>
@@ -126,7 +126,7 @@ export function WatchHub() {
 
       <section className={styles.routeFeature} id="veille-pourquoi" aria-labelledby="veille-why-title">
         <article className={styles.routeLatest}>
-          <div className={styles.routeLatestMeta}><span>Point de départ</span><span>Développement · systèmes · sécurité</span></div>
+          <div className={styles.routeLatestMeta}><span>Point de départ</span><span>Systèmes · réseaux · cybersécurité</span></div>
           <div className={styles.routeLatestBody}>
             <div><h2 id="veille-why-title">Un sujet au croisement de mes pratiques.</h2><p>{watchPresentation.reason}</p></div>
             <ol aria-label="Ce que ce sujet me permet d’étudier">
