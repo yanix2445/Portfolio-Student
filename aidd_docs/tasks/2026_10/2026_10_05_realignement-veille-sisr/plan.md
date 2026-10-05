@@ -1,6 +1,6 @@
 ---
 objective: "La veille publique du portfolio doit presenter partout le nouveau sujet SISR et deux syntheses coherentes, sourcees et accessibles sans conserver de contenu editorial centre sur le developpement applicatif."
-status: in-progress
+status: implemented
 ---
 
 # Plan: Réalignement de la veille technologique sur le BTS SIO SISR
