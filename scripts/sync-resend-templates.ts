@@ -9,6 +9,8 @@ const shouldPublish = process.argv.includes("--publish");
 const templateIds: Record<string, string | undefined> = {
   "portfolio-contact-owner-v2": process.env.RESEND_CONTACT_OWNER_TEMPLATE_ID,
   "portfolio-contact-receipt-v2": process.env.RESEND_CONTACT_RECEIPT_TEMPLATE_ID,
+  "portfolio-newsletter-confirmation":
+    process.env.RESEND_NEWSLETTER_CONFIRMATION_TEMPLATE_ID,
   "portfolio-watch-digest": process.env.RESEND_WATCH_DIGEST_TEMPLATE_ID,
 };
 

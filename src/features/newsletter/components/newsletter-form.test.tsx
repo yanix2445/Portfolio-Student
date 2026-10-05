@@ -10,6 +10,7 @@ const resendMocks = vi.hoisted(() => ({
   update: vi.fn(),
   addToSegment: vi.fn(),
   updateTopics: vi.fn(),
+  sendEmail: vi.fn(),
   getClient: vi.fn(),
   verifyTurnstile: vi.fn(),
 }));
@@ -49,9 +50,15 @@ beforeEach(() => {
   resendMocks.update.mockReset();
   resendMocks.addToSegment.mockReset();
   resendMocks.updateTopics.mockReset();
+  resendMocks.sendEmail.mockReset();
   resendMocks.getClient.mockReset();
   resendMocks.verifyTurnstile.mockReset();
   resendMocks.verifyTurnstile.mockResolvedValue(true);
+  resendMocks.sendEmail.mockResolvedValue({
+    data: { id: "email_1" },
+    error: null,
+    headers: null,
+  });
   resendMocks.getClient.mockReturnValue({
     resend: {
       contacts: {
@@ -64,9 +71,15 @@ beforeEach(() => {
           update: resendMocks.updateTopics,
         },
       },
+      emails: {
+        send: resendMocks.sendEmail,
+      },
     },
     segmentId: "segment_test",
     topicId: "topic_test",
+    fromEmail: "Yanis Harrat <contact@yanis-harrat.com>",
+    replyToEmail: "contact@yanis-harrat.com",
+    confirmationTemplateId: "newsletter_confirmation_template",
   });
 });
 
@@ -167,6 +180,25 @@ describe("subscribeNewsletter", () => {
       segments: [{ id: "segment_test" }],
       topics: [{ id: "topic_test", subscription: "opt_in" }],
     });
+    expect(resendMocks.sendEmail).toHaveBeenCalledWith(
+      {
+        from: "Yanis Harrat <contact@yanis-harrat.com>",
+        to: "nouveau@example.com",
+        replyTo: "contact@yanis-harrat.com",
+        template: {
+          id: "newsletter_confirmation_template",
+          variables: { SUBSCRIBER_EMAIL: "nouveau@example.com" },
+        },
+        tags: [
+          { name: "source", value: "portfolio-newsletter-confirmation" },
+        ],
+      },
+      {
+        idempotencyKey: expect.stringMatching(
+          /^portfolio-newsletter-[a-f0-9]{32}$/,
+        ),
+      },
+    );
   });
 
   it("rejects an invalid address before calling Resend", async () => {
@@ -234,6 +266,34 @@ describe("subscribeNewsletter", () => {
       email: "abonne@example.com",
       topics: [{ id: "topic_test", subscription: "opt_in" }],
     });
+    expect(resendMocks.sendEmail).toHaveBeenCalledTimes(1);
+  });
+
+  it("hides provider details when the confirmation email cannot be sent", async () => {
+    resendMocks.create.mockResolvedValue({
+      data: { id: "contact_1", object: "contact" },
+      error: null,
+      headers: null,
+    });
+    resendMocks.sendEmail.mockResolvedValue({
+      data: null,
+      error: {
+        statusCode: 500,
+        name: "application_error",
+        message: "private confirmation failure",
+      },
+      headers: null,
+    });
+    const data = new FormData();
+    data.set("email", "yanis@example.com");
+    data.set("consent", "on");
+    data.set("cf-turnstile-response", "turnstile_test_token");
+
+    const state = await subscribeNewsletter(idleState, data);
+
+    expect(state.status).toBe("error");
+    expect(state.message).toContain("momentanément indisponible");
+    expect(state.message).not.toContain("private confirmation failure");
   });
 
   it("hides provider details when Resend is unavailable", async () => {

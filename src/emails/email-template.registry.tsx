@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { ContactOwnerEmail } from "./templates/contact-owner.email";
 import { ContactReceiptEmail } from "./templates/contact-receipt.email";
+import { NewsletterConfirmationEmail } from "./templates/newsletter-confirmation.email";
 import { WatchDigestEmail } from "./templates/watch-digest.email";
 import {
   emailTemplateAliases,
@@ -36,7 +37,18 @@ export const emailTemplateRegistry: EmailTemplateDefinition[] = [
   {
     alias: emailTemplateAliases.contactOwner,
     name: "Portfolio · Nouvelle demande de contact",
-    react: <ContactOwnerEmail />,
+    react: (
+      <ContactOwnerEmail
+        email={variable.visitorEmail}
+        firstName={variable.visitorFirstName}
+        lastName={variable.visitorLastName}
+        message={variable.message}
+        newsletterStatus={variable.newsletterStatus}
+        organization={variable.organization}
+        phone={variable.phone}
+        reason={variable.reason}
+      />
+    ),
     subject: `[Portfolio] ${variable.reason} — ${variable.visitorFirstName} ${variable.visitorLastName}`,
     text: [
       "Nouvelle demande reçue depuis yanis-harrat.com/contact",
@@ -76,7 +88,12 @@ export const emailTemplateRegistry: EmailTemplateDefinition[] = [
   {
     alias: emailTemplateAliases.contactReceipt,
     name: "Portfolio · Accusé de réception",
-    react: <ContactReceiptEmail />,
+    react: (
+      <ContactReceiptEmail
+        firstName={variable.visitorFirstName}
+        reason={variable.reason}
+      />
+    ),
     subject: `Votre message est bien arrivé, ${variable.visitorFirstName}`,
     text: [
       `Bonjour ${variable.visitorFirstName},`,
@@ -99,9 +116,45 @@ export const emailTemplateRegistry: EmailTemplateDefinition[] = [
     ],
   },
   {
+    alias: emailTemplateAliases.newsletterConfirmation,
+    name: "Portfolio · Confirmation d’inscription à la veille",
+    react: (
+      <NewsletterConfirmationEmail
+        subscriberEmail={variable.subscriberEmail}
+      />
+    ),
+    subject: "Votre inscription à la veille est confirmée",
+    text: [
+      "Votre inscription à la veille technologique est confirmée.",
+      "",
+      `Adresse inscrite : ${variable.subscriberEmail}`,
+      "",
+      "Vous recevrez uniquement une nouvelle synthèse lorsqu’une analyse utile sera publiée.",
+      "Les synthèses sont courtes, sourcées et consacrées à l’IA appliquée au développement web et applicatif.",
+      "",
+      "Découvrir la veille : https://www.yanis-harrat.com/veille",
+      "",
+      "Chaque future synthèse contiendra un lien de désinscription immédiate.",
+      "Si vous n’êtes pas à l’origine de cette inscription, répondez à cet e-mail.",
+      "",
+      "Yanis Harrat",
+      "https://www.yanis-harrat.com",
+    ].join("\n"),
+    variables: [{ key: "SUBSCRIBER_EMAIL", type: "string" }],
+  },
+  {
     alias: emailTemplateAliases.watchDigest,
     name: "Portfolio · Synthèse de veille",
-    react: <WatchDigestEmail />,
+    react: (
+      <WatchDigestEmail
+        articleSummary={variable.articleSummary}
+        articleTitle={variable.articleTitle}
+        articleUrl={variable.articleUrl}
+        editionLabel={variable.editionLabel}
+        readTime={variable.readTime}
+        unsubscribeUrl={variable.unsubscribeUrl}
+      />
+    ),
     subject: `Veille techno · ${variable.articleTitle}`,
     text: [
       `${variable.editionLabel} · Nouvelle synthèse de veille`,

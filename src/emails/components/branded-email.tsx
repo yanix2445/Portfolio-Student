@@ -16,33 +16,33 @@ import {
   Text,
 } from "react-email";
 
-const brand = {
+export const emailBrand = {
   canvas: "#070707",
   surface: "#111111",
-  surfaceRaised: "#181818",
-  border: "#2b2b2b",
-  text: "#f6f6f6",
-  muted: "#b5b5b5",
-  subtle: "#8c8c8c",
+  raised: "#181818",
+  accentSurface: "#20150c",
+  border: "#303030",
+  accentBorder: "#704018",
+  text: "#f7f7f5",
+  muted: "#c1c1bd",
+  subtle: "#9b9b96",
   accent: "#ff7a00",
-  accentSoft: "#ff9838",
+  accentSoft: "#ffad61",
   ink: "#111111",
 } as const;
 
-const absoluteSiteUrl = "https://www.yanis-harrat.com";
-const legacyImageAttributes = { border: "0" } as const;
+const siteUrl = "https://www.yanis-harrat.com";
+const fontFamily = "Arial, Helvetica, sans-serif";
 
 type BrandedEmailProps = {
   children: ReactNode;
-  eyebrow: string;
   preview: string;
-  subtitle: string;
+  subtitle: ReactNode;
   title: ReactNode;
 };
 
 export function BrandedEmail({
   children,
-  eyebrow,
   preview,
   subtitle,
   title,
@@ -51,59 +51,57 @@ export function BrandedEmail({
     <Html lang="fr" dir="ltr">
       <Head />
       <Preview>{preview}</Preview>
-      <Body style={bodyStyle}>
-        <Container style={containerStyle}>
-          <Section style={accentRuleStyle} />
-          <Section style={headerStyle}>
+      <Body lang="fr" dir="ltr" style={styles.body}>
+        <Container style={styles.container}>
+          <Section style={styles.accentRule} />
+          <Section style={styles.header}>
             <Row>
-              <Column style={logoColumnStyle}>
+              <Column style={styles.logoColumn}>
                 <Img
-                  {...legacyImageAttributes}
                   alt="Logo de Yanis Harrat"
-                  height="52"
-                  src={`${absoluteSiteUrl}/images/brand/yanis-harrat-logo.png`}
-                  style={logoStyle}
-                  width="52"
+                  height="48"
+                  src={`${siteUrl}/images/brand/yanis-harrat-logo.png`}
+                  style={styles.logo}
+                  width="48"
                 />
               </Column>
               <Column>
-                <Text style={brandNameStyle}>Yanis Harrat</Text>
-                <Text style={brandRoleStyle}>
-                  Technicien support systèmes et réseaux
+                <Text style={styles.brandName}>Yanis Harrat</Text>
+                <Text style={styles.brandRole}>
+                  Support informatique · Systèmes &amp; réseaux
                 </Text>
               </Column>
             </Row>
           </Section>
 
-          <Section style={heroStyle}>
-            <Text style={eyebrowStyle}>{eyebrow}</Text>
-            <Heading as="h1" style={headingStyle}>
+          <Section style={styles.hero}>
+            <Heading as="h1" style={styles.heading}>
               {title}
             </Heading>
-            <Text style={subtitleStyle}>{subtitle}</Text>
+            <Text style={styles.subtitle}>{subtitle}</Text>
           </Section>
 
-          <Section style={contentStyle}>{children}</Section>
+          <Section style={styles.content}>{children}</Section>
 
-          <Section style={footerStyle}>
-            <Hr style={footerRuleStyle} />
-            <Text style={footerTextStyle}>
+          <Section style={styles.footer}>
+            <Hr style={styles.footerRule} />
+            <Text style={styles.footerIdentity}>
               Yanis Harrat · Technicien support systèmes et réseaux
             </Text>
-            <Text style={footerLinksStyle}>
-              <Link href={absoluteSiteUrl} style={footerLinkStyle}>
-                Voir le portfolio
+            <Text style={styles.footerLinks}>
+              <Link href={siteUrl} style={styles.footerLink}>
+                Portfolio
               </Link>
               <span aria-hidden="true"> · </span>
               <Link
                 href="mailto:contact@yanis-harrat.com"
-                style={footerLinkStyle}
+                style={styles.footerLink}
               >
                 contact@yanis-harrat.com
               </Link>
             </Text>
-            <Text style={legalStyle}>
-              Message envoyé par le portfolio professionnel de Yanis Harrat.
+            <Text style={styles.legal}>
+              Communication professionnelle envoyée depuis yanis-harrat.com.
             </Text>
           </Section>
         </Container>
@@ -112,359 +110,228 @@ export function BrandedEmail({
   );
 }
 
-type EmailButtonProps = {
+export function EmailButton({
+  children,
+  href,
+}: {
   children: ReactNode;
   href: string;
-};
-
-export function EmailButton({ children, href }: EmailButtonProps) {
+}) {
   return (
-    <Button href={href} style={buttonStyle}>
+    <Button href={href} style={styles.button}>
       {children}
+      <span aria-hidden="true"> →</span>
     </Button>
   );
 }
 
-type DetailRowProps = {
+export function DetailRow({
+  label,
+  value,
+}: {
   label: string;
   value: ReactNode;
-};
-
-export function DetailRow({ label, value }: DetailRowProps) {
+}) {
   return (
-    <Row style={detailRowStyle}>
-      <Column style={detailLabelColumnStyle}>
-        <Text style={detailLabelStyle}>{label}</Text>
-      </Column>
+    <Row style={styles.detailRow}>
       <Column>
-        <Text style={detailValueStyle}>{value}</Text>
+        <Text style={styles.detailLabel}>{label}</Text>
+        <Text style={styles.detailValue}>{value}</Text>
       </Column>
     </Row>
   );
 }
 
 export const emailStyles = {
-  callout: {
-    backgroundColor: brand.surfaceRaised,
-    borderColor: brand.border,
+  accentPanel: {
+    backgroundColor: emailBrand.accentSurface,
+    borderColor: emailBrand.accentBorder,
+    borderRadius: "14px",
     borderStyle: "solid",
     borderWidth: "1px",
-    borderRadius: "12px",
-    paddingTop: "20px",
-    paddingRight: "22px",
-    paddingBottom: "20px",
-    paddingLeft: "22px",
+    padding: "22px 24px",
   },
-  calloutAccent: {
-    backgroundColor: "#1a130d",
-    borderColor: "#5d3413",
-    borderStyle: "solid",
-    borderWidth: "1px",
-    borderRadius: "12px",
-    paddingTop: "20px",
-    paddingRight: "22px",
-    paddingBottom: "20px",
-    paddingLeft: "22px",
+  bodyCopy: {
+    color: emailBrand.muted,
+    fontFamily,
+    fontSize: "16px",
+    lineHeight: "26px",
+    margin: "0 0 20px",
   },
-  calloutTitle: {
-    color: brand.accentSoft,
-    fontFamily: "Arial, Helvetica, sans-serif",
-    fontSize: "12px",
+  bodyStrong: {
+    color: emailBrand.text,
+    fontFamily,
+    fontSize: "16px",
     fontWeight: "700",
-    letterSpacing: "0.12em",
-    lineHeight: "18px",
-    marginTop: "0",
-    marginRight: "0",
-    marginBottom: "8px",
-    marginLeft: "0",
-    textTransform: "uppercase" as const,
-  },
-  copy: {
-    color: brand.muted,
-    fontFamily: "Arial, Helvetica, sans-serif",
-    fontSize: "15px",
-    lineHeight: "24px",
-    marginTop: "0",
-    marginRight: "0",
-    marginBottom: "20px",
-    marginLeft: "0",
-  },
-  copyStrong: {
-    color: brand.text,
-    fontFamily: "Arial, Helvetica, sans-serif",
-    fontSize: "15px",
-    fontWeight: "700",
-    lineHeight: "24px",
-    marginTop: "0",
-    marginRight: "0",
-    marginBottom: "8px",
-    marginLeft: "0",
+    lineHeight: "25px",
+    margin: "0 0 8px",
   },
   divider: {
-    borderColor: brand.border,
+    borderColor: emailBrand.border,
     borderStyle: "solid",
-    borderWidth: "0",
-    borderTopWidth: "1px",
-    marginTop: "24px",
-    marginRight: "0",
-    marginBottom: "24px",
-    marginLeft: "0",
+    borderWidth: "1px 0 0",
+    margin: "28px 0",
+  },
+  label: {
+    color: emailBrand.accentSoft,
+    fontFamily,
+    fontSize: "12px",
+    fontWeight: "700",
+    letterSpacing: "0.08em",
+    lineHeight: "18px",
+    margin: "0 0 10px",
+    textTransform: "uppercase" as const,
+  },
+  link: {
+    color: emailBrand.accentSoft,
+    textDecoration: "underline",
   },
   message: {
-    color: brand.text,
-    fontFamily: "Arial, Helvetica, sans-serif",
-    fontSize: "15px",
-    lineHeight: "25px",
-    marginTop: "0",
-    marginRight: "0",
-    marginBottom: "0",
-    marginLeft: "0",
+    color: emailBrand.text,
+    fontFamily,
+    fontSize: "16px",
+    lineHeight: "27px",
+    margin: "0",
     whiteSpace: "pre-wrap" as const,
     wordBreak: "break-word" as const,
   },
+  panel: {
+    backgroundColor: emailBrand.raised,
+    borderColor: emailBrand.border,
+    borderRadius: "14px",
+    borderStyle: "solid",
+    borderWidth: "1px",
+    padding: "8px 22px",
+  },
+  meta: {
+    color: emailBrand.subtle,
+    fontFamily,
+    fontSize: "13px",
+    lineHeight: "20px",
+    margin: "0",
+  },
 } as const;
 
-const bodyStyle = {
-  backgroundColor: brand.canvas,
-  color: brand.text,
-  fontFamily: "Arial, Helvetica, sans-serif",
-  marginTop: "0",
-  marginRight: "0",
-  marginBottom: "0",
-  marginLeft: "0",
-  paddingTop: "32px",
-  paddingRight: "12px",
-  paddingBottom: "32px",
-  paddingLeft: "12px",
-};
-
-const containerStyle = {
-  backgroundColor: brand.surface,
-  borderColor: brand.border,
-  borderStyle: "solid",
-  borderWidth: "1px",
-  borderRadius: "16px",
-  maxWidth: "600px",
-  overflow: "hidden",
-  width: "100%",
-};
-
-const accentRuleStyle = {
-  backgroundColor: brand.accent,
-  height: "4px",
-  lineHeight: "4px",
-};
-
-const headerStyle = {
-  borderBottomColor: brand.border,
-  borderBottomStyle: "solid",
-  borderBottomWidth: "1px",
-  paddingTop: "22px",
-  paddingRight: "28px",
-  paddingBottom: "22px",
-  paddingLeft: "28px",
+const styles = {
+  accentRule: { backgroundColor: emailBrand.accent, height: "5px" },
+  body: {
+    backgroundColor: emailBrand.canvas,
+    color: emailBrand.text,
+    fontFamily,
+    margin: "0",
+    padding: "40px 12px",
+  },
+  brandName: {
+    color: emailBrand.text,
+    fontFamily,
+    fontSize: "17px",
+    fontWeight: "700",
+    lineHeight: "21px",
+    margin: "0 0 2px",
+  },
+  brandRole: {
+    color: emailBrand.muted,
+    fontFamily,
+    fontSize: "11px",
+    lineHeight: "16px",
+    margin: "0",
+  },
+  button: {
+    backgroundColor: emailBrand.accent,
+    border: `1px solid ${emailBrand.accent}`,
+    borderRadius: "10px",
+    boxSizing: "border-box" as const,
+    color: emailBrand.ink,
+    display: "inline-block",
+    fontFamily,
+    fontSize: "15px",
+    fontWeight: "700",
+    lineHeight: "20px",
+    padding: "14px 21px",
+    textDecoration: "none",
+  },
+  container: {
+    backgroundColor: emailBrand.surface,
+    border: `1px solid ${emailBrand.border}`,
+    borderRadius: "16px",
+    maxWidth: "600px",
+    overflow: "hidden",
+    width: "100%",
+  },
+  content: { padding: "0 32px 40px" },
+  detailLabel: {
+    color: emailBrand.subtle,
+    fontFamily,
+    fontSize: "11px",
+    fontWeight: "700",
+    letterSpacing: "0.04em",
+    lineHeight: "18px",
+    margin: "0",
+    padding: "14px 0 0",
+    textTransform: "uppercase" as const,
+  },
+  detailRow: {
+    borderBottom: `1px solid ${emailBrand.border}`,
+  },
+  detailValue: {
+    color: emailBrand.text,
+    fontFamily,
+    fontSize: "14px",
+    lineHeight: "21px",
+    margin: "0",
+    padding: "4px 0 14px",
+    wordBreak: "break-word" as const,
+  },
+  footer: { backgroundColor: "#0d0d0d", padding: "0 32px 28px" },
+  footerIdentity: {
+    color: emailBrand.muted,
+    fontFamily,
+    fontSize: "12px",
+    lineHeight: "18px",
+    margin: "0 0 4px",
+  },
+  footerLink: { color: emailBrand.accentSoft, textDecoration: "underline" },
+  footerLinks: {
+    color: emailBrand.subtle,
+    fontFamily,
+    fontSize: "12px",
+    lineHeight: "18px",
+    margin: "0 0 12px",
+  },
+  footerRule: {
+    borderColor: emailBrand.border,
+    borderStyle: "solid",
+    borderWidth: "1px 0 0",
+    margin: "0 0 22px",
+  },
+  header: {
+    borderBottom: `1px solid ${emailBrand.border}`,
+    padding: "20px 28px",
+  },
+  heading: {
+    color: emailBrand.text,
+    fontFamily,
+    fontSize: "34px",
+    fontWeight: "700",
+    letterSpacing: "-0.03em",
+    lineHeight: "40px",
+    margin: "0 0 14px",
+  },
+  hero: { padding: "42px 32px 28px" },
+  legal: {
+    color: emailBrand.subtle,
+    fontFamily,
+    fontSize: "11px",
+    lineHeight: "17px",
+    margin: "0",
+  },
+  logo: { borderRadius: "13px", display: "block" },
+  logoColumn: { width: "62px" },
+  subtitle: {
+    color: emailBrand.muted,
+    fontFamily,
+    fontSize: "16px",
+    lineHeight: "26px",
+    margin: "0",
+  },
 } as const;
-
-const logoColumnStyle = {
-  width: "66px",
-};
-
-const logoStyle = {
-  borderRadius: "14px",
-  display: "block",
-} as const;
-
-const brandNameStyle = {
-  color: brand.text,
-  fontFamily: "Arial, Helvetica, sans-serif",
-  fontSize: "18px",
-  fontWeight: "700",
-  lineHeight: "22px",
-  marginTop: "0",
-  marginRight: "0",
-  marginBottom: "2px",
-  marginLeft: "0",
-};
-
-const brandRoleStyle = {
-  color: brand.muted,
-  fontFamily: "Arial, Helvetica, sans-serif",
-  fontSize: "12px",
-  lineHeight: "17px",
-  marginTop: "0",
-  marginRight: "0",
-  marginBottom: "0",
-  marginLeft: "0",
-};
-
-const heroStyle = {
-  paddingTop: "34px",
-  paddingRight: "28px",
-  paddingBottom: "26px",
-  paddingLeft: "28px",
-};
-
-const eyebrowStyle = {
-  color: brand.accentSoft,
-  fontFamily: "Arial, Helvetica, sans-serif",
-  fontSize: "11px",
-  fontWeight: "700",
-  letterSpacing: "0.16em",
-  lineHeight: "16px",
-  marginTop: "0",
-  marginRight: "0",
-  marginBottom: "10px",
-  marginLeft: "0",
-  textTransform: "uppercase" as const,
-};
-
-const headingStyle = {
-  color: brand.text,
-  fontFamily: "Arial, Helvetica, sans-serif",
-  fontSize: "32px",
-  fontWeight: "700",
-  letterSpacing: "-0.03em",
-  lineHeight: "38px",
-  marginTop: "0",
-  marginRight: "0",
-  marginBottom: "12px",
-  marginLeft: "0",
-};
-
-const subtitleStyle = {
-  color: brand.muted,
-  fontFamily: "Arial, Helvetica, sans-serif",
-  fontSize: "15px",
-  lineHeight: "24px",
-  marginTop: "0",
-  marginRight: "0",
-  marginBottom: "0",
-  marginLeft: "0",
-};
-
-const contentStyle = {
-  paddingTop: "0",
-  paddingRight: "28px",
-  paddingBottom: "34px",
-  paddingLeft: "28px",
-};
-
-const detailRowStyle = {
-  borderBottomColor: brand.border,
-  borderBottomStyle: "solid",
-  borderBottomWidth: "1px",
-} as const;
-
-const detailLabelColumnStyle = {
-  width: "132px",
-};
-
-const detailLabelStyle = {
-  color: brand.subtle,
-  fontFamily: "Arial, Helvetica, sans-serif",
-  fontSize: "12px",
-  fontWeight: "700",
-  lineHeight: "18px",
-  marginTop: "0",
-  marginRight: "0",
-  marginBottom: "0",
-  marginLeft: "0",
-  paddingTop: "13px",
-  paddingRight: "12px",
-  paddingBottom: "13px",
-  paddingLeft: "0",
-  textTransform: "uppercase" as const,
-};
-
-const detailValueStyle = {
-  color: brand.text,
-  fontFamily: "Arial, Helvetica, sans-serif",
-  fontSize: "14px",
-  lineHeight: "21px",
-  marginTop: "0",
-  marginRight: "0",
-  marginBottom: "0",
-  marginLeft: "0",
-  paddingTop: "13px",
-  paddingRight: "0",
-  paddingBottom: "13px",
-  paddingLeft: "0",
-  wordBreak: "break-word" as const,
-};
-
-const buttonStyle = {
-  backgroundColor: brand.accent,
-  borderColor: brand.accent,
-  borderStyle: "solid",
-  borderWidth: "1px",
-  borderRadius: "10px",
-  boxSizing: "border-box" as const,
-  color: brand.ink,
-  display: "inline-block",
-  fontFamily: "Arial, Helvetica, sans-serif",
-  fontSize: "14px",
-  fontWeight: "700",
-  lineHeight: "20px",
-  paddingTop: "13px",
-  paddingRight: "20px",
-  paddingBottom: "13px",
-  paddingLeft: "20px",
-  textDecoration: "none",
-};
-
-const footerStyle = {
-  backgroundColor: "#0d0d0d",
-  paddingTop: "0",
-  paddingRight: "28px",
-  paddingBottom: "26px",
-  paddingLeft: "28px",
-};
-
-const footerRuleStyle = {
-  borderColor: brand.border,
-  borderStyle: "solid",
-  borderWidth: "0",
-  borderTopWidth: "1px",
-  marginTop: "0",
-  marginRight: "0",
-  marginBottom: "22px",
-  marginLeft: "0",
-};
-
-const footerTextStyle = {
-  color: brand.muted,
-  fontFamily: "Arial, Helvetica, sans-serif",
-  fontSize: "12px",
-  lineHeight: "18px",
-  marginTop: "0",
-  marginRight: "0",
-  marginBottom: "4px",
-  marginLeft: "0",
-};
-
-const footerLinksStyle = {
-  color: brand.subtle,
-  fontFamily: "Arial, Helvetica, sans-serif",
-  fontSize: "12px",
-  lineHeight: "18px",
-  marginTop: "0",
-  marginRight: "0",
-  marginBottom: "12px",
-  marginLeft: "0",
-};
-
-const footerLinkStyle = {
-  color: brand.accentSoft,
-  textDecoration: "underline",
-};
-
-const legalStyle = {
-  color: brand.subtle,
-  fontFamily: "Arial, Helvetica, sans-serif",
-  fontSize: "11px",
-  lineHeight: "17px",
-  marginTop: "0",
-  marginRight: "0",
-  marginBottom: "0",
-  marginLeft: "0",
-};
