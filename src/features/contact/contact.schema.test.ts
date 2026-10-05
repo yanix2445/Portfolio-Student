@@ -59,6 +59,22 @@ describe("contactSchema", () => {
     }
   });
 
+  it("n’affiche qu’une erreur utile pour un nom vide", () => {
+    const parsed = contactSchema.safeParse({
+      ...validContact,
+      firstName: "",
+      lastName: "",
+    });
+
+    expect(parsed.success).toBe(false);
+    if (!parsed.success) {
+      const errors = parsed.error.flatten().fieldErrors;
+
+      expect(errors.firstName).toEqual(["Indiquez votre prénom."]);
+      expect(errors.lastName).toEqual(["Indiquez votre nom."]);
+    }
+  });
+
   it("accepte les champs facultatifs absents et un accord newsletter explicite", () => {
     const parsed = contactSchema.parse({
       ...validContact,

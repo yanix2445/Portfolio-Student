@@ -28,8 +28,10 @@ const personName = (label: "prénom" | "nom") =>
     .trim()
     .min(2, `Indiquez votre ${label}.`)
     .max(60, `Limitez le ${label} à 60 caractères.`)
-    .regex(
-      /^[\p{L}\p{M}][\p{L}\p{M}\s'’.\-]*$/u,
+    .refine(
+      (value) =>
+        value.length < 2 ||
+        /^[\p{L}\p{M}][\p{L}\p{M}\s'’.\-]*$/u.test(value),
       `Le ${label} contient des caractères non autorisés.`,
     );
 
