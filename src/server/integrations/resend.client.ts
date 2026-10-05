@@ -18,12 +18,29 @@ function getResendClient() {
 export function getResendNewsletterClient() {
   const segmentId = process.env.RESEND_SEGMENT_ID;
   const topicId = process.env.RESEND_TOPIC_ID;
+  const fromEmail = process.env.RESEND_FROM_EMAIL;
+  const replyToEmail = process.env.CONTACT_TO_EMAIL;
+  const confirmationTemplateId =
+    process.env.RESEND_NEWSLETTER_CONFIRMATION_TEMPLATE_ID;
 
-  if (!segmentId || !topicId) {
+  if (
+    !segmentId ||
+    !topicId ||
+    !fromEmail ||
+    !replyToEmail ||
+    !confirmationTemplateId
+  ) {
     throw new Error("Resend newsletter configuration is missing.");
   }
 
-  return { resend: getResendClient(), segmentId, topicId };
+  return {
+    resend: getResendClient(),
+    segmentId,
+    topicId,
+    fromEmail,
+    replyToEmail,
+    confirmationTemplateId,
+  };
 }
 
 export function getResendContactClient() {

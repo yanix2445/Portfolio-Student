@@ -4,42 +4,65 @@ import {
   EmailButton,
   emailStyles,
 } from "../components/branded-email";
-import { emailTemplateVariables as variable } from "../email-template.config";
 
-export function ContactReceiptEmail() {
+export type ContactReceiptEmailProps = {
+  firstName: string;
+  reason: string;
+};
+
+export function ContactReceiptEmail({
+  firstName,
+  reason,
+}: ContactReceiptEmailProps) {
   return (
     <BrandedEmail
-      eyebrow="Message bien reçu"
-      preview={`Merci ${variable.visitorFirstName}, votre message est bien arrivé.`}
-      subtitle="Votre demande a été transmise. Je vous répondrai personnellement depuis mon adresse professionnelle."
-      title={<>Bonjour {variable.visitorFirstName},</>}
+      preview={
+        "Merci " + firstName + ", votre message est bien arrivé à Yanis."
+      }
+      subtitle={
+        <>
+          Merci <strong style={{ color: "#f7f7f5" }}>{firstName}</strong>. Votre
+          message a bien été transmis et je vous répondrai personnellement.
+        </>
+      }
+      title="Votre message est bien arrivé."
     >
-      <Section style={emailStyles.calloutAccent}>
-        <Text style={emailStyles.calloutTitle}>Votre demande</Text>
-        <Text style={emailStyles.copyStrong}>{variable.reason}</Text>
-        <Text style={{ ...emailStyles.copy, marginBottom: "0" }}>
-          Une réponse vous sera envoyée depuis contact@yanis-harrat.com.
+      <Section style={emailStyles.accentPanel}>
+        <Text style={emailStyles.label}>Demande transmise</Text>
+        <Text style={emailStyles.bodyStrong}>{reason}</Text>
+        <Text style={{ ...emailStyles.bodyCopy, marginBottom: "0" }}>
+          Ma réponse vous parviendra depuis contact@yanis-harrat.com. Vous
+          pourrez répondre directement à cet e-mail pour poursuivre l’échange.
         </Text>
       </Section>
 
       <Hr style={emailStyles.divider} />
 
-      <Text style={emailStyles.copyStrong}>Besoin d’échanger rapidement ?</Text>
-      <Text style={emailStyles.copy}>
-        Vous pouvez choisir un créneau d’appel audio ou de visioconférence dans
-        mon calendrier.
+      <Text style={emailStyles.bodyStrong}>Vous préférez un échange oral ?</Text>
+      <Text style={emailStyles.bodyCopy}>
+        Mon calendrier propose les créneaux disponibles pour un appel audio ou
+        une visioconférence.
       </Text>
       <EmailButton href="https://cal.com/yanis-harrat">
-        Choisir un créneau
+        Voir mes disponibilités
       </EmailButton>
 
-      <Text style={{ ...emailStyles.copy, marginTop: "26px", marginBottom: "0" }}>
+      <Text style={{ ...emailStyles.bodyCopy, marginTop: "30px", marginBottom: "0" }}>
         Bien cordialement,
         <br />
-        <strong style={{ color: "#f6f6f6" }}>Yanis Harrat</strong>
+        <strong style={{ color: "#f7f7f5" }}>Yanis Harrat</strong>
+        <br />
+        <span style={{ color: "#9b9b96", fontSize: "13px" }}>
+          Technicien support systèmes et réseaux
+        </span>
       </Text>
     </BrandedEmail>
   );
 }
+
+ContactReceiptEmail.PreviewProps = {
+  firstName: "Camille",
+  reason: "Opportunité professionnelle",
+} satisfies ContactReceiptEmailProps;
 
 export default ContactReceiptEmail;

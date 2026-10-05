@@ -1,6 +1,7 @@
 export const emailTemplateAliases = {
   contactOwner: "portfolio-contact-owner-v2",
   contactReceipt: "portfolio-contact-receipt-v2",
+  newsletterConfirmation: "portfolio-newsletter-confirmation",
   watchDigest: "portfolio-watch-digest",
 } as const;
 
@@ -13,6 +14,7 @@ export const emailTemplateVariables = {
   reason: "{{{REASON}}}",
   message: "{{{MESSAGE}}}",
   newsletterStatus: "{{{NEWSLETTER_STATUS}}}",
+  subscriberEmail: "{{{SUBSCRIBER_EMAIL}}}",
   editionLabel: "{{{EDITION_LABEL}}}",
   articleTitle: "{{{ARTICLE_TITLE}}}",
   articleSummary: "{{{ARTICLE_SUMMARY}}}",

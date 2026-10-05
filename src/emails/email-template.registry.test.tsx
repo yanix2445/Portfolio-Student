@@ -19,6 +19,7 @@ describe("email template registry", () => {
     expect(aliases).toEqual([
       emailTemplateAliases.contactOwner,
       emailTemplateAliases.contactReceipt,
+      emailTemplateAliases.newsletterConfirmation,
       emailTemplateAliases.watchDigest,
     ]);
     expect(new Set(aliases).size).toBe(aliases.length);
@@ -74,7 +75,8 @@ describe("email template registry", () => {
 
     expect(owner).toBeDefined();
     const html = await render(owner!.react);
-    expect(html).toContain("Répondez simplement à cet e-mail");
+    expect(html).toContain("Répondre à");
+    expect(html).toContain("Le champ Reply-To");
     expect(html).toContain("{{{MESSAGE}}}");
   });
 
@@ -92,5 +94,18 @@ describe("email template registry", () => {
     expect(await render(digest!.react)).toContain(
       "{{{RESEND_UNSUBSCRIBE_URL}}}",
     );
+  });
+
+  it("confirms the newsletter subscription with the registered address", async () => {
+    const confirmation = emailTemplateRegistry.find(
+      (template) =>
+        template.alias === emailTemplateAliases.newsletterConfirmation,
+    );
+
+    expect(confirmation).toBeDefined();
+    const html = await render(confirmation!.react);
+    expect(html).toContain("Votre inscription est confirmée");
+    expect(html).toContain("{{{SUBSCRIBER_EMAIL}}}");
+    expect(html).toContain('href="https://www.yanis-harrat.com/veille"');
   });
 });

@@ -2,51 +2,85 @@ import { Link, Section, Text } from "react-email";
 import {
   BrandedEmail,
   DetailRow,
+  EmailButton,
   emailStyles,
 } from "../components/branded-email";
-import { emailTemplateVariables as variable } from "../email-template.config";
 
-export function ContactOwnerEmail() {
+export type ContactOwnerEmailProps = {
+  email: string;
+  firstName: string;
+  lastName: string;
+  message: string;
+  newsletterStatus: string;
+  organization: string;
+  phone: string;
+  reason: string;
+};
+
+export function ContactOwnerEmail({
+  email,
+  firstName,
+  lastName,
+  message,
+  newsletterStatus,
+  organization,
+  phone,
+  reason,
+}: ContactOwnerEmailProps) {
+  const fullName = [firstName, lastName].join(" ");
+  const emailHref = "mailto:" + email;
+
   return (
     <BrandedEmail
-      eyebrow="Nouvelle demande · Portfolio"
-      preview={`Nouvelle demande de ${variable.visitorFirstName} ${variable.visitorLastName}`}
-      subtitle="Toutes les informations utiles sont regroupées ici pour vous permettre de répondre directement."
-      title={
+      preview={fullName + " vous contacte au sujet de « " + reason + " »."}
+      subtitle={
         <>
-          {variable.visitorFirstName} {variable.visitorLastName}
+          <strong style={{ color: "#f7f7f5" }}>{fullName}</strong> vous
+          contacte depuis votre portfolio au sujet de « {reason} ».
         </>
       }
+      title="Nouvelle demande reçue."
     >
-      <Section style={emailStyles.callout}>
-        <DetailRow label="Objet" value={variable.reason} />
-        <DetailRow
-          label="E-mail"
-          value={
-            <Link
-              href={`mailto:${variable.visitorEmail}`}
-              style={{ color: "#ff9838", textDecoration: "underline" }}
-            >
-              {variable.visitorEmail}
-            </Link>
-          }
-        />
-        <DetailRow label="Téléphone" value={variable.phone} />
-        <DetailRow label="Organisation" value={variable.organization} />
-        <DetailRow label="Veille" value={variable.newsletterStatus} />
+      <Section style={emailStyles.panel}>
+        <DetailRow label="E-mail" value={email} />
+        <DetailRow label="Téléphone" value={phone} />
+        <DetailRow label="Organisation" value={organization} />
+        <DetailRow label="Newsletter" value={newsletterStatus} />
       </Section>
 
-      <Section style={{ ...emailStyles.calloutAccent, marginTop: "22px" }}>
-        <Text style={emailStyles.calloutTitle}>Message</Text>
-        <Text style={emailStyles.message}>{variable.message}</Text>
+      <Section style={{ ...emailStyles.accentPanel, marginTop: "24px" }}>
+        <Text style={emailStyles.label}>Son message</Text>
+        <Text style={emailStyles.message}>{message}</Text>
       </Section>
 
-      <Text style={{ ...emailStyles.copy, marginTop: "22px", marginBottom: "0" }}>
-        Répondez simplement à cet e-mail : le champ de réponse est déjà dirigé
-        vers le visiteur.
+      <Text style={{ ...emailStyles.bodyCopy, marginTop: "24px" }}>
+        Le bouton ouvre une réponse à l’adresse indiquée. Le champ Reply-To de
+        cet e-mail est également configuré pour répondre directement au
+        visiteur.
+      </Text>
+      <EmailButton href={emailHref}>Répondre à {firstName}</EmailButton>
+
+      <Text style={{ ...emailStyles.meta, marginTop: "18px" }}>
+        Si le bouton ne s’ouvre pas, écrivez à{" "}
+        <Link href={emailHref} style={emailStyles.link}>
+          {email}
+        </Link>
+        .
       </Text>
     </BrandedEmail>
   );
 }
+
+ContactOwnerEmail.PreviewProps = {
+  email: "camille.martin@example.com",
+  firstName: "Camille",
+  lastName: "Martin",
+  message:
+    "Bonjour Yanis,\n\nNous recherchons un profil en support systèmes et réseaux pour renforcer notre équipe. Votre parcours a retenu notre attention. Seriez-vous disponible cette semaine pour un premier échange ?",
+  newsletterStatus: "Inscription non demandée",
+  organization: "Atelier Réseau",
+  phone: "+33 6 12 34 56 78",
+  reason: "Opportunité professionnelle",
+} satisfies ContactOwnerEmailProps;
 
 export default ContactOwnerEmail;
